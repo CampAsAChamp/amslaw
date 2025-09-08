@@ -13,6 +13,7 @@ yarn-error.log*
 # Next.js build output
 .next/
 out/
+.open-next/
 
 # Build output
 build/
