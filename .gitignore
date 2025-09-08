@@ -13,7 +13,11 @@ yarn-error.log*
 # Next.js build output
 .next/
 out/
-.open-next/
+/.open-next
+
+# wrangler files (Cloudflare Workers)
+.wrangler
+.dev.vars*
 
 # Build output
 build/
@@ -58,6 +62,7 @@ Thumbs.db
 
 # Test coverage output
 coverage/
+/coverage
 
 # Debug-related files
 debug.log
