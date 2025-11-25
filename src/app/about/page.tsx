@@ -8,7 +8,7 @@ export default function About() {
   return (
     <div className="bg-page">
       <HeroSection
-        title="About AMS Law"
+        title="About Anna M Schneider Law"
         subtitle="Dedicated to protecting your family's future with expert legal guidance and personalized estate planning solutions."
         primaryButtonText="Schedule Consultation"
         primaryButtonLink="/contact"

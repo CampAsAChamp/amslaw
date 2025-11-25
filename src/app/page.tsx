@@ -48,7 +48,7 @@ export default function Home() {
       <section className="section-padding bg-surface">
         <div className="section-container">
           <SectionHeader
-            title="Why Choose AMS Law?"
+            title="Why Choose Anna M Schneider Law?"
             subtitle="With years of experience in estate planning, we provide personalized service and expert guidance to protect what matters most to you."
           />
 

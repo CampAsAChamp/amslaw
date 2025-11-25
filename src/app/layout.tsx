@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AMS Law - Wills & Trusts Attorney",
+  title: "Anna M Schneider Law - Wills & Trusts Attorney",
   description: "Professional legal services specializing in estate planning, wills, trusts, and probate. Protecting your family's future with expert legal guidance.",
 };
 

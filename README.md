@@ -1,4 +1,4 @@
-# AMS Law - Anna M. Schneider Law Firm Website
+# Anna M Schneider Law - Law Firm Website
 
 Professional law firm website built with Next.js and deployed on Cloudflare Workers.
 

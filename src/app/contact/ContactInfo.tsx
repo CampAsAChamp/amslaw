@@ -11,9 +11,9 @@ export default function ContactInfo() {
             <div>
               <div className="font-semibold text-heading">Address</div>
               <div className="text-body">
-                123 Legal Street<br />
-                Suite 100<br />
-                Your City, ST 12345
+                21250 Hawthorne Blvd.<br />
+                Suite 500<br />
+                Torrance, CA 90503
               </div>
             </div>
           </div>

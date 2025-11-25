@@ -21,7 +21,7 @@ export default function MapSection() {
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="AMS Law Office Location"
+            title="Anna M Schneider Law Office Location"
           />
         </div>
       </div>
