@@ -13,7 +13,7 @@ export default function Home() {
       <HeroSection
         title="Protect Your Family's Future"
         subtitle="Expert legal services for wills, trusts, and estate planning. Secure your legacy with professional guidance you can trust."
-        primaryButtonText="Free Consultation"
+        primaryButtonText="Consultation"
         primaryButtonLink="/contact"
         secondaryButtonText="Our Services"
         secondaryButtonLink="/services"
@@ -68,8 +68,8 @@ export default function Home() {
       {/* Call to Action */}
       <CallToAction
         title="Ready to Protect Your Legacy?"
-        subtitle="Don't wait to secure your family's future. Schedule a free consultation to discuss your estate planning needs."
-        buttonText="Schedule Free Consultation"
+        subtitle="Don't wait to secure your family's future. Schedule a consultation to discuss your estate planning needs."
+        buttonText="Schedule Consultation"
         buttonLink="/contact"
       />
     </div>

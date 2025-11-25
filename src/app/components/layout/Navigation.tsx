@@ -56,7 +56,7 @@ export default function Navigation() {
                 href="/contact"
                 className="btn-nav"
               >
-                Free Consultation
+                Consultation
               </Link>
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function Navigation() {
                 className="btn-nav-mobile"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Free Consultation
+                Consultation
               </Link>
             </div>
           </div>

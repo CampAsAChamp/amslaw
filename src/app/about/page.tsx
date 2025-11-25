@@ -20,8 +20,8 @@ export default function About() {
 
       <CallToAction
         title="Ready to Work Together?"
-        subtitle="Let's discuss how we can help protect your family's future. Schedule a free consultation to get started."
-        buttonText="Schedule Free Consultation"
+        subtitle="Let's discuss how we can help protect your family's future. Schedule a consultation to get started."
+        buttonText="Schedule Consultation"
         buttonLink="/contact"
       />
     </div>

@@ -66,7 +66,7 @@ export default function ContactInfo() {
       </div>
 
       <div className="card">
-        <h3 className="text-xl font-bold text-heading mb-6">Free Consultation Includes</h3>
+        <h3 className="text-xl font-bold text-heading mb-6">Consultation Includes</h3>
         <ul className="space-y-3 text-body">
           <li className="flex items-start">
             <svg className="w-5 h-5 text-primary-hover mt-0.5 mr-3" fill="currentColor" viewBox="0 0 20 20">

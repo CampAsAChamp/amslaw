@@ -8,7 +8,7 @@ export default function Contact() {
     <div className="bg-page">
       <HeroSection 
         title="Contact Us"
-        subtitle="Ready to protect your family's future? Schedule a free consultation to discuss your estate planning needs."
+        subtitle="Ready to protect your family's future? Schedule a consultation to discuss your estate planning needs."
         primaryButtonText="Call (555) 123-4567"
         primaryButtonLink="tel:5551234567"
       />

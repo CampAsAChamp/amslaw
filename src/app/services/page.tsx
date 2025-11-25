@@ -13,7 +13,7 @@ export default function Services() {
       <HeroSection
         title="Comprehensive Legal Services"
         subtitle="Expert guidance for all your estate planning and probate needs. Protecting your family&apos;s future with professional legal services."
-        primaryButtonText="Free Consultation"
+        primaryButtonText="Consultation"
         primaryButtonLink="/contact"
       />
 
@@ -60,8 +60,8 @@ export default function Services() {
       {/* Call to Action */}
       <CallToAction
         title="Ready to Secure Your Legacy?"
-        subtitle="Don&apos;t leave your family&apos;s future to chance. Schedule a free consultation to discuss your estate planning needs today."
-        buttonText="Schedule Free Consultation"
+        subtitle="Don&apos;t leave your family&apos;s future to chance. Schedule a consultation to discuss your estate planning needs today."
+        buttonText="Schedule Consultation"
         buttonLink="/contact"
       />
     </div>

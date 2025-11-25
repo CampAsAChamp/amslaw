@@ -52,7 +52,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
   return (
     <div className="card">
-      <h2 className="text-2xl font-bold text-heading mb-6">Schedule Your Free Consultation</h2>
+      <h2 className="text-2xl font-bold text-heading mb-6">Schedule Your Consultation</h2>
       
       {submitStatus === 'success' && (
         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
@@ -131,7 +131,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
             <option value="trusts">Trust Planning</option>
             <option value="probate">Probate & Administration</option>
             <option value="estate-planning">Comprehensive Estate Planning</option>
-            <option value="consultation">Free Consultation</option>
+            <option value="consultation">Consultation</option>
             <option value="other">Other</option>
           </select>
         </div>
