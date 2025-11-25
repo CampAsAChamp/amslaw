@@ -3,6 +3,7 @@ import { services, whyChooseUsFeatures } from "@/app/constants";
 import CallToAction from "@/app/components/sections/CallToAction";
 import FeatureCard from "@/app/components/cards/FeatureCard";
 import HeroSection from "@/app/components/hero/HeroSection";
+import SectionHeader from "@/app/components/sections/SectionHeader";
 import ServiceCard from "@/app/components/cards/ServiceCard";
 
 export default function Home() {
@@ -22,15 +23,10 @@ export default function Home() {
       {/* Services Overview */}
       <section className="section-padding bg-surface-secondary">
         <div className="section-container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-heading mb-4">
-              Comprehensive Estate Planning Services
-            </h2>
-            <p className="text-xl text-body max-w-3xl mx-auto">
-              We provide expert legal guidance to help you create a comprehensive estate plan 
-              that protects your assets and ensures your wishes are carried out.
-            </p>
-          </div>
+          <SectionHeader
+            title="Comprehensive Estate Planning Services"
+            subtitle="We provide expert legal guidance to help you create a comprehensive estate plan that protects your assets and ensures your wishes are carried out."
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((service, index) => (
@@ -51,15 +47,10 @@ export default function Home() {
       {/* Why Choose Us */}
       <section className="section-padding bg-surface">
         <div className="section-container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-heading mb-4">
-              Why Choose AMS Law?
-            </h2>
-            <p className="text-xl text-body max-w-3xl mx-auto">
-              With years of experience in estate planning, we provide personalized service 
-              and expert guidance to protect what matters most to you.
-            </p>
-          </div>
+          <SectionHeader
+            title="Why Choose AMS Law?"
+            subtitle="With years of experience in estate planning, we provide personalized service and expert guidance to protect what matters most to you."
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {whyChooseUsFeatures.map((feature, index) => (

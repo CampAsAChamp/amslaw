@@ -1,6 +1,7 @@
 import CallToAction from "@/app/components/sections/CallToAction";
 import HeroSection from "@/app/components/hero/HeroSection";
 import ProcessStep from "@/app/components/cards/ProcessStep";
+import SectionHeader from "@/app/components/sections/SectionHeader";
 import ServiceDetail from "@/app/services/ServiceDetail";
 import { processSteps } from "@/app/constants";
 import { servicesData } from "@/app/services/servicesData";
@@ -38,15 +39,10 @@ export default function Services() {
       {/* Process Section */}
       <section className="section-padding bg-surface">
         <div className="section-container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-heading mb-4">
-              Our Simple Process
-            </h2>
-            <p className="text-xl text-body max-w-3xl mx-auto">
-              We make estate planning straightforward and stress-free with our proven process 
-              that ensures your documents are comprehensive and legally sound.
-            </p>
-          </div>
+          <SectionHeader
+            title="Our Simple Process"
+            subtitle="We make estate planning straightforward and stress-free with our proven process that ensures your documents are comprehensive and legally sound."
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {processSteps.map((step, index) => (

@@ -1,12 +1,17 @@
-import ContactHero from "@/app/contact/ContactHero";
-import ContactForm from "@/app/contact/ContactForm";
+import HeroSection from "@/app/components/hero/HeroSection";
+import ContactForm from "@/app/components/forms/ContactForm";
 import ContactInfo from "@/app/contact/ContactInfo";
 import MapSection from "@/app/contact/MapSection";
 
 export default function Contact() {
   return (
     <div className="bg-page">
-      <ContactHero />
+      <HeroSection 
+        title="Contact Us"
+        subtitle="Ready to protect your family's future? Schedule a free consultation to discuss your estate planning needs."
+        primaryButtonText="Call (555) 123-4567"
+        primaryButtonLink="tel:5551234567"
+      />
 
       <section className="py-20 bg-surface-secondary">
         <div className="container-page">

@@ -7,19 +7,22 @@ export default function MapSection() {
             Visit Our Office
           </h2>
           <p className="text-xl text-body max-w-3xl mx-auto">
-            Located in the heart of downtown, our office provides a comfortable and 
+            Conveniently located in San Diego, our office provides a comfortable and 
             professional environment for your consultation.
           </p>
         </div>
 
-        <div className="bg-surface-tertiary h-96 rounded-lg flex items-center justify-center">
-          <div className="text-center text-muted">
-            <svg className="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-            </svg>
-            <p className="text-lg font-semibold">Interactive Map</p>
-            <p className="text-sm">123 Legal Street, Suite 100, Your City, ST 12345</p>
-          </div>
+        <div className="rounded-lg overflow-hidden shadow-lg h-96">
+          <iframe
+            src="https://maps.google.com/maps?q=7535%20Torrey%20Santa%20Fe%20Rd.%20San%20Diego,%20CA%2092129&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="AMS Law Office Location"
+          />
         </div>
       </div>
     </section>
