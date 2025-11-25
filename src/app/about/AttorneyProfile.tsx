@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AttorneyProfile() {
   return (
@@ -43,13 +44,17 @@ export default function AttorneyProfile() {
           </div>
 
           <div className="card">
-            <div className="aspect-square bg-placeholder rounded-lg mb-6 flex items-center justify-center">
-              <svg className="w-24 h-24 text-muted" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-              </svg>
+            <div className="relative w-full aspect-square rounded-lg overflow-hidden mb-6">
+              <Image 
+                src="/attorney-headshot.jpg" 
+                alt="Attorney Amy Schneider"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
             </div>
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-heading mb-2">Attorney Name</h3>
+              <h3 className="text-2xl font-bold text-heading mb-2">Amy Schneider</h3>
               <p className="text-primary-hover font-semibold mb-4">Principal Attorney</p>
               <p className="text-body mb-6">
                 Specializing in Estate Planning, Wills, Trusts, and Probate Administration
