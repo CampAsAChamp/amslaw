@@ -100,6 +100,17 @@ The ONLY place hex colors should appear is in `src/app/globals.css` where CSS va
 - Shared constants and data go in `src/app/constants/`
 - All styling goes in `src/app/globals.css`
 
+### Imports
+- **ALWAYS use absolute imports** with the `@/` alias for all local files
+- Examples:
+  - ✅ `import { Button } from "@/app/components/ui/Button"`
+  - ✅ `import { features } from "@/app/constants/features"`
+  - ✅ `import AttorneyProfile from "@/app/about/AttorneyProfile"`
+  - ❌ `import { Button } from "../components/ui/Button"`
+  - ❌ `import { features } from "../../constants/features"`
+  - ❌ `import AttorneyProfile from "./AttorneyProfile"`
+- Exception: Next.js core imports (e.g., `next/link`, `next/image`) use package imports as normal
+
 ### Naming Conventions
 - Components: PascalCase (e.g., `HeroSection.tsx`)
 - Utility functions: camelCase (e.g., `formatDate`)
