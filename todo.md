@@ -21,3 +21,6 @@
 - Update the home page with main 
 - Get logo from Mom
 - Get headshots from Mom
+
+# Address
+- 21250 Hawthorne Blvd. Suite 500, Torrance, CA 90503
