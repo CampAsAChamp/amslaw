@@ -21,6 +21,11 @@
 - Update the home page with main 
 - Get logo from Mom
 - Get headshots from Mom
+- Get info from living trust and wills markdown files
 
 # Address
 - 21250 Hawthorne Blvd. Suite 500, Torrance, CA 90503
+
+# Scheduling Link
+https://schneiderlaw.cliogrow.com/book/23e33029a379134b415e1386768a136d
+
