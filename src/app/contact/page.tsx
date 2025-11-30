@@ -1,5 +1,5 @@
 import HeroSection from "@/app/components/hero/HeroSection";
-import ContactForm from "@/app/components/forms/ContactForm";
+import ContactForm from "@/app/contact/ContactForm";
 import ContactInfo from "./ContactInfo";
 import MapSection from "./MapSection";
 

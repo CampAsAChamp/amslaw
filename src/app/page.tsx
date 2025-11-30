@@ -1,10 +1,10 @@
 import { services, whyChooseUsFeatures } from "./constants";
 
-import CallToAction from "./components/sections/CallToAction";
-import FeatureCard from "./components/cards/FeatureCard";
-import HeroSection from "./components/hero/HeroSection";
-import SectionHeader from "./components/sections/SectionHeader";
-import ServiceCard from "./components/cards/ServiceCard";
+import CallToAction from "@/app/components/sections/CallToAction";
+import FeatureCard from "@/app/components/cards/FeatureCard";
+import HeroSection from "@/app/components/hero/HeroSection";
+import SectionHeader from "@/app/components/sections/SectionHeader";
+import ServiceCard from "@/app/ServiceCard";
 
 export default function Home() {
   return (

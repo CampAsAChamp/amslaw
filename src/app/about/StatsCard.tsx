@@ -8,3 +8,4 @@ export default function StatsCard({ number, label }: StatsCardProps) {
     </div>
   );
 }
+

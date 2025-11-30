@@ -10,3 +10,4 @@ export default function TestimonialCard({ quote, author }: TestimonialCardProps)
     </div>
   );
 }
+

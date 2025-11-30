@@ -11,3 +11,4 @@ export default function ProcessStep({ stepNumber, title, description }: ProcessS
     </div>
   );
 }
+

@@ -1,6 +1,6 @@
 import CallToAction from "@/app/components/sections/CallToAction";
 import HeroSection from "@/app/components/hero/HeroSection";
-import ProcessStep from "@/app/components/cards/ProcessStep";
+import ProcessStep from "@/app/services/ProcessStep";
 import SectionHeader from "@/app/components/sections/SectionHeader";
 import ServiceDetail from "./ServiceDetail";
 import { processSteps } from "@/app/constants";

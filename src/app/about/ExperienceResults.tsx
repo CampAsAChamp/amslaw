@@ -1,6 +1,6 @@
 import { stats, testimonials } from "@/app/constants";
-import StatsCard from "@/app/components/cards/StatsCard";
-import TestimonialCard from "@/app/components/cards/TestimonialCard";
+import StatsCard from "@/app/about/StatsCard";
+import TestimonialCard from "@/app/about/TestimonialCard";
 
 export default function ExperienceResults() {
   return (
