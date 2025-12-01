@@ -6,7 +6,7 @@ Professional law firm website specializing in estate planning, built with Next.j
 
 🌐 **[annamschneiderlaw.com](https://annamschneiderlaw.com)**
 
-The site is deployed on Cloudflare Workers. GitHub Actions automatically runs builds and linting checks on every push to ensure code quality.
+The site is deployed on Cloudflare Workers with automatic build and deployment on every push.
 
 ## About This Project
 
@@ -19,8 +19,7 @@ This is the official website for Anna M. Schneider Law, a law firm specializing 
 - **Styling**: Tailwind CSS v4 with custom CSS variables for theming
 - **Email**: [Resend](https://resend.com) with React Email components
 - **Notifications**: react-hot-toast for user feedback
-- **Deployment**: Cloudflare Workers via [OpenNext](https://opennext.js.org/)
-- **CI/CD**: GitHub Actions for automated builds and linting
+- **Deployment**: Cloudflare Workers via [OpenNext](https://opennext.js.org/) with automatic deployment
 - **Runtime**: Node.js 22
 - **Quality**: Husky for git hooks and pre-commit checks
 
@@ -50,7 +49,7 @@ This project requires **Node.js 22** or higher
 - **User Notifications** - Toast notifications for form submissions and user feedback
 - **Interactive Maps** - Office location map integration
 - **FAQ Section** - Comprehensive answers to common estate planning questions
-- **CI/CD Pipeline** - Automated builds, linting, and quality checks via GitHub Actions
+- **Automatic Deployment** - Cloudflare Workers automatically builds and deploys on every push
 
 ## Development
 
