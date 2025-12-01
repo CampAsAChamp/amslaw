@@ -15,11 +15,12 @@ export default function Footer() {
             </p>
             <div className="text-footer">
               <p className="mb-2">
-                <strong>Office Hours:</strong> Monday - Friday, 9:00 AM - 4:00 PM
+                <strong>Office Hours:</strong>
               </p>
-              <p className="mb-2">
-                <strong>Saturday & Sunday:</strong> Closed
-              </p>
+              <ul className="ml-4 space-y-1 list-disc list-inside text-sm">
+                <li><strong>Mon - Fri:</strong> 9:00 AM - 4:00 PM</li>
+                <li><strong>Sat - Sun:</strong> Closed</li>
+              </ul>
             </div>
           </div>
 
@@ -54,9 +55,16 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-on-primary">Contact Info</h4>
             <div className="text-footer space-y-2">
-              <p>21250 Hawthorne Blvd.</p>
-              <p>Suite 500</p>
-              <p>Torrance, CA 90503</p>
+              <a 
+                href="https://www.google.com/maps/place/21250+Hawthorne+Blvd,+Torrance,+CA+90503/@33.8361803,-118.353406,18.81z/data=!4m6!3m5!1s0x80c2b4d35aa9c9b3:0x9718c991148def10!8m2!3d33.8361935!4d-118.3526581!16s%2Fg%2F11bw3fbbpr?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-footer-muted hover:text-on-primary transition-colors hover:underline block"
+              >
+                21250 Hawthorne Blvd.<br />
+                Suite 500<br />
+                Torrance, CA 90503
+              </a>
               <p className="mt-4 flex items-center gap-2">
                 <strong>Phone:</strong>{' '}
                 <a 

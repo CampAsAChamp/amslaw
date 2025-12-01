@@ -73,7 +73,7 @@ export default function ContactInfo() {
             <span>9:00 AM - 4:00 PM</span>
           </div>
           <div className="flex justify-between">
-            <span>Saturday & Sunday</span>
+            <span>Saturday - Sunday</span>
             <span>Closed</span>
           </div>
         </div>
