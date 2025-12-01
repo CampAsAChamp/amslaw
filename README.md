@@ -127,7 +127,9 @@ The contact form uses [Resend](https://resend.com) for email delivery and React 
 3. Name it something like "AMS Law Website"
 4. Copy the API key (starts with `re_`)
 
-#### 3. Create Environment Variables File
+#### 3. Configure Environment Variables
+
+**For Local Development:**
 
 Create a file named `.env.local` in the root of your project:
 
@@ -139,9 +141,20 @@ RESEND_API_KEY=re_your_api_key_here
 CONTACT_EMAIL=anna@schneiderlaw.com
 ```
 
-**Important:** Replace the values with:
-- Your actual Resend API key
-- The email address where you want to receive contact form submissions
+**For Production (Cloudflare Workers):**
+
+1. Update `CONTACT_EMAIL` in `wrangler.jsonc`:
+```jsonc
+"vars": {
+  "CONTACT_EMAIL": "your-email@example.com"
+}
+```
+
+2. Set `RESEND_API_KEY` as a secret using Wrangler CLI:
+```bash
+npx wrangler secret put RESEND_API_KEY
+```
+When prompted, paste your Resend API key. This stores it securely in Cloudflare and persists across all deployments.
 
 #### 4. Verify Your Domain (Optional but Recommended)
 
@@ -181,17 +194,13 @@ from: 'AMS Law Contact Form <contact@yourdomain.com>',
 
 **Not receiving emails:**
 - Check your spam folder
-- Verify the `CONTACT_EMAIL` in `.env.local` is correct
+- Verify the `CONTACT_EMAIL` is correct (in `.env.local` for local, `wrangler.jsonc` for production)
 - Check the Resend dashboard [Emails](https://resend.com/emails) to see if they're being sent
+- For production, verify you've set the `RESEND_API_KEY` secret using `npx wrangler secret put RESEND_API_KEY`
 
-**GitHub Actions CI:**
-- Add `RESEND_API_KEY` and `CONTACT_EMAIL` as repository secrets
-- Go to Settings → Secrets and variables → Actions
-- This allows the CI workflow to build successfully
-
-**Production Deployment:**
-- Add the environment variables in Cloudflare Workers dashboard
-- Don't commit `.env.local` to git (it's already in .gitignore)
+**Environment Variables:**
+- ✅ Local: Use `.env.local` (never commit this file)
+- ✅ Production: Set `CONTACT_EMAIL` in `wrangler.jsonc` and `RESEND_API_KEY` via Wrangler CLI
 - Make sure you've verified your domain for better deliverability
 
 **Security Notes:**
@@ -201,26 +210,34 @@ from: 'AMS Law Contact Form <contact@yourdomain.com>',
 
 ## Deployment
 
-### Continuous Integration
+### Automatic Deployment
 
-The repository uses GitHub Actions for automated builds and quality checks. On every push to `main` or pull request, the workflow automatically:
+The site is deployed to Cloudflare Workers with automatic build and deployment configured through Cloudflare's Git integration. Every push to the `main` branch automatically:
 
-- Installs dependencies
-- Runs ESLint for code quality
 - Builds the Next.js application
-
-See `.github/workflows/build.yml` for the complete CI configuration.
+- Generates the Cloudflare Workers bundle using OpenNext
+- Deploys to production at [annamschneiderlaw.com](https://annamschneiderlaw.com)
 
 ### Manual Deployment
 
+You can also deploy manually using the following commands:
+
 | Command                 | Action                                      |
 | :---------------------- | :------------------------------------------ |
-| `npm run build`         | Build your production site                  |
-| `npm run preview`       | Preview your build locally before deploying |
+| `npm run build`         | Build your Next.js production site          |
+| `npm run preview`       | Preview OpenNext build locally              |
 | `npm run deploy`        | Build and deploy to Cloudflare Workers      |
 | `npm run lint`          | Run ESLint to check code quality            |
 | `npm run check`         | Build and run TypeScript type checking      |
-| `npm run wrangler tail` | View real-time logs for deployed Workers    |
+
+### Environment Variables in Production
+
+Environment variables are configured in `wrangler.jsonc`:
+
+- **Non-sensitive variables** (like `CONTACT_EMAIL`): Set in the `vars` section of `wrangler.jsonc`
+- **Secrets** (like `RESEND_API_KEY`): Set using `npx wrangler secret put VARIABLE_NAME`
+
+Secrets set via Wrangler CLI are encrypted and stored securely in Cloudflare, persisting across all deployments.
 
 ## Design System
 
