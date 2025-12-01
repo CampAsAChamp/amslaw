@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import TransitionLink from "@/app/components/layout/TransitionLink";
 
 export default function AttorneyProfile() {
   return (
@@ -65,12 +65,12 @@ export default function AttorneyProfile() {
               <p className="text-body mb-6">
                 Focus on Estate Planning, Wills, Trusts, Trust Administration, and Probate matters.
               </p>
-              <Link
+              <TransitionLink
                 href="/contact"
                 className="btn-cta"
               >
                 Contact
-              </Link>
+              </TransitionLink>
             </div>
           </div>
         </div>

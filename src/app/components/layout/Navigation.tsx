@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { navigationLinks } from '@/app/data';
+import TransitionLink from '@/app/components/layout/TransitionLink';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +14,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
+            <TransitionLink href="/" className="flex items-center">
               <Image 
                 src="/schneider-law-logo.svg" 
                 alt="Schneider Law" 
@@ -23,14 +23,14 @@ export default function Navigation() {
                 className="h-10 md:h-12 w-auto"
                 priority
               />
-            </Link>
+            </TransitionLink>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navigationLinks.map((link) => (
-                <Link
+                <TransitionLink
                   key={link.href}
                   href={link.href}
                   className={
@@ -40,7 +40,7 @@ export default function Navigation() {
                   }
                 >
                   {link.label}
-                </Link>
+                </TransitionLink>
               ))}
             </div>
           </div>
@@ -67,7 +67,7 @@ export default function Navigation() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-surface border-t">
               {navigationLinks.map((link) => (
-                <Link
+                <TransitionLink
                   key={link.href}
                   href={link.href}
                   className={
@@ -78,7 +78,7 @@ export default function Navigation() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.label}
-                </Link>
+                </TransitionLink>
               ))}
             </div>
           </div>

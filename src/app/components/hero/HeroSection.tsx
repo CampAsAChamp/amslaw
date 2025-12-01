@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { HeroSectionProps } from '@/types';
+import TransitionLink from '@/app/components/layout/TransitionLink';
 
 export default function HeroSection({
   title,
@@ -35,19 +35,19 @@ export default function HeroSection({
             {subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
+            <TransitionLink
               href={primaryButtonLink}
               className="btn-hero-secondary"
             >
               {primaryButtonText}
-            </Link>
+            </TransitionLink>
             {secondaryButtonText && secondaryButtonLink && (
-              <Link
+              <TransitionLink
                 href={secondaryButtonLink}
                 className="btn-hero-primary"
               >
                 {secondaryButtonText}
-              </Link>
+              </TransitionLink>
             )}
           </div>
         </div>

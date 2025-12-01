@@ -6,6 +6,7 @@ import ConstructionBanner from "./components/layout/ConstructionBanner";
 import Footer from "./components/layout/Footer";
 import type { Metadata } from "next";
 import Navigation from "./components/layout/Navigation";
+import PageTransition from "./components/layout/PageTransition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,9 +35,11 @@ export default function RootLayout({
       >
         <ConstructionBanner />
         <Navigation />
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <PageTransition>
+          <main className="min-h-screen">
+            {children}
+          </main>
+        </PageTransition>
         <Footer />
       </body>
     </html>

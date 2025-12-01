@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import { CopyButton } from '@/app/components/ui';
 import { navigationLinks, officeHours, contactInfo } from '@/app/data';
 import { formatPhoneNumber, formatAddressMultiLine } from '@/utils';
+import TransitionLink from '@/app/components/layout/TransitionLink';
 
 export default function Footer() {
   const addressLines = formatAddressMultiLine(contactInfo.address);
@@ -37,9 +37,9 @@ export default function Footer() {
             <ul className="space-y-2">
               {navigationLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-footer-muted hover:text-on-primary transition-colors">
+                  <TransitionLink href={link.href} className="text-footer-muted hover:text-on-primary transition-colors">
                     {link.label}
-                  </Link>
+                  </TransitionLink>
                 </li>
               ))}
             </ul>

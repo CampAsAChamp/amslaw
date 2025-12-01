@@ -1,0 +1,393 @@
+/* ================================================================
+   PAGE TRANSITION ANIMATION STYLES - DEMO FILE
+   ================================================================
+   
+   This file contains different animation styles for page transitions.
+   
+   HOW TO USE:
+   1. Pick a style you want to try (Options 1-5 below)
+   2. Copy the entire section for that option
+   3. Replace the "View Transitions" section in globals.css 
+      (lines 348-415) with your chosen style
+   4. Save and refresh your browser to see the effect
+   
+   TIP: You can also adjust --page-transition-duration to make 
+        transitions faster (0.2s) or slower (0.5s)
+   ================================================================ */
+
+
+/* ================================================================
+   OPTION 1: SIMPLE FADE (Current - Clean & Subtle)
+   ================================================================ */
+
+/* View Transitions API - Page transition animations */
+/* These styles create smooth page transitions when navigating between routes */
+
+/* Define transition duration and timing */
+:root {
+  --page-transition-duration: 0.3s;
+  --page-transition-timing: ease-in-out;
+}
+
+/* Only apply transitions when the browser supports them */
+@supports (view-transition-name: page-content) {
+  /* Disable default cross-fade for the entire document */
+  ::view-transition-group(root) {
+    animation-duration: 0s;
+  }
+
+  /* Animate the page content wrapper */
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: var(--page-transition-duration);
+    animation-timing-function: var(--page-transition-timing);
+  }
+
+  /* Old page fades out */
+  ::view-transition-old(page-content) {
+    animation-name: fade-out;
+  }
+
+  /* New page fades in */
+  ::view-transition-new(page-content) {
+    animation-name: fade-in;
+  }
+}
+
+/* Keyframe animations for smooth fade transitions */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reduced motion preference - respect user accessibility settings */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: 0.01s !important;
+  }
+}
+
+
+/* ================================================================
+   OPTION 2: SLIDE FROM RIGHT (Dynamic)
+   Old page slides left, new page slides in from right
+   ================================================================ */
+
+/*
+:root {
+  --page-transition-duration: 0.4s;
+  --page-transition-timing: ease-in-out;
+}
+
+@supports (view-transition-name: page-content) {
+  ::view-transition-group(root) {
+    animation-duration: 0s;
+  }
+
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: var(--page-transition-duration);
+    animation-timing-function: var(--page-transition-timing);
+  }
+
+  ::view-transition-old(page-content) {
+    animation-name: slide-out-left;
+  }
+
+  ::view-transition-new(page-content) {
+    animation-name: slide-in-right;
+  }
+}
+
+@keyframes slide-out-left {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: 0.01s !important;
+  }
+}
+*/
+
+
+/* ================================================================
+   OPTION 3: ZOOM IN/OUT (Dramatic Scale Effect)
+   Old page zooms out, new page zooms in
+   ================================================================ */
+
+/*
+:root {
+  --page-transition-duration: 0.35s;
+  --page-transition-timing: ease-in-out;
+}
+
+@supports (view-transition-name: page-content) {
+  ::view-transition-group(root) {
+    animation-duration: 0s;
+  }
+
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: var(--page-transition-duration);
+    animation-timing-function: var(--page-transition-timing);
+  }
+
+  ::view-transition-old(page-content) {
+    animation-name: scale-out;
+  }
+
+  ::view-transition-new(page-content) {
+    animation-name: scale-in;
+  }
+}
+
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: 0.01s !important;
+  }
+}
+*/
+
+
+/* ================================================================
+   OPTION 4: FADE + SLIDE UP (Modern & Smooth)
+   Combines fade with vertical movement
+   ================================================================ */
+
+/*
+:root {
+  --page-transition-duration: 0.35s;
+  --page-transition-timing: ease-out;
+}
+
+@supports (view-transition-name: page-content) {
+  ::view-transition-group(root) {
+    animation-duration: 0s;
+  }
+
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: var(--page-transition-duration);
+    animation-timing-function: var(--page-transition-timing);
+  }
+
+  ::view-transition-old(page-content) {
+    animation-name: fade-slide-out;
+  }
+
+  ::view-transition-new(page-content) {
+    animation-name: fade-slide-in;
+  }
+}
+
+@keyframes fade-slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: 0.01s !important;
+  }
+}
+*/
+
+
+/* ================================================================
+   OPTION 5: FADE + SCALE (Elegant & Subtle)
+   Combines fade with subtle zoom effect
+   ================================================================ */
+
+/*
+:root {
+  --page-transition-duration: 0.3s;
+  --page-transition-timing: ease-in-out;
+}
+
+@supports (view-transition-name: page-content) {
+  ::view-transition-group(root) {
+    animation-duration: 0s;
+  }
+
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: var(--page-transition-duration);
+    animation-timing-function: var(--page-transition-timing);
+  }
+
+  ::view-transition-old(page-content) {
+    animation-name: fade-scale-out;
+  }
+
+  ::view-transition-new(page-content) {
+    animation-name: fade-scale-in;
+  }
+}
+
+@keyframes fade-scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes fade-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: 0.01s !important;
+  }
+}
+*/
+
+
+/* ================================================================
+   OPTION 6: CROSSFADE + BLUR (Premium Effect)
+   Old page blurs out while fading, new page sharpens while fading in
+   ================================================================ */
+
+/*
+:root {
+  --page-transition-duration: 0.4s;
+  --page-transition-timing: ease-in-out;
+}
+
+@supports (view-transition-name: page-content) {
+  ::view-transition-group(root) {
+    animation-duration: 0s;
+  }
+
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: var(--page-transition-duration);
+    animation-timing-function: var(--page-transition-timing);
+  }
+
+  ::view-transition-old(page-content) {
+    animation-name: blur-fade-out;
+  }
+
+  ::view-transition-new(page-content) {
+    animation-name: blur-fade-in;
+  }
+}
+
+@keyframes blur-fade-out {
+  from {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+@keyframes blur-fade-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: 0.01s !important;
+  }
+}
+*/
+

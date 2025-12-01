@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { CallToActionProps } from '@/types';
+import TransitionLink from '@/app/components/layout/TransitionLink';
 
 export default function CallToAction({
   title,
@@ -17,12 +17,12 @@ export default function CallToAction({
         <p className="text-xl mb-8 text-hero-body max-w-2xl mx-auto">
           {subtitle}
         </p>
-        <Link
+        <TransitionLink
           href={buttonLink}
           className="btn-hero-secondary"
         >
           {buttonText}
-        </Link>
+        </TransitionLink>
       </div>
     </section>
   );

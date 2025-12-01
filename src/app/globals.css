@@ -343,3 +343,72 @@ body {
   .btn-nav-mobile:hover {
     background-color: var(--primary-blue-hover);
 }
+
+/* ================================
+   VIEW TRANSITIONS
+   ================================ */
+
+/* View Transitions API - Page transition animations */
+/* These styles create smooth page transitions when navigating between routes */
+
+/* Define transition duration and timing */
+:root {
+  --page-transition-duration: 0.3s;
+  --page-transition-timing: ease-in-out;
+}
+
+/* Only apply transitions when the browser supports them */
+@supports (view-transition-name: page-content) {
+
+  /* Disable default cross-fade for the entire document */
+  ::view-transition-group(root) {
+    animation-duration: 0s;
+  }
+
+  /* Animate the page content wrapper */
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: var(--page-transition-duration);
+    animation-timing-function: var(--page-transition-timing);
+  }
+
+  /* Old page fades out */
+  ::view-transition-old(page-content) {
+    animation-name: fade-out;
+  }
+
+  /* New page fades in */
+  ::view-transition-new(page-content) {
+    animation-name: fade-in;
+  }
+}
+
+/* Keyframe animations for smooth fade transitions */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reduced motion preference - respect user accessibility settings */
+@media (prefers-reduced-motion: reduce) {
+
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: 0.01s !important;
+  }
+}
