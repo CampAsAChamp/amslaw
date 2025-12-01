@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Running linter before push..."
+npm run lint
+
+if [ $? -ne 0 ]; then
+  echo "❌ Lint failed! Fix errors before pushing."
+  exit 1
+fi
+
+echo "✅ Lint passed! Proceeding with push..."
+
