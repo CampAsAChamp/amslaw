@@ -14,5 +14,9 @@
   "observability": {
     "enabled": true
   },
-  "upload_source_maps": true
+  "upload_source_maps": true,
+  "vars": {
+    "CONTACT_EMAIL": "nickschneider101@gmail.com"
+  }
+  // For RESEND_API_KEY secret, run: npx wrangler secret put RESEND_API_KEY
 }
