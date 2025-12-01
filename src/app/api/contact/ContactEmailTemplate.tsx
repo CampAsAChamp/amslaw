@@ -5,8 +5,6 @@ import { EmailField } from './email-components/EmailField';
 import { EmailFooter } from './email-components/EmailFooter';
 import { emailStyles } from './email-components/styles';
 
-interface ContactEmailTemplateProps extends FormData {}
-
 export function ContactEmailTemplate({
   name,
   email,
@@ -14,7 +12,7 @@ export function ContactEmailTemplate({
   subject,
   message,
   preferredContact,
-}: ContactEmailTemplateProps) {
+}: FormData) {
   return (
     <Html>
       <Head />
