@@ -12,9 +12,9 @@
     - [x] M-F 9-4
     - [x] Sat & Sun closed
     - [x] Update the location
-- [ ] Update the services
-  - [ ] Get proper services from Mom
-  - [ ] Get process stages from Mom 
+- [x] Update the services
+  - [x] Get proper services from Mom
+  - [x] Get process stages from Mom 
 - [ ] Update the home page with main 
 - [x] Get logo from Mom
 - [x] Get headshots from Mom
