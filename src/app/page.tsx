@@ -4,7 +4,7 @@ import CallToAction from "@/app/components/sections/CallToAction";
 import FeatureCard from "@/app/components/cards/FeatureCard";
 import HeroSection from "@/app/components/hero/HeroSection";
 import SectionHeader from "@/app/components/sections/SectionHeader";
-import ServiceCard from "@/app/ServiceCard";
+import ServiceCard from "@/app/components/home_page/ServiceCard";
 
 export default function Home() {
   return (
