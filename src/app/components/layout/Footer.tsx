@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import { CopyButton } from '@/app/components/ui';
-import { navigationLinks, officeHours } from '@/app/constants';
+import { navigationLinks, officeHours, contactInfo } from '@/app/data';
+import { formatPhoneNumber, formatAddressMultiLine } from '@/utils';
 
 export default function Footer() {
+  const addressLines = formatAddressMultiLine(contactInfo.address);
+  
   return (
     <footer className="bg-primary-dark text-on-primary">
       <div className="container-page py-12">
@@ -47,34 +50,37 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4 text-on-primary">Contact Info</h4>
             <div className="text-footer space-y-2">
               <a 
-                href="https://www.google.com/maps/place/21250+Hawthorne+Blvd,+Torrance,+CA+90503/@33.8361803,-118.353406,18.81z/data=!4m6!3m5!1s0x80c2b4d35aa9c9b3:0x9718c991148def10!8m2!3d33.8361935!4d-118.3526581!16s%2Fg%2F11bw3fbbpr?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D"
+                href={contactInfo.maps.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-footer-muted hover:text-on-primary transition-colors hover:underline block"
               >
-                21250 Hawthorne Blvd.<br />
-                Suite 500<br />
-                Torrance, CA 90503
+                {addressLines.map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    {index < addressLines.length - 1 && <><br /></>}
+                  </span>
+                ))}
               </a>
               <p className="mt-4 flex items-center gap-2">
                 <strong>Phone:</strong>{' '}
                 <a 
-                  href="tel:3107927454" 
+                  href={`tel:${contactInfo.phone}`} 
                   className="text-footer-muted hover:text-on-primary transition-colors hover:underline"
                 >
-                  (310) 792-7454
+                  {formatPhoneNumber(contactInfo.phone)}
                 </a>
-                <CopyButton textToCopy="(310) 792-7454" label="Copy phone number" className="text-footer-muted hover:text-on-primary" />
+                <CopyButton textToCopy={formatPhoneNumber(contactInfo.phone)} label="Copy phone number" className="text-footer-muted hover:text-on-primary" />
               </p>
               <p className="flex items-center gap-2">
                 <strong>Email:</strong>{' '}
                 <a 
-                  href="mailto:amschneiderlaw@gmail.com" 
+                  href={`mailto:${contactInfo.email}`} 
                   className="text-footer-muted hover:text-on-primary transition-colors hover:underline"
                 >
-                  amschneiderlaw@gmail.com
+                  {contactInfo.email}
                 </a>
-                <CopyButton textToCopy="amschneiderlaw@gmail.com" label="Copy email address" className="text-footer-muted hover:text-on-primary" />
+                <CopyButton textToCopy={contactInfo.email} label="Copy email address" className="text-footer-muted hover:text-on-primary" />
               </p>
             </div>
           </div>

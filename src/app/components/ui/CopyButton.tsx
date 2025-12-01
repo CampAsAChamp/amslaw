@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { icons } from '@/app/constants';
+import { icons } from '@/app/data';
 
 interface CopyButtonProps {
   textToCopy: string;

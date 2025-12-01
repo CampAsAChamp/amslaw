@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { ContactFormProps, FormData } from '@/types';
 import toast, { Toaster } from 'react-hot-toast';
+import { contactInfo } from '@/app/data';
+import { formatPhoneNumber } from '@/utils';
 
 export default function ContactForm({ onSubmit }: ContactFormProps) {
   const [formData, setFormData] = useState<FormData>({
@@ -161,7 +163,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
             value={formData.phone}
             onChange={handleChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-            placeholder="(310) 792-7454"
+            placeholder={formatPhoneNumber(contactInfo.phone)}
           />
         </div>
 

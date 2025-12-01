@@ -1,4 +1,4 @@
-// Barrel export for all constants - maintains backward compatibility
+// Barrel export for all data - maintains backward compatibility
 export * from './icons';
 export * from './services';
 export * from './features';

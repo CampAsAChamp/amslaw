@@ -1,4 +1,4 @@
-import { stats, testimonials } from "@/app/constants";
+import { stats, testimonials } from "@/app/data";
 import StatsCard from "@/app/about/StatsCard";
 import TestimonialCard from "@/app/about/TestimonialCard";
 

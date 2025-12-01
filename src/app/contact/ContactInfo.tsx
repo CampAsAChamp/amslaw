@@ -1,7 +1,10 @@
 import { CopyButton } from '@/app/components/ui';
-import { icons, whatToExpect, officeHours } from '@/app/constants';
+import { icons, whatToExpect, officeHours, contactInfo } from '@/app/data';
+import { formatPhoneNumber, formatAddressMultiLine } from '@/utils';
 
 export default function ContactInfo() {
+  const addressLines = formatAddressMultiLine(contactInfo.address);
+  
   return (
     <div className="space-y-8">
       <div className="card">
@@ -14,14 +17,17 @@ export default function ContactInfo() {
             <div>
               <div className="font-semibold text-heading">Address</div>
               <a 
-                href="https://www.google.com/maps/place/21250+Hawthorne+Blvd,+Torrance,+CA+90503/@33.8361803,-118.353406,18.81z/data=!4m6!3m5!1s0x80c2b4d35aa9c9b3:0x9718c991148def10!8m2!3d33.8361935!4d-118.3526581!16s%2Fg%2F11bw3fbbpr?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D"
+                href={contactInfo.maps.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-body hover:text-primary-hover transition-colors hover:underline"
               >
-                21250 Hawthorne Blvd.<br />
-                Suite 500<br />
-                Torrance, CA 90503
+                {addressLines.map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    {index < addressLines.length - 1 && <><br /></>}
+                  </span>
+                ))}
               </a>
             </div>
           </div>
@@ -34,12 +40,12 @@ export default function ContactInfo() {
               <div className="font-semibold text-heading">Phone</div>
               <div className="text-body flex items-center gap-2">
                 <a 
-                  href="tel:3107927454" 
+                  href={`tel:${contactInfo.phone}`} 
                   className="hover:text-primary-hover transition-colors hover:underline"
                 >
-                  (310) 792-7454
+                  {formatPhoneNumber(contactInfo.phone)}
                 </a>
-                <CopyButton textToCopy="(310) 792-7454" label="Copy phone number" className="text-primary-hover hover:text-primary" />
+                <CopyButton textToCopy={formatPhoneNumber(contactInfo.phone)} label="Copy phone number" className="text-primary-hover hover:text-primary" />
               </div>
             </div>
           </div>
@@ -53,12 +59,12 @@ export default function ContactInfo() {
               <div className="font-semibold text-heading">Email</div>
               <div className="text-body flex items-center gap-2">
                 <a 
-                  href="mailto:amschneiderlaw@gmail.com" 
+                  href={`mailto:${contactInfo.email}`} 
                   className="hover:text-primary-hover transition-colors hover:underline"
                 >
-                  amschneiderlaw@gmail.com
+                  {contactInfo.email}
                 </a>
-                <CopyButton textToCopy="amschneiderlaw@gmail.com" label="Copy email address" className="text-primary-hover hover:text-primary" />
+                <CopyButton textToCopy={contactInfo.email} label="Copy email address" className="text-primary-hover hover:text-primary" />
               </div>
             </div>
           </div>

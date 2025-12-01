@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { navigationLinks } from '@/app/constants';
+import { navigationLinks } from '@/app/data';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

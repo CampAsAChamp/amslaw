@@ -1,4 +1,4 @@
-import { philosophyFeatures } from "@/app/constants";
+import { philosophyFeatures } from "@/app/data";
 import FeatureCard from "@/app/components/cards/FeatureCard";
 
 export default function PhilosophySection() {

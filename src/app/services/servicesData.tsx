@@ -1,4 +1,4 @@
-import { icons } from '@/app/constants/icons';
+import { icons } from '@/app/data/icons';
 
 export const servicesData = [
   {

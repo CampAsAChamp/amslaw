@@ -1,4 +1,4 @@
-import { services, whyChooseUsFeatures } from "./constants";
+import { services, whyChooseUsFeatures } from "./data";
 
 import CallToAction from "@/app/components/sections/CallToAction";
 import FeatureCard from "@/app/components/cards/FeatureCard";

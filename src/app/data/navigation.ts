@@ -1,9 +1,5 @@
 // Navigation links used across the site
-export interface NavLink {
-  href: string;
-  label: string;
-  isButton?: boolean; // Used to style the Contact link as a button
-}
+import { NavLink } from '@/types';
 
 export const navigationLinks: NavLink[] = [
   {

@@ -3,7 +3,7 @@ import HeroSection from "@/app/components/hero/HeroSection";
 import ProcessStep from "@/app/services/ProcessStep";
 import SectionHeader from "@/app/components/sections/SectionHeader";
 import ServiceDetail from "./ServiceDetail";
-import { processSteps } from "@/app/constants";
+import { processSteps } from "@/app/data";
 import { servicesData } from "./servicesData";
 
 export default function Services() {

@@ -1,6 +1,8 @@
 // Utility functions for the application
 // Add helper functions here as needed (formatting, validation, etc.)
 
+import { Address } from '@/types';
+
 /**
  * Format a phone number to a standard format
  * @param phone - The phone number to format
@@ -23,5 +25,27 @@ export function formatPhoneNumber(phone: string): string {
 export function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
+}
+
+/**
+ * Format an address as a single line
+ * @param address - Address object
+ * @returns Formatted single-line address
+ */
+export function formatAddressSingleLine(address: Address): string {
+  return `${address.street}, ${address.suite}, ${address.city}, ${address.state} ${address.zip}`;
+}
+
+/**
+ * Format an address as multiple lines
+ * @param address - Address object
+ * @returns Array of address lines
+ */
+export function formatAddressMultiLine(address: Address): string[] {
+  return [
+    address.street,
+    address.suite,
+    `${address.city}, ${address.state} ${address.zip}`,
+  ];
 }
 
