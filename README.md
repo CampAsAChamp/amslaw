@@ -31,7 +31,7 @@ The website includes the following pages:
 
 ## Prerequisites
 
-This project requires **Node.js 22** or higher.
+This project requires **Node.js 22** or higher
 
 ## Features
 
