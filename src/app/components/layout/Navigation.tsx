@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import { navigationLinks } from '@/app/constants';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,36 +29,19 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <Link
-                href="/"
-                className="text-nav hover:text-primary-dark px-3 py-2 text-sm font-semibold transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                href="/services"
-                className="text-nav hover:text-primary-dark px-3 py-2 text-sm font-semibold transition-colors"
-              >
-                Services
-              </Link>
-              <Link
-                href="/faq"
-                className="text-nav hover:text-primary-dark px-3 py-2 text-sm font-semibold transition-colors"
-              >
-                FAQ
-              </Link>
-              <Link
-                href="/about"
-                className="text-nav hover:text-primary-dark px-3 py-2 text-sm font-semibold transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                href="/contact"
-                className="btn-nav"
-              >
-                Contact
-              </Link>
+              {navigationLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={
+                    link.isButton
+                      ? 'btn-nav'
+                      : 'text-nav hover:text-primary-dark px-3 py-2 text-sm font-semibold transition-colors'
+                  }
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
 
@@ -82,41 +66,20 @@ export default function Navigation() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-surface border-t">
-              <Link
-                href="/"
-                className="text-nav hover:text-primary-dark block px-3 py-2 text-base font-semibold"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Home
-              </Link>
-              <Link
-                href="/services"
-                className="text-nav hover:text-primary-dark block px-3 py-2 text-base font-semibold"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Services
-              </Link>
-              <Link
-                href="/faq"
-                className="text-nav hover:text-primary-dark block px-3 py-2 text-base font-semibold"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                FAQ
-              </Link>
-              <Link
-                href="/about"
-                className="text-nav hover:text-primary-dark block px-3 py-2 text-base font-semibold"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link
-                href="/contact"
-                className="btn-nav-mobile"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contact
-              </Link>
+              {navigationLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={
+                    link.isButton
+                      ? 'btn-nav-mobile'
+                      : 'text-nav hover:text-primary-dark block px-3 py-2 text-base font-semibold'
+                  }
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
         )}

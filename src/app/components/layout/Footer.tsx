@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { CopyButton } from '@/app/components/ui';
+import { navigationLinks } from '@/app/constants';
 
 export default function Footer() {
   return (
@@ -28,26 +29,13 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-on-primary">Quick Links</h4>
             <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-footer-muted hover:text-on-primary transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-footer-muted hover:text-on-primary transition-colors">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-footer-muted hover:text-on-primary transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-footer-muted hover:text-on-primary transition-colors">
-                  Contact
-                </Link>
-              </li>
+              {navigationLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-footer-muted hover:text-on-primary transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
