@@ -20,6 +20,14 @@ export default function TransitionLink({
   const router = useRouter();
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    // TRANSITIONS DISABLED FOR DEPLOYMENT TESTING
+    // Just call the onClick handler if provided
+    if (onClick) {
+      onClick();
+    }
+    // Let the default Link behavior handle navigation
+    
+    /* ORIGINAL TRANSITION CODE - COMMENTED OUT
     // Don't intercept if:
     // - Command/Ctrl key is pressed (user wants to open in new tab)
     // - It's an external link
@@ -47,6 +55,7 @@ export default function TransitionLink({
       // Fallback for browsers that don't support View Transitions
       router.push(href);
     }
+    */
   };
 
   return (

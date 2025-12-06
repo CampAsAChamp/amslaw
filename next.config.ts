@@ -1,10 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    // Enable view transitions for smooth page transitions
-    viewTransition: true,
-  },
+  // EXPERIMENTAL VIEW TRANSITIONS DISABLED FOR DEPLOYMENT TESTING
+  // experimental: {
+  //   // Enable view transitions for smooth page transitions
+  //   viewTransition: true,
+  // },
 };
 
 export default nextConfig;

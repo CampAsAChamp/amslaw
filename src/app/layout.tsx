@@ -35,11 +35,12 @@ export default function RootLayout({
       >
         <ConstructionBanner />
         <Navigation />
-        <PageTransition>
+        {/* PageTransition disabled for deployment testing */}
+        {/* <PageTransition> */}
           <main className="min-h-screen">
             {children}
           </main>
-        </PageTransition>
+        {/* </PageTransition> */}
         <Footer />
       </body>
     </html>
