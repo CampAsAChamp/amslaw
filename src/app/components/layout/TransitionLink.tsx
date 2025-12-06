@@ -40,7 +40,6 @@ export default function TransitionLink({
 
     // Check if View Transitions API is supported
     if (typeof document !== "undefined" && "startViewTransition" in document) {
-      // @ts-expect-error - startViewTransition is not in TypeScript types yet
       document.startViewTransition(() => {
         router.push(href);
       });
