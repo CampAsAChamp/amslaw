@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { MouseEvent, ReactNode } from "react";
+// import { useRouter } from "next/navigation"; // DISABLED FOR DEPLOYMENT TESTING
+// import { MouseEvent, ReactNode } from "react"; // DISABLED FOR DEPLOYMENT TESTING
+import { ReactNode } from "react";
 
 interface TransitionLinkProps {
   href: string;
@@ -17,9 +18,9 @@ export default function TransitionLink({
   className,
   onClick,
 }: TransitionLinkProps) {
-  const router = useRouter();
+  // const router = useRouter(); // DISABLED FOR DEPLOYMENT TESTING
 
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = () => {
     // TRANSITIONS DISABLED FOR DEPLOYMENT TESTING
     // Just call the onClick handler if provided
     if (onClick) {

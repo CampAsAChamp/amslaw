@@ -6,7 +6,7 @@ import ConstructionBanner from "./components/layout/ConstructionBanner";
 import Footer from "./components/layout/Footer";
 import type { Metadata } from "next";
 import Navigation from "./components/layout/Navigation";
-import PageTransition from "./components/layout/PageTransition";
+// import PageTransition from "./components/layout/PageTransition"; // DISABLED FOR DEPLOYMENT TESTING
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
