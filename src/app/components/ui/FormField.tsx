@@ -19,7 +19,6 @@ export interface FormFieldProps {
   placeholder?: string;
   options?: FormFieldOption[];
   rows?: number;
-  delay?: number;
 }
 
 export default function FormField({
@@ -33,7 +32,6 @@ export default function FormField({
   placeholder,
   options = [],
   rows = 5,
-  delay = 0,
 }: FormFieldProps) {
   const [isFocused, setIsFocused] = useState(false);
 

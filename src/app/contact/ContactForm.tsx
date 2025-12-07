@@ -19,10 +19,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // Animation delay constants
-  const ANIMATION_BASE_DELAY = 0.1;
-  const ANIMATION_DELAY_INCREMENT = 0.05;
-
   const cardVariants = {
     initial: { 
       scaleX: 0.05,
@@ -177,7 +173,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           onChange={handleChange}
           required
           placeholder="Your full name"
-          delay={ANIMATION_BASE_DELAY}
         />
 
         <FormField
@@ -189,7 +184,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           onChange={handleChange}
           required
           placeholder="your.email@example.com"
-          delay={ANIMATION_BASE_DELAY + ANIMATION_DELAY_INCREMENT}
         />
 
         <FormField
@@ -200,7 +194,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           value={formData.phone}
           onChange={handleChange}
           placeholder="(555) 123-4567"
-          delay={ANIMATION_BASE_DELAY + ANIMATION_DELAY_INCREMENT * 2}
         />
 
         <FormField
@@ -211,7 +204,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           value={formData.subject}
           onChange={handleChange}
           required
-          delay={ANIMATION_BASE_DELAY + ANIMATION_DELAY_INCREMENT * 3}
           options={[
             { value: '', label: 'Select a subject' },
             { value: 'wills', label: 'Wills & Testaments' },
@@ -231,7 +223,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           value={formData.preferredContact}
           onChange={handleChange}
           required
-          delay={ANIMATION_BASE_DELAY + ANIMATION_DELAY_INCREMENT * 4}
           options={[
             { value: '', label: 'Select a contact method' },
             { value: 'email', label: 'Email' },
@@ -250,7 +241,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           required
           placeholder="Please describe your estate planning needs or any questions you have..."
           rows={5}
-          delay={ANIMATION_BASE_DELAY + ANIMATION_DELAY_INCREMENT * 5}
         />
 
         <button
