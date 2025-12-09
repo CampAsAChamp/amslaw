@@ -10,36 +10,13 @@ export default function ServiceCard({
   features,
   delay = 0
 }: ServiceCardProps) {
-  const cardVariants = {
-    initial: { 
-      scaleX: 0.05,
-      scaleY: 0.05,
-      opacity: 0
-    },
-    animate: { 
-      scaleX: 1,
-      scaleY: 1,
-      opacity: 1
-    }
-  };
-
-  const contentVariants = {
-    initial: { 
-      opacity: 0,
-      y: 10
-    },
-    animate: { 
-      opacity: 1,
-      y: 0
-    }
-  };
 
   return (
     <motion.div 
       className="card-base"
-      variants={cardVariants}
-      initial="initial"
-      animate="animate"
+      initial={{ scaleX: 0.05, scaleY: 0.05, opacity: 0 }}
+      whileInView={{ scaleX: 1, scaleY: 1, opacity: 1 }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ 
         type: 'spring' as const,
         stiffness: 200,
@@ -48,9 +25,8 @@ export default function ServiceCard({
       }}
     >
       <motion.div
-        variants={contentVariants}
-        initial="initial"
-        animate="animate"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ 
           duration: 0.4,
           delay: delay + 0.3

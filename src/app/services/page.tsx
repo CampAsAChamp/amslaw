@@ -39,7 +39,7 @@ export default function Services() {
       <section className="section-padding bg-surface">
         <div className="section-container">
           <SectionHeader
-            title="My Simple Process"
+            title="My Process"
             subtitle="I make estate planning straightforward and understandable that ensures your documents are comprehensive and legally sound."
           />
 

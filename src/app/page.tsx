@@ -26,7 +26,7 @@ export default function Home() {
           <SectionHeader
             title="Comprehensive Estate Planning Services"
             subtitle="I provide expert legal guidance to help you create a comprehensive estate plan that protects your assets and ensures your wishes are carried out."
-            delay={0.8}
+            delay={0}
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -37,7 +37,7 @@ export default function Home() {
                 title={service.title}
                 description={service.description}
                 features={service.features}
-                delay={1.0 + index * 0.15}
+                delay={index * 0.1}
               />
             ))}
           </div>
@@ -50,6 +50,7 @@ export default function Home() {
           <SectionHeader
             title="Why Choose Anna M. Schneider Law?"
             subtitle="With years of experience in estate planning, I provide personalized service and expert guidance to protect what matters most to you."
+            delay={0}
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -59,7 +60,7 @@ export default function Home() {
                 icon={feature.icon}
                 title={feature.title}
                 description={feature.description}
-                delay={0.35 + index * 0.15}
+                delay={index * 0.2}
               />
             ))}
           </div>
