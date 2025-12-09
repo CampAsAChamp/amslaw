@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { navigationLinks } from '@/app/data';
 
 export default function Navigation() {
@@ -19,7 +19,7 @@ export default function Navigation() {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
               <Image 
-                src="/schneider-law-logo.svg?v=2" 
+                src="/schneider-law-logo.svg" 
                 alt="Schneider Law" 
                 width={360} 
                 height={120}
@@ -63,46 +63,85 @@ export default function Navigation() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-nav hover:text-primary-dark focus:outline-none focus:text-primary-dark"
+              className="relative w-8 h-8 flex items-center justify-center focus:outline-none"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
+              <div className="w-6 h-5 relative flex flex-col justify-between">
+                {/* Top line */}
+                <span 
+                  className={`block h-0.5 w-full bg-nav transition-all duration-300 ease-in-out ${
+                    isMenuOpen ? 'rotate-45 translate-y-2' : ''
+                  }`}
+                />
+                {/* Middle line */}
+                <span 
+                  className={`block h-0.5 w-full bg-nav transition-all duration-300 ease-in-out ${
+                    isMenuOpen ? 'opacity-0' : ''
+                  }`}
+                />
+                {/* Bottom line */}
+                <span 
+                  className={`block h-0.5 w-full bg-nav transition-all duration-300 ease-in-out ${
+                    isMenuOpen ? '-rotate-45 -translate-y-2' : ''
+                  }`}
+                />
+              </div>
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-surface border-t">
-              {navigationLinks.map((link) => {
-                const isActive = pathname === link.href;
-                
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={
-                      link.isButton
-                        ? 'btn-nav-mobile'
-                        : `text-nav hover:text-primary-dark block px-3 py-2 text-base font-semibold ${
-                            isActive ? 'text-primary border-l-4 border-primary' : ''
-                          }`
-                    }
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        )}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div 
+              className="md:hidden overflow-hidden"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
+              <motion.div 
+                className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-surface"
+                initial={{ y: -20 }}
+                animate={{ y: 0 }}
+                exit={{ y: -20 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+              >
+                {navigationLinks.map((link, index) => {
+                  const isActive = pathname === link.href;
+                  
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: -20, opacity: 0 }}
+                      transition={{ 
+                        duration: 0.3, 
+                        delay: index * 0.05,
+                        ease: 'easeOut' 
+                      }}
+                    >
+                      <Link
+                        href={link.href}
+                        className={
+                          link.isButton
+                            ? 'btn-nav-mobile'
+                            : `text-nav hover:text-primary-dark block px-3 py-2 text-base font-semibold ${
+                                isActive ? 'text-primary border-l-4 border-primary' : ''
+                              }`
+                        }
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );

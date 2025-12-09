@@ -11,12 +11,12 @@ export const navigationLinks: NavLink[] = [
     label: 'Services',
   },
   {
-    href: '/faq',
-    label: 'FAQ',
-  },
-  {
     href: '/about',
     label: 'About',
+  },
+  {
+    href: '/faq',
+    label: 'FAQ',
   },
   {
     href: '/contact',

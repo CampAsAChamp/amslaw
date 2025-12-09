@@ -333,10 +333,14 @@ body {
     box-shadow: var(--shadow-lg);
   }
   
-  /* Background utilities */
-  .bg-placeholder {
-    background-color: var(--bg-surface-tertiary);
-  }
+/* Background utilities */
+.bg-placeholder {
+  background-color: var(--bg-surface-tertiary);
+}
+
+.bg-nav {
+  background-color: var(--text-nav);
+}
   
   /* Navigation button styles */
   .btn-nav {

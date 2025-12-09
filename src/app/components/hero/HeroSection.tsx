@@ -101,7 +101,7 @@ export default function HeroSection({
           >
             {subtitle}
           </motion.p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-row gap-8 justify-center">
             <motion.div
               key="primary-button"
               variants={buttonVariants}
