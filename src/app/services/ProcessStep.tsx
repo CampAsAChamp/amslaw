@@ -10,7 +10,7 @@ export default function ProcessStep({ stepNumber, icon, title, description, show
   const animationDelay = baseDelay + (stepNumber - 1) * 0.2;
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-col md:flex-row items-center gap-4">
       <motion.div 
         className="text-center flex-1"
         initial={{ opacity: 0, y: 30 }}
@@ -35,31 +35,61 @@ export default function ProcessStep({ stepNumber, icon, title, description, show
       </motion.div>
       
       {showArrow && (
-        <motion.div 
-          className="hidden md:block flex-shrink-0"
-          initial={{ opacity: 0, x: -10 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{
-            duration: 0.4,
-            delay: animationDelay + 0.3,
-            ease: [0.25, 0.4, 0.25, 1]
-          }}
-        >
-          <svg 
-            className="w-8 h-8 text-primary" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
+        <>
+          {/* Down arrow for mobile */}
+          <motion.div 
+            className="md:hidden flex-shrink-0 mt-2 mb-6"
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{
+              duration: 0.4,
+              delay: animationDelay + 0.3,
+              ease: [0.25, 0.4, 0.25, 1]
+            }}
           >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M13 7l5 5m0 0l-5 5m5-5H6" 
-            />
-          </svg>
-        </motion.div>
+            <svg 
+              className="w-8 h-8 text-primary" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+              />
+            </svg>
+          </motion.div>
+          
+          {/* Right arrow for desktop */}
+          <motion.div 
+            className="hidden md:block flex-shrink-0"
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{
+              duration: 0.4,
+              delay: animationDelay + 0.3,
+              ease: [0.25, 0.4, 0.25, 1]
+            }}
+          >
+            <svg 
+              className="w-8 h-8 text-primary" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M13 7l5 5m0 0l-5 5m5-5H6" 
+              />
+            </svg>
+          </motion.div>
+        </>
       )}
     </div>
   );
