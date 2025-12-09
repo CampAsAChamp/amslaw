@@ -66,7 +66,7 @@ export default function HeroSection({
               }}
             >
               <Image 
-                src="/schneider-law-logo.svg?v=2" 
+                src="/schneider-law-logo.svg" 
                 alt="Schneider Law" 
                 width={400} 
                 height={133}
