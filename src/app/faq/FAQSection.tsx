@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import FAQItem from '@/app/faq/FAQItem';
+import { icons } from '@/app/data/icons';
 
 interface FAQ {
   id: string;
@@ -11,12 +12,14 @@ interface FAQ {
 
 interface FAQCategory {
   title: string;
+  icon: React.ReactNode;
   faqs: FAQ[];
 }
 
 const faqCategories: FAQCategory[] = [
   {
     title: 'Living Trusts',
+    icon: icons.faqTrust,
     faqs: [
       {
         id: '1',
@@ -47,6 +50,7 @@ const faqCategories: FAQCategory[] = [
   },
   {
     title: 'Wills',
+    icon: icons.faqWill,
     faqs: [
       {
         id: '4',
@@ -62,6 +66,7 @@ const faqCategories: FAQCategory[] = [
   },
   {
     title: 'Wills vs. Trusts',
+    icon: icons.faqCompare,
     faqs: [
       {
         id: '6',
@@ -82,6 +87,7 @@ const faqCategories: FAQCategory[] = [
   },
   {
     title: 'The Estate Planning Process',
+    icon: icons.faqProcess,
     faqs: [
       {
         id: '8',
@@ -102,6 +108,7 @@ const faqCategories: FAQCategory[] = [
   },
   {
     title: 'Getting Started',
+    icon: icons.faqStart,
     faqs: [
       {
         id: '13',
@@ -130,12 +137,13 @@ export default function FAQSection() {
 
   return (
     <section className="section-padding bg-surface">
-      <div className="container-page max-w-4xl">
+      <div className="max-w-4xl mx-auto px-4">
         <div className="space-y-12">
           {faqCategories.map((category, categoryIndex) => (
             <div key={categoryIndex}>
-              <h2 className="text-heading text-2xl font-bold mb-6 pb-2 border-b-2 border-primary">
-                {category.title}
+              <h2 className="text-heading text-2xl font-bold mb-6 pb-2 border-b-2 border-primary flex items-center gap-3">
+                {category.icon}
+                <span>{category.title}</span>
               </h2>
               <div className="space-y-4">
                 {category.faqs.map((faq) => (

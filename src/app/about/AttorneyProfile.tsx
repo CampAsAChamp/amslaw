@@ -8,20 +8,21 @@ export default function AttorneyProfile() {
   return (
     <section className="py-20 bg-surface-secondary">
       <div className="container-page">
+        <motion.h2 
+          className="text-3xl md:text-4xl font-bold text-heading mb-12 text-center lg:text-left"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{
+            duration: 0.6,
+            ease: [0.25, 0.4, 0.25, 1]
+          }}
+        >
+          Meet Your Attorney
+        </motion.h2>
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <motion.h2 
-              className="text-3xl md:text-4xl font-bold text-heading mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{
-                duration: 0.6,
-                ease: [0.25, 0.4, 0.25, 1]
-              }}
-            >
-              Meet Your Attorney
-            </motion.h2>
+          <div className="order-2 lg:order-1">
             <motion.div 
               className="space-y-4 text-body mb-8"
               initial={{ opacity: 0, y: 30 }}
@@ -92,7 +93,7 @@ export default function AttorneyProfile() {
           </div>
 
           <motion.div 
-            className="card"
+            className="card order-1 lg:order-2"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}

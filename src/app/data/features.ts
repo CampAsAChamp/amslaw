@@ -3,12 +3,12 @@ import { icons } from './icons';
 // Why choose us features
 export const whyChooseUsFeatures = [
   {
-    icon: icons.checkmark,
+    icon: icons.expertise,
     title: "Expert Knowledge",
     description: "Expertise in estate planning and probate law"
   },
   {
-    icon: icons.checkmark,
+    icon: icons.personalized,
     title: "Personalized Service",
     description: "Tailored solutions that meet your unique needs and goals"
   },
@@ -32,12 +32,12 @@ export const philosophyFeatures = [
     description: "I understand that estate planning involves sensitive family matters. I approach every case with empathy and respect for your unique situation."
   },
   {
-    icon: icons.checkmark,
+    icon: icons.expertise,
     title: "Expert Knowledge",
     description: "My focus on estate planning means I stay current with the latest laws and strategies to provide you with the best possible outcome for your family."
   },
   {
-    icon: icons.info,
+    icon: icons.communication,
     title: "Clear Communication",
     description: "Legal matters can be complex, but I explain everything in plain language so you understand your options and can make informed decisions."
   }
@@ -47,7 +47,7 @@ export const philosophyFeatures = [
 export const processSteps = [
   {
     stepNumber: 1,
-    icon: icons.phoneContact,
+    icon: icons.initialContact,
     title: "Initial Contact",
     description: "I discuss your goals, family situation, and assets to understand your needs."
   },

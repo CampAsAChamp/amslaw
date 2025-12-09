@@ -45,7 +45,7 @@ export const servicesData = [
     ],
   },
   {
-    icon: icons.probateLarge,
+    icon: icons.healthcareLarge,
     title: "Advance Healthcare Directive & Durable Power of Attorney",
     description:
       "Both are legal documents that allow an agent to make decisions for you during your lifetime.",
@@ -65,7 +65,7 @@ export const servicesData = [
     ],
   },
   {
-    icon: icons.trustLarge,
+    icon: icons.trustAdminLarge,
     title: "Trust Administration",
     description:
       "After the passing of a person, who has created a Living Trust, the successor trustee is responsible for administering the Trust and distributing the assets to the beneficiaries.",
@@ -99,7 +99,7 @@ export const servicesData = [
     ],
   },
   {
-    icon: icons.checkmarkLarge,
+    icon: icons.comprehensiveLarge,
     title: "Comprehensive Estate Planning",
     description:
       "A complete estate plan protects your family and assets while minimizing taxes and ensuring your wishes are carried out exactly as you intend.",
