@@ -19,12 +19,17 @@ export async function POST(request: Request) {
     // Initialize Resend client at runtime (not build time)
     const resend = new Resend(process.env.RESEND_API_KEY);
 
+    // Add [TEST] prefix in non-production environments for easy Gmail filtering
+    const subjectLine = process.env.NODE_ENV === 'production'
+      ? `New Contact Form: ${subject}`
+      : `[TEST] New Contact Form: ${subject}`;
+
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: 'AMS Law Contact Form <onboarding@resend.dev>', // You'll update this to your domain later
       to: process.env.CONTACT_EMAIL || 'your-email@example.com', // Your email address
       replyTo: email, // User's email for easy replies
-      subject: `New Contact Form: ${subject}`,
+      subject: subjectLine,
       html: await generateContactEmailHTML(body),
     });
 

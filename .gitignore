@@ -64,6 +64,11 @@ Thumbs.db
 coverage/
 /coverage
 
+# Playwright test results
+test-results/
+playwright-report/
+playwright/.cache/
+
 # Debug-related files
 debug.log
 
