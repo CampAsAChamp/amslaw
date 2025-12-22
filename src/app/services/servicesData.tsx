@@ -1,4 +1,4 @@
-import { icons } from '@/app/data/icons';
+import { icons } from "@/app/data/icons"
 
 export const servicesData = [
   {
@@ -9,10 +9,7 @@ export const servicesData = [
     sections: [
       {
         heading: "What I Include:",
-        items: [
-          "Last Will and Testament",
-          "Asset Inventory and Planning",
-        ],
+        items: ["Last Will and Testament", "Asset Inventory and Planning"],
       },
       {
         heading: "Why You Need a Will:",
@@ -47,19 +44,30 @@ export const servicesData = [
   {
     icon: icons.healthcareLarge,
     title: "Advance Healthcare Directive & Durable Power of Attorney",
-    description:
-      "Both are legal documents that allow an agent to make decisions for you during your lifetime.",
+    description: "Both are legal documents that allow an agent to make decisions for you during your lifetime.",
     sections: [
       {
         heading: "Advance Healthcare Directive",
         items: [
-          <span key="healthcare">This is a legal document that allows you to appoint an agent to make <strong><em>healthcare</em></strong> decisions for you if you are unable to do so yourself.</span>,
+          <span key="healthcare">
+            This is a legal document that allows you to appoint an agent to make{" "}
+            <strong>
+              <em>healthcare</em>
+            </strong>{" "}
+            decisions for you if you are unable to do so yourself.
+          </span>,
         ],
       },
       {
         heading: "Durable Power of Attorney",
         items: [
-          <span key="financial">This is a legal document that allows you to appoint an agent to make <strong><em>financial</em></strong> decisions for you if you are unable to do so yourself.</span>,
+          <span key="financial">
+            This is a legal document that allows you to appoint an agent to make{" "}
+            <strong>
+              <em>financial</em>
+            </strong>{" "}
+            decisions for you if you are unable to do so yourself.
+          </span>,
         ],
       },
     ],
@@ -106,11 +114,7 @@ export const servicesData = [
     sections: [
       {
         heading: "Estate Planning Includes:",
-        items: [
-          "Will and Trust Creation",
-          "Beneficiary Designations",
-          "Regular Plan Reviews",
-        ],
+        items: ["Will and Trust Creation", "Beneficiary Designations", "Regular Plan Reviews"],
       },
       {
         heading: "Planning Benefits:",
@@ -123,5 +127,4 @@ export const servicesData = [
       },
     ],
   },
-];
-
+]

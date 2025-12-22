@@ -1,10 +1,10 @@
-import CallToAction from "@/app/components/sections/CallToAction";
-import HeroSection from "@/app/components/hero/HeroSection";
-import ProcessStep from "@/app/services/ProcessStep";
-import SectionHeader from "@/app/components/sections/SectionHeader";
-import ServiceDetail from "./ServiceDetail";
-import { processSteps } from "@/app/data";
-import { servicesData } from "./servicesData";
+import CallToAction from "@/app/components/sections/CallToAction"
+import HeroSection from "@/app/components/hero/HeroSection"
+import ProcessStep from "@/app/services/ProcessStep"
+import SectionHeader from "@/app/components/sections/SectionHeader"
+import ServiceDetail from "./ServiceDetail"
+import { processSteps } from "@/app/data"
+import { servicesData } from "./servicesData"
 
 export default function Services() {
   return (
@@ -12,7 +12,7 @@ export default function Services() {
       {/* Hero Section */}
       <HeroSection
         title="Comprehensive Legal Services"
-        subtitle="Expert guidance for all your estate planning and probate needs. Protecting your family&apos;s future with professional legal services."
+        subtitle="Expert guidance for all your estate planning and probate needs. Protecting your family's future with professional legal services."
         primaryButtonText="Contact"
         primaryButtonLink="/contact"
       />
@@ -61,10 +61,10 @@ export default function Services() {
       {/* Call to Action */}
       <CallToAction
         title="Ready to Secure Your Legacy?"
-        subtitle="Don&apos;t leave your family&apos;s future to chance. Schedule a consultation to discuss your estate planning needs today."
+        subtitle="Don't leave your family's future to chance. Schedule a consultation to discuss your estate planning needs today."
         buttonText="Contact"
         buttonLink="/contact"
       />
     </div>
-  );
+  )
 }

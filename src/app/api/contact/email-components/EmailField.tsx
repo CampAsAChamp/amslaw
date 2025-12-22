@@ -1,11 +1,11 @@
-import { Text, Link } from '@react-email/components';
-import { emailStyles } from './styles';
+import { Text, Link } from "@react-email/components"
+import { emailStyles } from "./styles"
 
 interface EmailFieldProps {
-  label: string;
-  value: string;
-  href?: string;
-  isMessage?: boolean;
+  label: string
+  value: string
+  href?: string
+  isMessage?: boolean
 }
 
 export function EmailField({ label, value, href, isMessage = false }: EmailFieldProps) {
@@ -22,6 +22,5 @@ export function EmailField({ label, value, href, isMessage = false }: EmailField
         )}
       </Text>
     </div>
-  );
+  )
 }
-

@@ -1,44 +1,33 @@
-'use client';
+"use client"
 
-import { motion } from 'framer-motion';
-import { ServiceCardProps } from '@/types';
+import { motion } from "framer-motion"
+import { ServiceCardProps } from "@/types"
 
-export default function ServiceCard({
-  icon,
-  title,
-  description,
-  features,
-  delay = 0
-}: ServiceCardProps) {
-
+export default function ServiceCard({ icon, title, description, features, delay = 0 }: ServiceCardProps) {
   return (
-    <motion.div 
+    <motion.div
       className="card-base"
       initial={{ scaleX: 0.05, scaleY: 0.05, opacity: 0 }}
       whileInView={{ scaleX: 1, scaleY: 1, opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ 
-        type: 'spring' as const,
+      transition={{
+        type: "spring" as const,
         stiffness: 200,
         damping: 20,
-        delay
+        delay,
       }}
     >
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ 
+        transition={{
           duration: 0.4,
-          delay: delay + 0.3
+          delay: delay + 0.3,
         }}
       >
-        <div className="text-primary-hover mb-4">
-          {icon}
-        </div>
+        <div className="text-primary-hover mb-4">{icon}</div>
         <h3 className="text-xl font-semibold text-heading mb-4">{title}</h3>
-        <p className="text-body mb-6">
-          {description}
-        </p>
+        <p className="text-body mb-6">{description}</p>
         <ul className="text-sm text-body space-y-2">
           {features.map((feature, index) => (
             <li key={index}>• {feature}</li>
@@ -46,6 +35,5 @@ export default function ServiceCard({
         </ul>
       </motion.div>
     </motion.div>
-  );
+  )
 }
-

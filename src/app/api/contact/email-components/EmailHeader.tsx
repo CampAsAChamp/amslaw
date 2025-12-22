@@ -1,8 +1,8 @@
-import { Section, Heading } from '@react-email/components';
-import { emailStyles } from './styles';
+import { Section, Heading } from "@react-email/components"
+import { emailStyles } from "./styles"
 
 interface EmailHeaderProps {
-  title: string;
+  title: string
 }
 
 export function EmailHeader({ title }: EmailHeaderProps) {
@@ -10,6 +10,5 @@ export function EmailHeader({ title }: EmailHeaderProps) {
     <Section style={emailStyles.header}>
       <Heading style={emailStyles.headerTitle}>{title}</Heading>
     </Section>
-  );
+  )
 }
-

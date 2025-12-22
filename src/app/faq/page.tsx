@@ -1,6 +1,6 @@
-import CallToAction from "@/app/components/sections/CallToAction";
-import HeroSection from "@/app/components/hero/HeroSection";
-import FAQSection from "@/app/faq/FAQSection";
+import CallToAction from "@/app/components/sections/CallToAction"
+import HeroSection from "@/app/components/hero/HeroSection"
+import FAQSection from "@/app/faq/FAQSection"
 
 export default function FAQ() {
   return (
@@ -21,6 +21,5 @@ export default function FAQ() {
         buttonLink="/contact"
       />
     </div>
-  );
+  )
 }
-

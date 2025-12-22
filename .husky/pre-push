@@ -1,10 +1,25 @@
-echo "🔍 Running linter before push..."
-npm run lint
+echo "🔍 Running checks before push..."
+echo ""
+
+echo "📝 Step 1/2: Running linter..."
+yarn lint
 
 if [ $? -ne 0 ]; then
   echo "❌ Lint failed! Fix errors before pushing."
   exit 1
 fi
+echo "✅ Lint passed!"
+echo ""
 
-echo "✅ Lint passed! Proceeding with push..."
+echo "🧪 Step 2/2: Running unit tests..."
+yarn test
+
+if [ $? -ne 0 ]; then
+  echo "❌ Tests failed! Fix failing tests before pushing."
+  exit 1
+fi
+echo "✅ Tests passed!"
+echo ""
+
+echo "🚀 All checks passed! Proceeding with push..."
 

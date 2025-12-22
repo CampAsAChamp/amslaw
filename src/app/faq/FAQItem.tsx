@@ -1,12 +1,12 @@
-'use client';
+"use client"
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from "framer-motion"
 
 interface FAQItemProps {
-  question: string;
-  answer: string;
-  isOpen: boolean;
-  onToggle: () => void;
+  question: string
+  answer: string
+  isOpen: boolean
+  onToggle: () => void
 }
 
 export default function FAQItem({ question, answer, isOpen, onToggle }: FAQItemProps) {
@@ -20,7 +20,7 @@ export default function FAQItem({ question, answer, isOpen, onToggle }: FAQItemP
         <h3 className="text-heading font-semibold text-lg pr-4">{question}</h3>
         <svg
           className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-200 ${
-            isOpen ? 'transform rotate-180' : ''
+            isOpen ? "transform rotate-180" : ""
           }`}
           fill="none"
           viewBox="0 0 24 24"
@@ -29,12 +29,12 @@ export default function FAQItem({ question, answer, isOpen, onToggle }: FAQItemP
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
-      
+
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
+            animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{
               duration: 0.3,
@@ -49,6 +49,5 @@ export default function FAQItem({ question, answer, isOpen, onToggle }: FAQItemP
         )}
       </AnimatePresence>
     </div>
-  );
+  )
 }
-

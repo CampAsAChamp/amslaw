@@ -1,11 +1,11 @@
-import Link from 'next/link';
-import { CopyButton } from '@/app/components/ui';
-import { navigationLinks, officeHours, contactInfo } from '@/app/data';
-import { formatPhoneNumber, formatAddressMultiLine } from '@/utils';
+import Link from "next/link"
+import { CopyButton } from "@/app/components/ui"
+import { navigationLinks, officeHours, contactInfo } from "@/app/data"
+import { formatPhoneNumber, formatAddressMultiLine } from "@/utils"
 
 export default function Footer() {
-  const addressLines = formatAddressMultiLine(contactInfo.address);
-  
+  const addressLines = formatAddressMultiLine(contactInfo.address)
+
   return (
     <footer className="bg-primary-dark text-on-primary">
       <div className="container-page py-12">
@@ -14,8 +14,8 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold mb-4 text-on-primary">Anna M. Schneider Law</h3>
             <p className="text-footer mb-4">
-              Professional legal services specializing in estate planning, wills, trusts, and probate. 
-              Protecting your family&apos;s future with expert legal guidance.
+              Professional legal services specializing in estate planning, wills, trusts, and probate. Protecting your
+              family&apos;s future with expert legal guidance.
             </p>
             <div className="text-footer">
               <p className="mb-2">
@@ -49,7 +49,7 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-on-primary">Contact Info</h4>
             <div className="text-footer space-y-2">
-              <a 
+              <a
                 href={contactInfo.maps.link}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -58,29 +58,41 @@ export default function Footer() {
                 {addressLines.map((line, index) => (
                   <span key={index}>
                     {line}
-                    {index < addressLines.length - 1 && <><br /></>}
+                    {index < addressLines.length - 1 && (
+                      <>
+                        <br />
+                      </>
+                    )}
                   </span>
                 ))}
               </a>
               <p className="mt-4 flex items-center gap-2">
-                <strong>Phone:</strong>{' '}
-                <a 
-                  href={`tel:${contactInfo.phone}`} 
+                <strong>Phone:</strong>{" "}
+                <a
+                  href={`tel:${contactInfo.phone}`}
                   className="text-footer-muted hover:text-on-primary transition-colors hover:underline"
                 >
                   {formatPhoneNumber(contactInfo.phone)}
                 </a>
-                <CopyButton textToCopy={formatPhoneNumber(contactInfo.phone)} label="Copy phone number" className="text-footer-muted hover:text-on-primary" />
+                <CopyButton
+                  textToCopy={formatPhoneNumber(contactInfo.phone)}
+                  label="Copy phone number"
+                  className="text-footer-muted hover:text-on-primary"
+                />
               </p>
               <p className="flex items-center gap-2">
-                <strong>Email:</strong>{' '}
-                <a 
-                  href={`mailto:${contactInfo.email}`} 
+                <strong>Email:</strong>{" "}
+                <a
+                  href={`mailto:${contactInfo.email}`}
                   className="text-footer-muted hover:text-on-primary transition-colors hover:underline"
                 >
                   {contactInfo.email}
                 </a>
-                <CopyButton textToCopy={contactInfo.email} label="Copy email address" className="text-footer-muted hover:text-on-primary" />
+                <CopyButton
+                  textToCopy={contactInfo.email}
+                  label="Copy email address"
+                  className="text-footer-muted hover:text-on-primary"
+                />
               </p>
             </div>
           </div>
@@ -94,5 +106,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

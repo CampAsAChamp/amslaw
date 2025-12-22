@@ -1,12 +1,12 @@
-import HeroSection from "@/app/components/hero/HeroSection";
-import ContactForm from "@/app/contact/ContactForm";
-import ContactInfo from "./ContactInfo";
-import MapSection from "./MapSection";
+import HeroSection from "@/app/components/hero/HeroSection"
+import ContactForm from "@/app/contact/ContactForm"
+import ContactInfo from "./ContactInfo"
+import MapSection from "./MapSection"
 
 export default function Contact() {
   return (
     <div className="bg-page">
-      <HeroSection 
+      <HeroSection
         title="Contact"
         subtitle="Ready to protect your family's future? Schedule a consultation to discuss your estate planning needs."
         primaryButtonText="Call (310) 792-7454"
@@ -26,5 +26,5 @@ export default function Contact() {
 
       <MapSection />
     </div>
-  );
+  )
 }

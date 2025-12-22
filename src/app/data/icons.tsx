@@ -1,19 +1,19 @@
-import { 
-  FileSignature, 
-  Scroll, 
-  Gavel, 
-  BadgeCheck, 
-  Heart, 
+import {
+  FileSignature,
+  Scroll,
+  Gavel,
+  BadgeCheck,
+  Heart,
   HeartPulse,
-  Lock, 
-  Clock, 
-  Info, 
+  Lock,
+  Clock,
+  Info,
   MessageCircle,
-  User, 
+  User,
   UserCheck,
-  Phone, 
-  FileEdit, 
-  FileSearch, 
+  Phone,
+  FileEdit,
+  FileSearch,
   FileCheck,
   Check,
   GraduationCap,
@@ -22,8 +22,8 @@ import {
   Handshake,
   Scale,
   Route,
-  Play
-} from 'lucide-react';
+  Play,
+} from "lucide-react"
 
 // Common icons used throughout the site
 export const icons = {
@@ -60,6 +60,5 @@ export const icons = {
   faqWill: <FileSignature className="w-6 h-6 text-primary" />,
   faqCompare: <Scale className="w-6 h-6 text-primary" />,
   faqProcess: <Route className="w-6 h-6 text-primary" />,
-  faqStart: <Play className="w-6 h-6 text-primary" />
-};
-
+  faqStart: <Play className="w-6 h-6 text-primary" />,
+}

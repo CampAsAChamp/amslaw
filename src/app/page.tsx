@@ -1,10 +1,10 @@
-import { services, whyChooseUsFeatures } from "./data";
+import { services, whyChooseUsFeatures } from "./data"
 
-import CallToAction from "@/app/components/sections/CallToAction";
-import FeatureCard from "@/app/components/cards/FeatureCard";
-import HeroSection from "@/app/components/hero/HeroSection";
-import SectionHeader from "@/app/components/sections/SectionHeader";
-import ServiceCard from "@/app/components/home_page/ServiceCard";
+import CallToAction from "@/app/components/sections/CallToAction"
+import FeatureCard from "@/app/components/cards/FeatureCard"
+import HeroSection from "@/app/components/hero/HeroSection"
+import SectionHeader from "@/app/components/sections/SectionHeader"
+import ServiceCard from "@/app/components/home_page/ServiceCard"
 
 export default function Home() {
   return (
@@ -75,5 +75,5 @@ export default function Home() {
         buttonLink="/contact"
       />
     </div>
-  );
+  )
 }

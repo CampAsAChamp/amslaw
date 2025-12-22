@@ -37,6 +37,7 @@ The website includes the following pages:
 ## Prerequisites
 
 This project requires:
+
 - **Node.js 22** or higher
 - **Yarn 4** (automatically managed via `.yarnrc.yml`)
 
@@ -152,6 +153,7 @@ CONTACT_EMAIL=anna@schneiderlaw.com
 **For Production (Cloudflare Workers):**
 
 1. Update `CONTACT_EMAIL` in `wrangler.jsonc`:
+
 ```jsonc
 "vars": {
   "CONTACT_EMAIL": "your-email@example.com"
@@ -159,9 +161,11 @@ CONTACT_EMAIL=anna@schneiderlaw.com
 ```
 
 2. Set `RESEND_API_KEY` as a secret using Wrangler CLI:
+
 ```bash
 yarn wrangler secret put RESEND_API_KEY
 ```
+
 When prompted, paste your Resend API key. This stores it securely in Cloudflare and persists across all deployments.
 
 #### 4. Verify Your Domain (Optional but Recommended)
@@ -178,10 +182,13 @@ To use your own domain:
 6. Update the API route to use your domain:
 
 In `src/app/api/contact/route.ts`, change:
+
 ```typescript
 from: 'AMS Law Contact Form <onboarding@resend.dev>',
 ```
+
 to:
+
 ```typescript
 from: 'AMS Law Contact Form <contact@yourdomain.com>',
 ```
@@ -196,22 +203,26 @@ from: 'AMS Law Contact Form <contact@yourdomain.com>',
 #### Troubleshooting
 
 **"Failed to send email" error:**
+
 - Check that your `.env.local` file exists and has the correct API key
 - Restart your dev server after creating/updating `.env.local`
 - Verify your API key is active in the Resend dashboard
 
 **Not receiving emails:**
+
 - Check your spam folder
 - Verify the `CONTACT_EMAIL` is correct (in `.env.local` for local, `wrangler.jsonc` for production)
 - Check the Resend dashboard [Emails](https://resend.com/emails) to see if they're being sent
 - For production, verify you've set the `RESEND_API_KEY` secret using `yarn wrangler secret put RESEND_API_KEY`
 
 **Environment Variables:**
+
 - ✅ Local: Use `.env.local` (never commit this file)
 - ✅ Production: Set `CONTACT_EMAIL` in `wrangler.jsonc` and `RESEND_API_KEY` via Wrangler CLI
 - Make sure you've verified your domain for better deliverability
 
 **Security Notes:**
+
 - Never commit your `.env.local` file to git
 - The API key is server-side only (Next.js API route)
 - Users cannot see or access your API key from the browser
@@ -230,13 +241,13 @@ The site is deployed to Cloudflare Workers with automatic build and deployment c
 
 You can also deploy manually using the following commands:
 
-| Command                 | Action                                      |
-| :---------------------- | :------------------------------------------ |
-| `yarn build`            | Build your Next.js production site          |
-| `yarn preview`          | Preview OpenNext build locally              |
-| `yarn deploy`           | Build and deploy to Cloudflare Workers      |
-| `yarn lint`             | Run ESLint to check code quality            |
-| `yarn check`            | Build and run TypeScript type checking      |
+| Command        | Action                                 |
+| :------------- | :------------------------------------- |
+| `yarn build`   | Build your Next.js production site     |
+| `yarn preview` | Preview OpenNext build locally         |
+| `yarn deploy`  | Build and deploy to Cloudflare Workers |
+| `yarn lint`    | Run ESLint to check code quality       |
+| `yarn check`   | Build and run TypeScript type checking |
 
 ### Environment Variables in Production
 

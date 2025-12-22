@@ -1,12 +1,12 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import FormField from './FormField';
+import { describe, it, expect, vi } from "vitest"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
+import FormField from "./FormField"
 
-describe('FormField', () => {
-  const mockOnChange = vi.fn();
+describe("FormField", () => {
+  const mockOnChange = vi.fn()
 
-  it('renders text input with label and placeholder', () => {
+  it("renders text input with label and placeholder", () => {
     render(
       <FormField
         id="name"
@@ -17,49 +17,30 @@ describe('FormField', () => {
         onChange={mockOnChange}
         placeholder="Enter your name"
       />
-    );
+    )
 
-    expect(screen.getByLabelText('Full Name')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Enter your name')).toBeInTheDocument();
-  });
+    expect(screen.getByLabelText("Full Name")).toBeInTheDocument()
+    expect(screen.getByPlaceholderText("Enter your name")).toBeInTheDocument()
+  })
 
-  it('shows required indicator when required prop is true', () => {
-    render(
-      <FormField
-        id="email"
-        name="email"
-        label="Email"
-        type="email"
-        value=""
-        onChange={mockOnChange}
-        required
-      />
-    );
+  it("shows required indicator when required prop is true", () => {
+    render(<FormField id="email" name="email" label="Email" type="email" value="" onChange={mockOnChange} required />)
 
-    expect(screen.getByText('*')).toBeInTheDocument();
-  });
+    expect(screen.getByText("*")).toBeInTheDocument()
+  })
 
-  it('handles value changes for text input', async () => {
-    const user = userEvent.setup();
-    
-    render(
-      <FormField
-        id="name"
-        name="name"
-        label="Name"
-        type="text"
-        value=""
-        onChange={mockOnChange}
-      />
-    );
+  it("handles value changes for text input", async () => {
+    const user = userEvent.setup()
 
-    const input = screen.getByLabelText('Name');
-    await user.type(input, 'John');
+    render(<FormField id="name" name="name" label="Name" type="text" value="" onChange={mockOnChange} />)
 
-    expect(mockOnChange).toHaveBeenCalled();
-  });
+    const input = screen.getByLabelText("Name")
+    await user.type(input, "John")
 
-  it('renders textarea with correct rows', () => {
+    expect(mockOnChange).toHaveBeenCalled()
+  })
+
+  it("renders textarea with correct rows", () => {
     render(
       <FormField
         id="message"
@@ -70,19 +51,19 @@ describe('FormField', () => {
         onChange={mockOnChange}
         rows={10}
       />
-    );
+    )
 
-    const textarea = screen.getByLabelText('Message');
-    expect(textarea).toBeInTheDocument();
-    expect(textarea).toHaveAttribute('rows', '10');
-  });
+    const textarea = screen.getByLabelText("Message")
+    expect(textarea).toBeInTheDocument()
+    expect(textarea).toHaveAttribute("rows", "10")
+  })
 
-  it('renders select with options', () => {
+  it("renders select with options", () => {
     const options = [
-      { value: '', label: 'Select option' },
-      { value: 'option1', label: 'Option 1' },
-      { value: 'option2', label: 'Option 2' },
-    ];
+      { value: "", label: "Select option" },
+      { value: "option1", label: "Option 1" },
+      { value: "option2", label: "Option 2" },
+    ]
 
     render(
       <FormField
@@ -94,19 +75,19 @@ describe('FormField', () => {
         onChange={mockOnChange}
         options={options}
       />
-    );
+    )
 
-    expect(screen.getByLabelText('Subject')).toBeInTheDocument();
-    expect(screen.getByText('Option 1')).toBeInTheDocument();
-    expect(screen.getByText('Option 2')).toBeInTheDocument();
-  });
+    expect(screen.getByLabelText("Subject")).toBeInTheDocument()
+    expect(screen.getByText("Option 1")).toBeInTheDocument()
+    expect(screen.getByText("Option 2")).toBeInTheDocument()
+  })
 
-  it('handles select value changes', async () => {
-    const user = userEvent.setup();
+  it("handles select value changes", async () => {
+    const user = userEvent.setup()
     const options = [
-      { value: '', label: 'Select' },
-      { value: 'test', label: 'Test Option' },
-    ];
+      { value: "", label: "Select" },
+      { value: "test", label: "Test Option" },
+    ]
 
     render(
       <FormField
@@ -118,12 +99,11 @@ describe('FormField', () => {
         onChange={mockOnChange}
         options={options}
       />
-    );
+    )
 
-    const select = screen.getByLabelText('Subject');
-    await user.selectOptions(select, 'test');
+    const select = screen.getByLabelText("Subject")
+    await user.selectOptions(select, "test")
 
-    expect(mockOnChange).toHaveBeenCalled();
-  });
-});
-
+    expect(mockOnChange).toHaveBeenCalled()
+  })
+})

@@ -1,8 +1,8 @@
-import CallToAction from "@/app/components/sections/CallToAction";
-import HeroSection from "@/app/components/hero/HeroSection";
-import AttorneyProfile from "@/app/about/AttorneyProfile";
-import PhilosophySection from "@/app/about/PhilosophySection";
-import ExperienceResults from "@/app/about/ExperienceResults";
+import CallToAction from "@/app/components/sections/CallToAction"
+import HeroSection from "@/app/components/hero/HeroSection"
+import AttorneyProfile from "@/app/about/AttorneyProfile"
+import PhilosophySection from "@/app/about/PhilosophySection"
+import ExperienceResults from "@/app/about/ExperienceResults"
 
 export default function About() {
   return (
@@ -25,5 +25,5 @@ export default function About() {
         buttonLink="/contact"
       />
     </div>
-  );
+  )
 }

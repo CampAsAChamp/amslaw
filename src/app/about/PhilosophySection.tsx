@@ -1,27 +1,27 @@
-'use client';
+"use client"
 
-import { philosophyFeatures } from "@/app/data";
-import FeatureCard from "@/app/components/cards/FeatureCard";
-import { motion } from 'framer-motion';
+import { philosophyFeatures } from "@/app/data"
+import FeatureCard from "@/app/components/cards/FeatureCard"
+import { motion } from "framer-motion"
 
 export default function PhilosophySection() {
   return (
     <section className="section-padding bg-surface">
       <div className="section-container">
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold text-heading mb-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{
               duration: 0.6,
-              ease: [0.25, 0.4, 0.25, 1]
+              ease: [0.25, 0.4, 0.25, 1],
             }}
           >
             My Philosophy
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-body max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -29,11 +29,11 @@ export default function PhilosophySection() {
             transition={{
               duration: 0.6,
               delay: 0.1,
-              ease: [0.25, 0.4, 0.25, 1]
+              ease: [0.25, 0.4, 0.25, 1],
             }}
           >
-            I believe that estate planning is about more than just legal documents—it&apos;s about 
-            protecting the people and values you hold most dear.
+            I believe that estate planning is about more than just legal documents—it&apos;s about protecting the people
+            and values you hold most dear.
           </motion.p>
         </div>
 
@@ -50,5 +50,5 @@ export default function PhilosophySection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

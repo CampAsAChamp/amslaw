@@ -69,12 +69,14 @@ npm run test:e2e:debug
 ### Current Test Suite
 
 **Unit Tests (6 tests):**
+
 - FormField component rendering and interactions
 - Input type variations (text, email, tel, select, textarea)
 - Required field indicators
 - Value change handling
 
 **Integration Tests (7 tests):**
+
 - ContactForm rendering
 - Form data updates
 - Form submission with success/error handling
@@ -83,6 +85,7 @@ npm run test:e2e:debug
 - Custom onSubmit handler
 
 **API Route Tests (5 tests):**
+
 - Missing required fields validation
 - Successful email sending
 - Test email prefix in non-production
@@ -90,6 +93,7 @@ npm run test:e2e:debug
 - JSON parsing error handling
 
 **E2E Tests (5 tests):**
+
 - Complete form submission flow
 - Error handling with preserved form data
 - Required field validation
@@ -101,15 +105,18 @@ npm run test:e2e:debug
 ## Email Handling in Tests
 
 ### Automated Tests
+
 **No real emails are sent during automated testing.** All tests mock the email API:
 
 - **Unit/Integration tests**: Mock the Resend client
 - **E2E tests**: Intercept API calls with Playwright's `page.route()`
 
 ### Manual Testing
+
 When testing manually in development, emails will include a `[TEST]` prefix in the subject line.
 
 **Gmail Auto-Delete Filter Setup:**
+
 1. Open Gmail Settings → Filters and Blocked Addresses
 2. Create filter with: **Subject contains `[TEST]`**
 3. Action: **Skip Inbox** and **Delete it**
@@ -137,43 +144,47 @@ describe('MyComponent', () => {
 ### E2E Test Example
 
 ```typescript
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test"
 
-test('user can complete action', async ({ page }) => {
+test("user can complete action", async ({ page }) => {
   // Mock API if needed
-  await page.route('**/api/endpoint', async (route) => {
+  await page.route("**/api/endpoint", async (route) => {
     await route.fulfill({
       status: 200,
       body: JSON.stringify({ success: true }),
-    });
-  });
+    })
+  })
 
-  await page.goto('/page');
-  await page.getByLabel('Field').fill('value');
-  await page.getByRole('button', { name: 'Submit' }).click();
-  
-  await expect(page.getByText('Success')).toBeVisible();
-});
+  await page.goto("/page")
+  await page.getByLabel("Field").fill("value")
+  await page.getByRole("button", { name: "Submit" }).click()
+
+  await expect(page.getByText("Success")).toBeVisible()
+})
 ```
 
 ## Mocking Guidelines
 
 ### Framer Motion
+
 Automatically mocked in `src/test/setup.ts` to avoid animation issues.
 
 ### Next.js Navigation
+
 Mocked in `src/test/setup.ts` with basic router functions.
 
 ### Resend Email Service
+
 Mocked in API route tests to prevent real emails.
 
 ### Fetch API
+
 Use `mockFetch()` helper from `src/test/mocks.ts`:
 
 ```typescript
-import { mockFetch, mockSuccessResponse } from '@/test/mocks';
+import { mockFetch, mockSuccessResponse } from "@/test/mocks"
 
-mockFetch(mockSuccessResponse());
+mockFetch(mockSuccessResponse())
 ```
 
 ## Continuous Integration
@@ -192,14 +203,17 @@ Tests can be run in CI/CD pipelines:
 ## Troubleshooting
 
 ### Tests fail with "matchMedia is not a function"
+
 This is already handled in `src/test/setup.ts`. If you see this error, ensure the setup file is being loaded.
 
 ### E2E tests can't find elements
+
 - Use `screen.debug()` in unit tests to see the rendered HTML
 - Use `await page.screenshot({ path: 'debug.png' })` in E2E tests
 - Check that selectors match the actual rendered content
 
 ### Tests timeout
+
 - Increase timeout in test file: `test('name', async () => {...}, 10000)`
 - For E2E tests, check that the dev server is running properly
 
@@ -230,4 +244,3 @@ This is already handled in `src/test/setup.ts`. If you see this error, ensure th
 - [Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - [Playwright Documentation](https://playwright.dev/)
 - [Testing Best Practices](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library)
-
