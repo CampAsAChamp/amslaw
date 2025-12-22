@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { POST } from './route';
-import { NextResponse } from 'next/server';
 
 // Mock Resend
 const mockSendEmail = vi.fn().mockResolvedValue({ data: { id: 'mock-email-id' }, error: null });

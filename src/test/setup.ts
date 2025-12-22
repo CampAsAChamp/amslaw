@@ -23,19 +23,28 @@ afterEach(() => {
 });
 
 // Mock framer-motion to avoid animation issues in tests
-vi.mock('framer-motion', () => {
-  const React = require('react');
+vi.mock('framer-motion', async () => {
+  const React = await import('react');
   
   // Create a component that forwards all props except motion-specific ones
   const createMotionComponent = (element: string) => {
-    return React.forwardRef((props: any, ref: any) => {
-      const { 
-        animate, initial, exit, variants, transition, 
-        whileHover, whileTap, whileFocus, whileInView,
-        ...domProps 
-      } = props;
+    const component = React.forwardRef<HTMLElement, Record<string, unknown>>((props, ref) => {
+      // Filter out framer-motion specific props
+      const motionProps = [
+        'animate', 'initial', 'exit', 'variants', 'transition',
+        'whileHover', 'whileTap', 'whileFocus', 'whileInView'
+      ];
+      const domProps = Object.keys(props)
+        .filter(key => !motionProps.includes(key))
+        .reduce((obj, key) => {
+          obj[key] = props[key];
+          return obj;
+        }, {} as Record<string, unknown>);
+      
       return React.createElement(element, { ...domProps, ref });
     });
+    component.displayName = `Motion${element.charAt(0).toUpperCase() + element.slice(1)}`;
+    return component;
   };
 
   return {

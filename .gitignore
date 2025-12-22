@@ -48,13 +48,17 @@ node_modules/
 # Windows thumbnail cache
 Thumbs.db
 
-# Optional Yarn v2 and pnpm files
+# Yarn v4 files
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
+.yarn/cache
+.yarn/install-state.gz
 .pnp.*
+
+# pnpm files (kept for reference)
 .pnpm-debug.log
 
 # TypeScript build output

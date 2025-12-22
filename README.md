@@ -21,6 +21,7 @@ This is the official website for Anna M. Schneider Law, a law firm specializing 
 - **Notifications**: react-hot-toast for user feedback
 - **Deployment**: Cloudflare Workers via [OpenNext](https://opennext.js.org/) with automatic deployment
 - **Runtime**: Node.js 22
+- **Package Manager**: Yarn 4 (Berry) for fast, reliable dependency management
 - **Quality**: Husky for git hooks and pre-commit checks
 
 ## Site Structure
@@ -35,7 +36,9 @@ The website includes the following pages:
 
 ## Prerequisites
 
-This project requires **Node.js 22** or higher
+This project requires:
+- **Node.js 22** or higher
+- **Yarn 4** (automatically managed via `.yarnrc.yml`)
 
 ## Features
 
@@ -58,30 +61,35 @@ This project requires **Node.js 22** or higher
 First, install dependencies:
 
 ```bash
-npm install
+yarn install
 ```
 
 Then run the development server:
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 The page auto-updates as you edit files. Start by modifying `src/app/page.tsx` for the home page.
 
+> **Note**: This project uses Yarn 4 (Berry). The correct version is automatically used via the `.yarnrc.yml` configuration file.
+
 ### Available Scripts
 
-All npm scripts are defined in `package.json`:
+All scripts are defined in `package.json` and run with Yarn:
 
-- `npm run dev` - Start development server with hot reload
-- `npm run build` - Build production-ready application
-- `npm run start` - Start production server locally
-- `npm run lint` - Run ESLint for code quality checks
-- `npm run check` - Run full type checking and build validation
-- `npm run preview` - Preview OpenNext build locally
-- `npm run deploy` - Deploy to Cloudflare Workers
+- `yarn dev` - Start development server with hot reload
+- `yarn build` - Build production-ready application
+- `yarn start` - Start production server locally
+- `yarn lint` - Run ESLint for code quality checks
+- `yarn check` - Run full type checking and build validation
+- `yarn preview` - Preview OpenNext build locally
+- `yarn deploy` - Deploy to Cloudflare Workers
+- `yarn test` - Run Vitest unit tests
+- `yarn test:e2e` - Run Playwright end-to-end tests
+- `yarn test:all` - Run all tests (unit + e2e)
 
 ### Project Structure
 
@@ -152,7 +160,7 @@ CONTACT_EMAIL=anna@schneiderlaw.com
 
 2. Set `RESEND_API_KEY` as a secret using Wrangler CLI:
 ```bash
-npx wrangler secret put RESEND_API_KEY
+yarn wrangler secret put RESEND_API_KEY
 ```
 When prompted, paste your Resend API key. This stores it securely in Cloudflare and persists across all deployments.
 
@@ -180,7 +188,7 @@ from: 'AMS Law Contact Form <contact@yourdomain.com>',
 
 #### 5. Test the Contact Form
 
-1. Start your development server: `npm run dev`
+1. Start your development server: `yarn dev`
 2. Navigate to the Contact page
 3. Fill out and submit the form
 4. Check your email!
@@ -196,7 +204,7 @@ from: 'AMS Law Contact Form <contact@yourdomain.com>',
 - Check your spam folder
 - Verify the `CONTACT_EMAIL` is correct (in `.env.local` for local, `wrangler.jsonc` for production)
 - Check the Resend dashboard [Emails](https://resend.com/emails) to see if they're being sent
-- For production, verify you've set the `RESEND_API_KEY` secret using `npx wrangler secret put RESEND_API_KEY`
+- For production, verify you've set the `RESEND_API_KEY` secret using `yarn wrangler secret put RESEND_API_KEY`
 
 **Environment Variables:**
 - ✅ Local: Use `.env.local` (never commit this file)
@@ -224,18 +232,18 @@ You can also deploy manually using the following commands:
 
 | Command                 | Action                                      |
 | :---------------------- | :------------------------------------------ |
-| `npm run build`         | Build your Next.js production site          |
-| `npm run preview`       | Preview OpenNext build locally              |
-| `npm run deploy`        | Build and deploy to Cloudflare Workers      |
-| `npm run lint`          | Run ESLint to check code quality            |
-| `npm run check`         | Build and run TypeScript type checking      |
+| `yarn build`            | Build your Next.js production site          |
+| `yarn preview`          | Preview OpenNext build locally              |
+| `yarn deploy`           | Build and deploy to Cloudflare Workers      |
+| `yarn lint`             | Run ESLint to check code quality            |
+| `yarn check`            | Build and run TypeScript type checking      |
 
 ### Environment Variables in Production
 
 Environment variables are configured in `wrangler.jsonc`:
 
 - **Non-sensitive variables** (like `CONTACT_EMAIL`): Set in the `vars` section of `wrangler.jsonc`
-- **Secrets** (like `RESEND_API_KEY`): Set using `npx wrangler secret put VARIABLE_NAME`
+- **Secrets** (like `RESEND_API_KEY`): Set using `yarn wrangler secret put VARIABLE_NAME`
 
 Secrets set via Wrangler CLI are encrypted and stored securely in Cloudflare, persisting across all deployments.
 

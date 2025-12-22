@@ -1,4 +1,5 @@
 import { FormData } from '@/types';
+import { vi } from 'vitest';
 
 // Sample test form data
 export const mockFormData: FormData = {
