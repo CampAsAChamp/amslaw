@@ -38,7 +38,7 @@ describe("Contact API Route", () => {
     })
 
     const response = await POST(request)
-    const data = await response.json()
+    const data = (await response.json()) as { error: string }
 
     expect(response.status).toBe(400)
     expect(data.error).toBe("Missing required fields")
@@ -58,7 +58,7 @@ describe("Contact API Route", () => {
     })
 
     const response = await POST(request)
-    const data = await response.json()
+    const data = (await response.json()) as { success: boolean; messageId: string }
 
     expect(response.status).toBe(200)
     expect(data.success).toBe(true)
@@ -67,7 +67,12 @@ describe("Contact API Route", () => {
 
   it("includes [TEST] prefix in non-production environments", async () => {
     const originalEnv = process.env.NODE_ENV
-    process.env.NODE_ENV = "development"
+    // Use Object.defineProperty to modify read-only property
+    Object.defineProperty(process.env, "NODE_ENV", {
+      value: "development",
+      writable: true,
+      configurable: true,
+    })
 
     const request = new Request("http://localhost:3000/api/contact", {
       method: "POST",
@@ -87,7 +92,12 @@ describe("Contact API Route", () => {
       })
     )
 
-    process.env.NODE_ENV = originalEnv
+    // Restore original value
+    Object.defineProperty(process.env, "NODE_ENV", {
+      value: originalEnv,
+      writable: true,
+      configurable: true,
+    })
   })
 
   it("returns 500 if email service fails", async () => {
@@ -107,7 +117,7 @@ describe("Contact API Route", () => {
     })
 
     const response = await POST(request)
-    const data = await response.json()
+    const data = (await response.json()) as { error: string }
 
     expect(response.status).toBe(500)
     expect(data.error).toBe("Failed to send email")
@@ -120,7 +130,7 @@ describe("Contact API Route", () => {
     })
 
     const response = await POST(request)
-    const data = await response.json()
+    const data = (await response.json()) as { error: string }
 
     expect(response.status).toBe(500)
     expect(data.error).toBe("Internal server error")

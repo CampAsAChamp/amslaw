@@ -1,9 +1,23 @@
-import { describe, it, expect, vi } from "vitest"
+import { describe, it, expect, vi, beforeEach } from "vitest"
 import { render, screen } from "@testing-library/react"
 import AnimatedContainer from "@/app/components/common/AnimatedContainer"
 
 // Mock framer-motion to capture props and simplify testing
-let outerMotionProps: Record<string, unknown> = {}
+interface MotionPropsCapture {
+  variants?: {
+    initial?: { scaleX?: number; scaleY?: number; opacity?: number }
+    animate?: { scaleX?: number; scaleY?: number; opacity?: number }
+  }
+  transition?: {
+    type?: string
+    stiffness?: number
+    damping?: number
+    delay?: number
+  }
+  viewport?: { once?: boolean; amount?: number }
+}
+
+let outerMotionProps: MotionPropsCapture = {}
 let callCount = 0
 
 vi.mock("framer-motion", () => ({
@@ -157,7 +171,7 @@ describe("AnimatedContainer", () => {
         </AnimatedContainer>
       )
 
-      expect(outerMotionProps.transition.delay).toBe(0)
+      expect(outerMotionProps.transition?.delay).toBe(0)
     })
 
     it("applies custom delay", () => {
@@ -167,7 +181,7 @@ describe("AnimatedContainer", () => {
         </AnimatedContainer>
       )
 
-      expect(outerMotionProps.transition.delay).toBe(0.5)
+      expect(outerMotionProps.transition?.delay).toBe(0.5)
     })
 
     it("applies large delay", () => {
@@ -177,7 +191,7 @@ describe("AnimatedContainer", () => {
         </AnimatedContainer>
       )
 
-      expect(outerMotionProps.transition.delay).toBe(2)
+      expect(outerMotionProps.transition?.delay).toBe(2)
     })
   })
 
@@ -189,7 +203,7 @@ describe("AnimatedContainer", () => {
         </AnimatedContainer>
       )
 
-      expect(outerMotionProps.variants.initial).toEqual({
+      expect(outerMotionProps.variants?.initial).toEqual({
         scaleX: 0.05,
         scaleY: 0.05,
         opacity: 0,
@@ -203,7 +217,7 @@ describe("AnimatedContainer", () => {
         </AnimatedContainer>
       )
 
-      expect(outerMotionProps.variants.animate).toEqual({
+      expect(outerMotionProps.variants?.animate).toEqual({
         scaleX: 1,
         scaleY: 1,
         opacity: 1,
@@ -217,9 +231,9 @@ describe("AnimatedContainer", () => {
         </AnimatedContainer>
       )
 
-      expect(outerMotionProps.transition.type).toBe("spring")
-      expect(outerMotionProps.transition.stiffness).toBe(200)
-      expect(outerMotionProps.transition.damping).toBe(20)
+      expect(outerMotionProps.transition?.type).toBe("spring")
+      expect(outerMotionProps.transition?.stiffness).toBe(200)
+      expect(outerMotionProps.transition?.damping).toBe(20)
     })
   })
 
@@ -247,7 +261,7 @@ describe("AnimatedContainer", () => {
 
       const motionDiv = container.querySelector('[data-testid="motion-div"]')
       expect(motionDiv).toHaveClass("custom-card")
-      expect(outerMotionProps.transition.delay).toBe(1.2)
+      expect(outerMotionProps.transition?.delay).toBe(1.2)
     })
 
     it("handles animateOnMount with custom delay", () => {
@@ -259,7 +273,7 @@ describe("AnimatedContainer", () => {
 
       const motionDiv = container.querySelector('[data-testid="motion-div"]')
       expect(motionDiv).toHaveAttribute("data-animate", "animate")
-      expect(outerMotionProps.transition.delay).toBe(0.8)
+      expect(outerMotionProps.transition?.delay).toBe(0.8)
     })
 
     it("handles all props together", () => {
@@ -272,7 +286,7 @@ describe("AnimatedContainer", () => {
       const motionDiv = container.querySelector('[data-testid="motion-div"]')
       expect(motionDiv).toHaveClass("special-card")
       expect(motionDiv).toHaveAttribute("data-animate", "animate")
-      expect(outerMotionProps.transition.delay).toBe(1.5)
+      expect(outerMotionProps.transition?.delay).toBe(1.5)
       expect(screen.getByText("Complex Test")).toBeInTheDocument()
     })
   })
@@ -324,7 +338,7 @@ describe("AnimatedContainer", () => {
         </AnimatedContainer>
       )
 
-      expect(outerMotionProps.transition.delay).toBe(0)
+      expect(outerMotionProps.transition?.delay).toBe(0)
     })
 
     it("renders with string children", () => {

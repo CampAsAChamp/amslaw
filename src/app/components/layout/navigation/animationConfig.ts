@@ -57,7 +57,7 @@ export const mobileMenuContainerAnimation = {
   initial: { height: 0, opacity: 0 },
   animate: { height: "auto", opacity: 1 },
   exit: { height: 0, opacity: 0 },
-  transition: { duration: 0.3, ease: "easeInOut" },
+  transition: { duration: 0.3, ease: [0.42, 0, 0.58, 1] as const },
 }
 
 /**
@@ -75,7 +75,7 @@ export const mobileMenuContentAnimation = {
   initial: { y: -20 },
   animate: { y: 0 },
   exit: { y: -20 },
-  transition: { duration: 0.3, ease: "easeInOut" },
+  transition: { duration: 0.3, ease: [0.42, 0, 0.58, 1] as const },
 }
 
 /**
@@ -114,6 +114,6 @@ export const getMobileMenuItemAnimation = (index: number) => ({
   transition: {
     duration: 0.3,
     delay: index * 0.05,
-    ease: "easeOut",
+    ease: [0, 0, 0.58, 1] as const,
   },
 })
