@@ -67,12 +67,8 @@ describe("Contact API Route", () => {
 
   it("includes [TEST] prefix in non-production environments", async () => {
     const originalEnv = process.env.NODE_ENV
-    // Use Object.defineProperty to modify read-only property
-    Object.defineProperty(process.env, "NODE_ENV", {
-      value: "development",
-      writable: true,
-      configurable: true,
-    })
+    // Use vi.stubEnv to temporarily change environment variable
+    vi.stubEnv("NODE_ENV", "development")
 
     const request = new Request("http://localhost:3000/api/contact", {
       method: "POST",
@@ -93,11 +89,10 @@ describe("Contact API Route", () => {
     )
 
     // Restore original value
-    Object.defineProperty(process.env, "NODE_ENV", {
-      value: originalEnv,
-      writable: true,
-      configurable: true,
-    })
+    vi.unstubAllEnvs()
+    if (originalEnv !== undefined) {
+      vi.stubEnv("NODE_ENV", originalEnv)
+    }
   })
 
   it("returns 500 if email service fails", async () => {
