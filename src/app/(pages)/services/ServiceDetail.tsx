@@ -1,6 +1,6 @@
 "use client"
 
-import { AnimatedCard } from "@/app/components/ui"
+import { AnimatedCard } from "@/app/components/common"
 
 interface ServiceDetailProps {
   icon: React.ReactNode

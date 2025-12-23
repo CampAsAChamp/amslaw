@@ -1,6 +1,6 @@
 "use client"
 
-import { AnimatedCard } from "@/app/components/ui"
+import { AnimatedCard } from "@/app/components/common"
 import { ServiceCardProps } from "@/types"
 
 export default function ServiceCard({ icon, title, description, features, delay = 0 }: ServiceCardProps) {

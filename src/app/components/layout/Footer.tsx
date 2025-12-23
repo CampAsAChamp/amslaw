@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { AddressDisplay, CopyButton } from "@/app/components/ui"
+import { CopyButton } from "@/app/components/common"
+import AddressDisplay from "@/app/components/contact/AddressDisplay"
 import { navigationLinks, officeHours, contactInfo } from "@/app/data"
 import { formatPhoneNumber, formatAddressMultiLine } from "@/utils"
 

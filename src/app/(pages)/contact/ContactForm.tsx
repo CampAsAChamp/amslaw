@@ -4,8 +4,8 @@ import { useState } from "react"
 import { Send } from "lucide-react"
 import { ContactFormProps, FormData } from "@/types"
 import toast, { Toaster } from "react-hot-toast"
-import { AnimatedCard } from "@/app/components/ui"
-import FormField from "@/app/components/ui/FormField"
+import { AnimatedCard } from "@/app/components/common"
+import FormField from "@/app/components/contact/forms/FormField"
 
 export default function ContactForm({ onSubmit }: ContactFormProps) {
   const [formData, setFormData] = useState<FormData>({

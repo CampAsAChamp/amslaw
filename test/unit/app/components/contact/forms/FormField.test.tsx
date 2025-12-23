@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import FormField from "@/app/components/ui/FormField"
+import FormField from "@/app/components/contact/forms/FormField"
 
 describe("FormField", () => {
   const mockOnChange = vi.fn()

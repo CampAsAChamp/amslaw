@@ -1,7 +1,8 @@
 "use client"
 
 import { MapPin, Phone, Mail, Check } from "lucide-react"
-import { AddressDisplay, AnimatedCard, CopyButton } from "@/app/components/ui"
+import { AnimatedCard, CopyButton } from "@/app/components/common"
+import AddressDisplay from "@/app/components/contact/AddressDisplay"
 import { whatToExpect, officeHours, contactInfo } from "@/app/data"
 import { formatPhoneNumber, formatAddressMultiLine } from "@/utils"
 
