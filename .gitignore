@@ -79,5 +79,5 @@ debug.log
 # ESLint cache
 .eslintcache
 
-# Prettier generated file artifacts
-.prettierignore
+# Prettier cache (if you ever use --cache flag)
+# .prettier-cache
