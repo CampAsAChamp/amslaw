@@ -3,6 +3,20 @@
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
+import EducationCard from "@/app/(pages)/about/EducationCard"
+import CredentialsCard from "@/app/(pages)/about/CredentialsCard"
+
+const educationData = [
+  { degree: "Juris Doctor", institution: "Whittier Law School" },
+  { degree: "Bachelor of Science", institution: "California State University of Long Beach" },
+]
+
+const credentialsData = [
+  "Licensed to practice in California",
+  "California State Bar Association - Member",
+  "U.S. District Court for the Eastern District - State of California",
+  "U.S. District Court for the Central District - State of California",
+]
 
 export default function AttorneyProfile() {
   return (
@@ -52,43 +66,8 @@ export default function AttorneyProfile() {
             </motion.div>
 
             <div className="space-y-6">
-              <motion.div
-                className="card-info"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.2,
-                  ease: [0.25, 0.4, 0.25, 1],
-                }}
-              >
-                <h3 className="text-xl font-semibold text-heading mb-4">Education</h3>
-                <ul className="space-y-2 text-body">
-                  <li>• Juris Doctor - Whittier Law School</li>
-                  <li>• Bachelor of Science - California State University of Long Beach</li>
-                </ul>
-              </motion.div>
-
-              <motion.div
-                className="card-info"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.3,
-                  ease: [0.25, 0.4, 0.25, 1],
-                }}
-              >
-                <h3 className="text-xl font-semibold text-heading mb-4">Credentials</h3>
-                <ul className="space-y-2 text-body">
-                  <li>• Licensed to practice in California</li>
-                  <li>• California State Bar Association - Member</li>
-                  <li>• U.S. District Court for the Eastern District - State of California</li>
-                  <li>• U.S. District Court for the Central District - State of California</li>
-                </ul>
-              </motion.div>
+              <EducationCard items={educationData} delay={0.2} />
+              <CredentialsCard items={credentialsData} delay={0.3} />
             </div>
           </div>
 

@@ -1,41 +1,20 @@
 "use client"
 
 import { stats, testimonials } from "@/app/data"
-import StatsCard from "@/app/about/StatsCard"
-import TestimonialCard from "@/app/about/TestimonialCard"
+import StatsCard from "@/app/(pages)/about/StatsCard"
+import TestimonialCard from "@/app/(pages)/about/TestimonialCard"
+import SectionHeader from "@/app/components/sections/SectionHeader"
 import { motion } from "framer-motion"
 
 export default function ExperienceResults() {
   return (
     <section className="py-20 bg-surface-secondary">
       <div className="container-page">
-        <div className="text-center mb-16">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold text-heading mb-4"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{
-              duration: 0.6,
-              ease: [0.25, 0.4, 0.25, 1],
-            }}
-          >
-            Experience & Results
-          </motion.h2>
-          <motion.p
-            className="text-xl text-body max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{
-              duration: 0.6,
-              delay: 0.1,
-              ease: [0.25, 0.4, 0.25, 1],
-            }}
-          >
-            I have helped hundreds of families transfer their assets and secure their legacies.
-          </motion.p>
-        </div>
+        <SectionHeader
+          title="Experience & Results"
+          subtitle="I have helped hundreds of families transfer their assets and secure their legacies."
+          delay={0}
+        />
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"

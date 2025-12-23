@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { CopyButton } from "@/app/components/ui"
+import { AddressDisplay, CopyButton } from "@/app/components/ui"
 import { navigationLinks, officeHours, contactInfo } from "@/app/data"
 import { formatPhoneNumber, formatAddressMultiLine } from "@/utils"
 
@@ -49,23 +49,11 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-on-primary">Contact Info</h4>
             <div className="text-footer space-y-2">
-              <a
-                href={contactInfo.maps.link}
-                target="_blank"
-                rel="noopener noreferrer"
+              <AddressDisplay
+                addressLines={addressLines}
+                link={contactInfo.maps.link}
                 className="text-footer-muted hover:text-on-primary transition-colors hover:underline block"
-              >
-                {addressLines.map((line, index) => (
-                  <span key={index}>
-                    {line}
-                    {index < addressLines.length - 1 && (
-                      <>
-                        <br />
-                      </>
-                    )}
-                  </span>
-                ))}
-              </a>
+              />
               <p className="mt-4 flex items-center gap-2">
                 <strong>Phone:</strong>{" "}
                 <a
