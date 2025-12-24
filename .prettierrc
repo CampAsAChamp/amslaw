@@ -6,5 +6,19 @@
     "tabWidth": 2,
     "useTabs": false,
     "arrowParens": "always",
-    "endOfLine": "lf"
+    "endOfLine": "lf",
+    "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+    "importOrder": [
+        "^(react/(.*)$)|^(react$)",
+        "^(next/(.*)$)|^(next$)",
+        "<THIRD_PARTY_MODULES>",
+        "",
+        "^@/types(.*)$",
+        "^@/utils(.*)$",
+        "^@/app/(.*)$",
+        "",
+        "^[./]"
+    ],
+    "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
+    "importOrderTypeScriptVersion": "5.0.0"
 }

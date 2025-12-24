@@ -29,6 +29,7 @@
     "resend": "^6.5.2"
   },
   "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
     "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.1",
