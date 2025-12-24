@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 
 import { formatAddressMultiLine, formatPhoneNumber } from "@/utils"
@@ -7,6 +9,7 @@ import { contactInfo, navigationLinks, officeHours } from "@/app/data"
 
 export default function Footer() {
   const addressLines = formatAddressMultiLine(contactInfo.address)
+  const currentYear = new Date().getFullYear()
 
   return (
     <footer className="bg-primary-dark text-on-primary">
@@ -90,7 +93,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-primary-hover mt-8 pt-8 text-center text-footer-muted">
-          <p>&copy; 2025 Anna M. Schneider Law. All rights reserved.</p>
+          <p>&copy; {currentYear} Anna M. Schneider Law. All rights reserved.</p>
           <p className="mt-2 text-sm">
             This website is for informational purposes only and does not constitute legal advice.
           </p>
