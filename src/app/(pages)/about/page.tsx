@@ -3,6 +3,7 @@ import ExperienceResults from "@/app/(pages)/about/ExperienceResults"
 import PhilosophySection from "@/app/(pages)/about/PhilosophySection"
 import HeroSection from "@/app/components/hero/HeroSection"
 import CallToAction from "@/app/components/sections/CallToAction"
+import { yelpReviews } from "@/app/data"
 
 export default function About() {
   return (
@@ -16,7 +17,7 @@ export default function About() {
 
       <AttorneyProfile />
       <PhilosophySection />
-      <ExperienceResults />
+      <ExperienceResults reviews={yelpReviews} />
 
       <CallToAction
         title="Ready to Work Together?"

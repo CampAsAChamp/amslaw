@@ -31,7 +31,7 @@ This is the official website for Anna M. Schneider Law, a law firm specializing 
 The website includes the following pages:
 
 - **Home** (`/`) - Hero section, key features, services overview, and call-to-action
-- **About** (`/about`) - Attorney profile, philosophy, and experience
+- **About** (`/about`) - Attorney profile, philosophy, experience, and client reviews from Yelp
 - **Services** (`/services`) - Detailed information about legal services offered
 - **FAQ** (`/faq`) - Frequently asked questions about estate planning, living trusts, and wills
 - **Contact** (`/contact`) - Contact form with email integration, office information, and map
@@ -55,6 +55,7 @@ This project requires:
 - **Modern Icons** - Lucide React icon library
 - **Contact Form** - Integrated contact form with Resend email delivery and React Email templates
 - **User Notifications** - Toast notifications for form submissions and user feedback
+- **Yelp Reviews Integration** - Automatically displays latest client reviews from Yelp
 - **Interactive Maps** - Office location map integration
 - **FAQ Section** - Comprehensive answers to common estate planning questions
 - **Code Quality Tools** - Pre-commit hooks with ESLint, Prettier, and automated testing
@@ -237,6 +238,59 @@ from: 'AMS Law Contact Form <contact@yourdomain.com>',
 - Never commit your `.env.local` file to git
 - The API key is server-side only (Next.js API route)
 - Users cannot see or access your API key from the browser
+
+### Yelp Reviews Display
+
+The About page displays client reviews from Yelp with star ratings and reviewer information. These are currently stored as static data for reliability and performance.
+
+#### How It Works
+
+- Reviews are stored in `src/app/data/reviews.tsx`
+- Displays with Yelp-style formatting (star ratings, reviewer names, dates)
+- Includes link to view all reviews on Yelp
+- Fast loading (no external API calls)
+
+#### Updating Reviews
+
+When you receive a new Yelp review:
+
+1. Go to your Yelp business page: https://www.yelp.com/biz/anna-m-schneider-torrance
+2. Find the new review and click **"Share review"** directly on the review
+3. Click "Copy Link" to get the review URL (it will include `?hrid=` and tracking parameters)
+4. Open `src/app/data/reviews.tsx`
+5. Add the new review to the `yelpReviews` array:
+
+```typescript
+{
+  id: "reviewer-name-year",
+  url: "https://www.yelp.com/biz/anna-m-schneider-torrance?hrid=xxxxx", // Use the URL from step 3
+  text: "The review text from Yelp",
+  rating: 5, // 1-5 stars
+  time_created: "2024-01-15T00:00:00Z", // ISO format
+  user: {
+    id: "reviewer-id",
+    profile_url: "https://www.yelp.com/user_details?userid=reviewer-id",
+    image_url: null, // or URL to profile image if available
+    name: "Reviewer Name",
+  },
+}
+```
+
+6. Save the file and deploy
+
+**Tip:** The `?hrid=` parameter in the URL ensures the "Read more on Yelp" link goes directly to that specific review.
+
+#### Why Static Reviews?
+
+We use static reviews instead of the Yelp API because:
+
+- ✅ **Reliable**: No API issues or rate limits
+- ✅ **Fast**: Instant page loads, no external API calls
+- ✅ **Simple**: No API keys or credentials needed
+- ✅ **Free**: No API costs
+- ✅ **Maintained**: Easy to update when you get new reviews
+
+Since reviews don't change frequently, this approach provides the best user experience.
 
 ## Deployment
 

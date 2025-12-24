@@ -164,6 +164,51 @@ The ONLY place hex colors should appear is in `src/app/globals.css` where CSS va
 
 ---
 
+## Documentation
+
+**ALWAYS update documentation when making changes to the codebase.**
+
+### When to Update Documentation
+
+Update `README.md` whenever you:
+- Add a new feature or integration (e.g., Yelp reviews, contact form)
+- Add a new API endpoint
+- Add environment variables or secrets
+- Change deployment configuration
+- Add new dependencies or services
+- Modify project structure or file organization
+
+### When Creating Cursor Plans
+
+Every Cursor plan that implements new features MUST include:
+- A todo item for updating documentation
+- Specific sections of README.md to update
+- Any new setup instructions required
+- Environment variable documentation
+
+### What to Document in README.md
+
+- **Features Section**: Add new user-facing features
+- **Tech Stack**: Add new libraries, APIs, or services
+- **Site Structure**: Update if pages or routes change
+- **Project Structure**: Update if folder organization changes
+- **Setup Sections**: Add complete setup instructions for new integrations
+  - Follow the format of existing sections (e.g., "Email Setup")
+  - Include local development AND production setup
+  - Add troubleshooting tips
+- **Environment Variables**: Document all new variables (secret vs. public)
+- **Available Scripts**: Add any new npm/yarn scripts
+
+### Documentation Standards
+
+- Use the same style/format as existing sections
+- Be specific and include code examples
+- Explain WHY not just HOW
+- Include troubleshooting for common issues
+- Keep documentation in sync with code changes
+
+---
+
 ## Maintaining This File
 
 **IMPORTANT: Keep this `.cursorrules` file up to date!**

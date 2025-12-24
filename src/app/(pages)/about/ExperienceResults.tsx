@@ -2,12 +2,17 @@
 
 import { motion } from "framer-motion"
 
+import type { YelpReview } from "@/types/data"
 import StatsCard from "@/app/(pages)/about/StatsCard"
-import TestimonialCard from "@/app/(pages)/about/TestimonialCard"
+import YelpReviewsSection from "@/app/(pages)/about/YelpReviewsSection"
 import SectionHeader from "@/app/components/sections/SectionHeader"
-import { stats, testimonials } from "@/app/data"
+import { stats } from "@/app/data"
 
-export default function ExperienceResults() {
+interface ExperienceResultsProps {
+  reviews: YelpReview[]
+}
+
+export default function ExperienceResults({ reviews }: ExperienceResultsProps) {
   return (
     <section className="py-20 bg-surface-secondary">
       <div className="container-page">
@@ -45,11 +50,7 @@ export default function ExperienceResults() {
           }}
         >
           <h3 className="text-2xl font-bold text-heading mb-6 text-center">What My Clients Say</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} quote={testimonial.quote} author={testimonial.author} />
-            ))}
-          </div>
+          <YelpReviewsSection reviews={reviews} />
         </motion.div>
       </div>
     </section>
