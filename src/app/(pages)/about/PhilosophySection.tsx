@@ -1,6 +1,6 @@
 "use client"
 
-import { FeatureCard } from "@/app/components/common"
+import { IconCard } from "@/app/components/common"
 import SectionHeader from "@/app/components/sections/SectionHeader"
 import { philosophyFeatures } from "@/app/data"
 
@@ -16,7 +16,7 @@ export default function PhilosophySection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {philosophyFeatures.map((feature, index) => (
-            <FeatureCard
+            <IconCard
               key={index}
               icon={feature.icon}
               title={feature.title}

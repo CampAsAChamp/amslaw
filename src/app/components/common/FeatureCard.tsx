@@ -5,27 +5,14 @@ import { motion } from "framer-motion"
 import { FeatureCardProps } from "@/types"
 
 /**
- * FeatureCard - A reusable component for displaying features, benefits, or services with an icon, title, and description.
- * Supports simple features list or complex sections with headings. Uses consistent staggered animation patterns.
+ * FeatureCard - A reusable card component for displaying services with features lists or detailed sections.
+ * Always renders as a card with shadow (card-base styling).
  *
  * @component
  *
  * ## Usage
  *
- * ### Simple Feature Card (centered, no features list)
- * ```tsx
- * <FeatureCard
- *   icon={<CheckCircle className="w-8 h-8 text-primary-hover" />}
- *   title="Expert Guidance"
- *   description="Personalized attention for your unique situation"
- *   delay={0.35}
- * />
- * ```
- * - Renders with centered text
- * - Icon displayed in icon-circle style
- * - Animates on scroll into view with offset animation
- *
- * ### Detailed Service Card (left-aligned, with features list)
+ * ### Service Card with Features List
  * ```tsx
  * <FeatureCard
  *   icon={<FileText className="w-12 h-12 text-primary-hover" />}
@@ -39,11 +26,8 @@ import { FeatureCardProps } from "@/types"
  *   delay={0.35}
  * />
  * ```
- * - Renders with card-base styling
- * - Includes bulleted feature list
- * - Animates on scroll into view
  *
- * ### Complex Service Card (with sections and headings)
+ * ### Detailed Service Card with Sections
  * ```tsx
  * <FeatureCard
  *   icon={<FileSignature className="w-16 h-16" />}
@@ -58,26 +42,20 @@ import { FeatureCardProps } from "@/types"
  * />
  * ```
  *
- * ## Animation Pattern
- * - Fades in from below (y: 30 → 0)
- * - Opacity transition (0 → 1)
- * - Triggers when scrolling into view (default) or on mount (with animateOnMount)
- * - Smooth easing for professional feel
- *
  * ## Props
  * @param {React.ReactNode} icon - Icon or SVG element to display
  * @param {string} title - Card title/heading
  * @param {string} description - Card description text
  * @param {string[]} [features] - Optional array of feature items to display as bulleted list
  * @param {Array} [sections] - Optional array of sections with optional headings and items (strings or React nodes)
- * @param {number} [delay=0] - Animation delay in seconds (use baseDelay + index * 0.2 for staggering)
+ * @param {number} [delay=0] - Animation delay in seconds
  * @param {boolean} [animateOnMount=false] - If true, animates on mount instead of on scroll
  *
  * ## Behavior
- * - **Without features/sections:** Centered layout, icon-circle style
- * - **With features:** Left-aligned layout, simple bulleted list
- * - **With sections:** Left-aligned layout, multiple sections with optional headings
- * - Priority: sections > features > simple card
+ * - **With sections:** Renders sections with optional headings and items
+ * - **With features:** Renders simple bulleted feature list
+ * - Both variants use card-base styling (white background, padding, shadow)
+ * - Sections take priority over features if both are provided
  */
 export default function FeatureCard({
   icon,
@@ -89,8 +67,6 @@ export default function FeatureCard({
   animateOnMount = false,
 }: FeatureCardProps) {
   const hasSections = sections && sections.length > 0
-  const hasFeatures = features && features.length > 0
-  const hasContent = hasSections || hasFeatures
 
   // Sections rendering (detailed services page)
   if (hasSections) {
@@ -129,15 +105,10 @@ export default function FeatureCard({
     )
   }
 
-  // Features/simple rendering (homepage and feature grids)
-  const containerClass = hasContent ? "card-base" : "text-center"
-  const iconClass = hasContent ? "text-primary-hover mb-4" : "icon-circle"
-  const titleClass = hasContent ? "text-xl mb-4" : "text-lg mb-2"
-  const descriptionClass = hasContent ? "mb-6" : ""
-
+  // Features rendering (services overview on homepage)
   return (
     <motion.div
-      className={containerClass}
+      className="card-base"
       initial={{ opacity: 0, y: 30 }}
       animate={animateOnMount ? { opacity: 1, y: 0 } : undefined}
       whileInView={!animateOnMount ? { opacity: 1, y: 0 } : undefined}
@@ -148,10 +119,10 @@ export default function FeatureCard({
         ease: [0.25, 0.4, 0.25, 1],
       }}
     >
-      <div className={iconClass}>{icon}</div>
-      <h3 className={`font-semibold text-heading ${titleClass}`}>{title}</h3>
-      <p className={`text-body ${descriptionClass}`}>{description}</p>
-      {hasFeatures && (
+      <div className="text-primary-hover mb-4">{icon}</div>
+      <h3 className="text-xl font-semibold text-heading mb-4">{title}</h3>
+      <p className="text-body mb-6">{description}</p>
+      {features && features.length > 0 && (
         <ul className="text-sm text-body space-y-2">
           {features.map((feature, index) => (
             <li key={index}>• {feature}</li>

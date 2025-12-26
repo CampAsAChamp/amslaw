@@ -1,5 +1,4 @@
-import ProcessStep from "@/app/(pages)/services/ProcessStep"
-import { FeatureCard } from "@/app/components/common"
+import { FeatureCard, IconCard } from "@/app/components/common"
 import HeroSection from "@/app/components/hero/HeroSection"
 import CallToAction from "@/app/components/sections/CallToAction"
 import SectionHeader from "@/app/components/sections/SectionHeader"
@@ -47,7 +46,7 @@ export default function Services() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-0">
             {processSteps.map((step, index) => (
-              <ProcessStep
+              <IconCard
                 key={index}
                 stepNumber={step.stepNumber}
                 icon={step.icon}

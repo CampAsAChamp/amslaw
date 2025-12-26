@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import { CheckCircle } from "lucide-react"
+import { FileText } from "lucide-react"
 import { describe, expect, it, vi } from "vitest"
 
 import FeatureCard from "@/app/components/common/FeatureCard"
@@ -39,84 +39,11 @@ vi.mock("framer-motion", () => ({
 }))
 
 describe("FeatureCard", () => {
-  const mockIcon = <CheckCircle data-testid="mock-icon" className="w-8 h-8 text-primary-hover" />
-  const mockTitle = "Expert Guidance"
-  const mockDescription = "Personalized attention for your unique situation"
+  const mockIcon = <FileText data-testid="mock-icon" className="w-12 h-12 text-primary-hover" />
+  const mockTitle = "Estate Planning"
+  const mockDescription = "Comprehensive planning to protect your assets"
 
-  describe("Without features (simple card)", () => {
-    it("renders icon, title, and description", () => {
-      render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} />)
-
-      expect(screen.getByTestId("mock-icon")).toBeInTheDocument()
-      expect(screen.getByText(mockTitle)).toBeInTheDocument()
-      expect(screen.getByText(mockDescription)).toBeInTheDocument()
-    })
-
-    it("applies centered text layout", () => {
-      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} />)
-
-      const wrapper = container.querySelector('[class*="text-center"]')
-      expect(wrapper).toBeInTheDocument()
-    })
-
-    it("applies icon-circle class to icon wrapper", () => {
-      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} />)
-
-      const iconWrapper = container.querySelector('[class*="icon-circle"]')
-      expect(iconWrapper).toBeInTheDocument()
-    })
-
-    it("applies smaller title size", () => {
-      render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} />)
-
-      const title = screen.getByText(mockTitle)
-      expect(title).toHaveClass("text-lg")
-      expect(title).toHaveClass("mb-2")
-    })
-
-    it("does not render feature list", () => {
-      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} />)
-
-      const list = container.querySelector("ul")
-      expect(list).not.toBeInTheDocument()
-    })
-
-    it("applies default delay of 0", () => {
-      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} />)
-
-      const motionDiv = container.firstChild as HTMLElement
-      const transition = JSON.parse(motionDiv.getAttribute("data-transition") || "{}")
-      expect(transition.delay).toBe(0)
-    })
-
-    it("applies custom delay when provided", () => {
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} delay={0.5} />
-      )
-
-      const motionDiv = container.firstChild as HTMLElement
-      const transition = JSON.parse(motionDiv.getAttribute("data-transition") || "{}")
-      expect(transition.delay).toBe(0.5)
-    })
-
-    it("uses correct animation configuration", () => {
-      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} />)
-
-      const motionDiv = container.firstChild as HTMLElement
-      const initial = JSON.parse(motionDiv.getAttribute("data-initial") || "{}")
-      const whileInView = JSON.parse(motionDiv.getAttribute("data-while-in-view") || "{}")
-      const viewport = JSON.parse(motionDiv.getAttribute("data-viewport") || "{}")
-      const transition = JSON.parse(motionDiv.getAttribute("data-transition") || "{}")
-
-      expect(initial).toEqual({ opacity: 0, y: 30 })
-      expect(whileInView).toEqual({ opacity: 1, y: 0 })
-      expect(viewport).toEqual({ once: true })
-      expect(transition.duration).toBe(0.5)
-      expect(transition.ease).toEqual([0.25, 0.4, 0.25, 1])
-    })
-  })
-
-  describe("With features (detailed card)", () => {
+  describe("With features (card with features list)", () => {
     const mockFeatures = ["Living Trusts", "Pour-Over Wills", "Healthcare Directives"]
 
     it("renders icon, title, description, and features", () => {
@@ -130,12 +57,12 @@ describe("FeatureCard", () => {
       expect(screen.getByText((content) => content.includes("Healthcare Directives"))).toBeInTheDocument()
     })
 
-    it("applies card-base class to container", () => {
+    it("always applies card-base class", () => {
       const { container } = render(
         <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />
       )
 
-      const wrapper = container.querySelector('[class*="card-base"]')
+      const wrapper = container.querySelector(".card-base")
       expect(wrapper).toBeInTheDocument()
     })
 
@@ -146,21 +73,21 @@ describe("FeatureCard", () => {
 
       const iconWrapper = container.querySelector('[class*="text-primary-hover"]')
       expect(iconWrapper).toBeInTheDocument()
+      expect(iconWrapper).toHaveClass("mb-4")
     })
 
-    it("applies larger title size", () => {
+    it("renders title as h3 with correct styling", () => {
       render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />)
 
-      const title = screen.getByText(mockTitle)
-      expect(title).toHaveClass("text-xl")
-      expect(title).toHaveClass("mb-4")
+      const title = screen.getByRole("heading", { level: 3, name: mockTitle })
+      expect(title).toHaveClass("text-xl", "font-semibold", "text-heading", "mb-4")
     })
 
     it("applies margin to description", () => {
       render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />)
 
       const description = screen.getByText(mockDescription)
-      expect(description).toHaveClass("mb-6")
+      expect(description).toHaveClass("text-body", "mb-6")
     })
 
     it("renders features as bulleted list", () => {
@@ -170,6 +97,7 @@ describe("FeatureCard", () => {
 
       const list = container.querySelector("ul")
       expect(list).toBeInTheDocument()
+      expect(list).toHaveClass("text-sm", "text-body", "space-y-2")
 
       const listItems = container.querySelectorAll("li")
       expect(listItems).toHaveLength(3)
@@ -178,7 +106,6 @@ describe("FeatureCard", () => {
     it("features have bullet points", () => {
       render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />)
 
-      // Check that each feature is prefixed with a bullet
       expect(screen.getByText((content) => content.includes("• Living Trusts"))).toBeInTheDocument()
       expect(screen.getByText((content) => content.includes("• Pour-Over Wills"))).toBeInTheDocument()
       expect(screen.getByText((content) => content.includes("• Healthcare Directives"))).toBeInTheDocument()
@@ -204,6 +131,16 @@ describe("FeatureCard", () => {
       const listItems = container.querySelectorAll("li")
       expect(listItems).toHaveLength(6)
     })
+
+    it("handles empty features array gracefully", () => {
+      const { container } = render(
+        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={[]} />
+      )
+
+      // Should still render card but without features list
+      expect(container.querySelector(".card-base")).toBeInTheDocument()
+      expect(container.querySelector("ul")).not.toBeInTheDocument()
+    })
   })
 
   describe("With sections (complex service card)", () => {
@@ -228,6 +165,15 @@ describe("FeatureCard", () => {
       expect(screen.getByText("Why You Need a Will:")).toBeInTheDocument()
     })
 
+    it("always applies card-base class", () => {
+      const { container } = render(
+        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={mockSections} />
+      )
+
+      const wrapper = container.querySelector(".card-base")
+      expect(wrapper).toBeInTheDocument()
+    })
+
     it("renders section headings as h3", () => {
       render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={mockSections} />)
 
@@ -235,6 +181,7 @@ describe("FeatureCard", () => {
       const heading2 = screen.getByRole("heading", { level: 3, name: "Why You Need a Will:" })
       expect(heading1).toBeInTheDocument()
       expect(heading2).toBeInTheDocument()
+      expect(heading1).toHaveClass("text-lg", "font-semibold", "text-heading", "mb-3")
     })
 
     it("renders section items as bulleted list when multiple items", () => {
@@ -260,6 +207,7 @@ describe("FeatureCard", () => {
 
       const paragraph = screen.getByText("This is a single paragraph description.")
       expect(paragraph.tagName).toBe("P")
+      expect(paragraph).toHaveClass("text-body")
     })
 
     it("renders sections without headings", () => {
@@ -302,8 +250,7 @@ describe("FeatureCard", () => {
 
       const heading = screen.getByRole("heading", { level: 2, name: mockTitle })
       expect(heading).toBeInTheDocument()
-      expect(heading).toHaveClass("text-2xl")
-      expect(heading).toHaveClass("font-bold")
+      expect(heading).toHaveClass("text-2xl", "font-bold", "text-heading", "mb-4")
     })
 
     it("applies proper spacing to sections layout", () => {
@@ -354,46 +301,57 @@ describe("FeatureCard", () => {
     })
   })
 
-  describe("Edge cases", () => {
-    it("treats empty features array as no features", () => {
+  describe("Animation behavior", () => {
+    it("applies default delay of 0", () => {
+      const mockFeatures = ["Feature 1"]
       const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={[]} />
-      )
-
-      const list = container.querySelector("ul")
-      expect(list).not.toBeInTheDocument()
-
-      // Should use centered layout
-      const wrapper = container.querySelector('[class*="text-center"]')
-      expect(wrapper).toBeInTheDocument()
-    })
-
-    it("applies correct heading styles", () => {
-      render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} />)
-
-      const heading = screen.getByRole("heading", { level: 3 })
-      expect(heading).toHaveClass("font-semibold")
-      expect(heading).toHaveClass("text-heading")
-    })
-
-    it("applies correct body text styles", () => {
-      render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} />)
-
-      const description = screen.getByText(mockDescription)
-      expect(description).toHaveClass("text-body")
-    })
-
-    it("renders with custom delay", () => {
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} delay={1.5} />
+        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />
       )
 
       const motionDiv = container.firstChild as HTMLElement
       const transition = JSON.parse(motionDiv.getAttribute("data-transition") || "{}")
-      expect(transition.delay).toBe(1.5)
+      expect(transition.delay).toBe(0)
     })
 
-    it("renders complex icon element", () => {
+    it("applies custom delay when provided", () => {
+      const mockFeatures = ["Feature 1"]
+      const { container } = render(
+        <FeatureCard
+          icon={mockIcon}
+          title={mockTitle}
+          description={mockDescription}
+          features={mockFeatures}
+          delay={0.5}
+        />
+      )
+
+      const motionDiv = container.firstChild as HTMLElement
+      const transition = JSON.parse(motionDiv.getAttribute("data-transition") || "{}")
+      expect(transition.delay).toBe(0.5)
+    })
+
+    it("uses correct animation configuration", () => {
+      const mockFeatures = ["Feature 1"]
+      const { container } = render(
+        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />
+      )
+
+      const motionDiv = container.firstChild as HTMLElement
+      const initial = JSON.parse(motionDiv.getAttribute("data-initial") || "{}")
+      const whileInView = JSON.parse(motionDiv.getAttribute("data-while-in-view") || "{}")
+      const viewport = JSON.parse(motionDiv.getAttribute("data-viewport") || "{}")
+      const transition = JSON.parse(motionDiv.getAttribute("data-transition") || "{}")
+
+      expect(initial).toEqual({ opacity: 0, y: 30 })
+      expect(whileInView).toEqual({ opacity: 1, y: 0 })
+      expect(viewport).toEqual({ once: true })
+      expect(transition.duration).toBe(0.5)
+      expect(transition.ease).toEqual([0.25, 0.4, 0.25, 1])
+    })
+  })
+
+  describe("Edge cases", () => {
+    it("handles complex icon element", () => {
       const complexIcon = (
         <div data-testid="complex-icon">
           <svg>
@@ -402,45 +360,26 @@ describe("FeatureCard", () => {
         </div>
       )
 
-      render(<FeatureCard icon={complexIcon} title={mockTitle} description={mockDescription} />)
+      const mockFeatures = ["Feature 1"]
+      render(<FeatureCard icon={complexIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />)
 
       expect(screen.getByTestId("complex-icon")).toBeInTheDocument()
     })
 
     it("handles long title text", () => {
       const longTitle = "This is a very long title that might wrap to multiple lines"
-      render(<FeatureCard icon={mockIcon} title={longTitle} description={mockDescription} />)
+      const mockFeatures = ["Feature 1"]
+      render(<FeatureCard icon={mockIcon} title={longTitle} description={mockDescription} features={mockFeatures} />)
 
       expect(screen.getByText(longTitle)).toBeInTheDocument()
     })
 
     it("handles long description text", () => {
       const longDescription = "This is a very long description. ".repeat(10).trim()
-      render(<FeatureCard icon={mockIcon} title={mockTitle} description={longDescription} />)
+      const mockFeatures = ["Feature 1"]
+      render(<FeatureCard icon={mockIcon} title={mockTitle} description={longDescription} features={mockFeatures} />)
 
       expect(screen.getByText((content) => content.includes(longDescription))).toBeInTheDocument()
-    })
-
-    it("handles long feature text", () => {
-      const longFeatures = [
-        "This is a very long feature description that might wrap to multiple lines",
-        "Another long feature with lots of text",
-      ]
-
-      render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={longFeatures} />)
-
-      expect(screen.getByText((content) => content.includes(longFeatures[0]))).toBeInTheDocument()
-      expect(screen.getByText((content) => content.includes(longFeatures[1]))).toBeInTheDocument()
-    })
-
-    it("treats empty sections array as no sections", () => {
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={[]} />
-      )
-
-      // Should use centered layout since no content
-      const wrapper = container.querySelector('[class*="text-center"]')
-      expect(wrapper).toBeInTheDocument()
     })
 
     it("handles sections with empty items array", () => {

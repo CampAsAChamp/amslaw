@@ -1,4 +1,4 @@
-import { FeatureCard } from "@/app/components/common"
+import { FeatureCard, IconCard } from "@/app/components/common"
 import HeroSection from "@/app/components/hero/HeroSection"
 import CallToAction from "@/app/components/sections/CallToAction"
 import SectionHeader from "@/app/components/sections/SectionHeader"
@@ -53,7 +53,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {whyChooseUsFeatures.map((feature, index) => (
-              <FeatureCard
+              <IconCard
                 key={index}
                 icon={feature.icon}
                 title={feature.title}

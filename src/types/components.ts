@@ -13,12 +13,13 @@ export interface FeatureCardProps {
   animateOnMount?: boolean
 }
 
-export interface ProcessStepProps {
-  stepNumber: number
+export interface IconCardProps {
   icon: React.ReactNode
   title: string
   description: string
+  stepNumber?: number
   showArrow?: boolean
+  delay?: number
 }
 
 export interface StatsCardProps {
