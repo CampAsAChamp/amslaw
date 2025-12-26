@@ -88,7 +88,7 @@ The page auto-updates as you edit files. Start by modifying `src/app/page.tsx` f
 All scripts are defined in `package.json` and run with Yarn:
 
 - `yarn dev` - Start development server with hot reload
-- `yarn build` - Build production-ready application
+- `yarn build` - Build Next.js production bundle (for local testing/verification)
 - `yarn start` - Start production server locally
 - `yarn lint` - Run ESLint for code quality checks
 - `yarn lint:fix` - Run ESLint with auto-fix
@@ -96,7 +96,7 @@ All scripts are defined in `package.json` and run with Yarn:
 - `yarn format:check` - Check formatting without changes
 - `yarn check` - Run full type checking and build validation
 - `yarn preview` - Preview OpenNext build locally
-- `yarn deploy` - Deploy to Cloudflare Workers
+- `yarn deploy` - Build and deploy to Cloudflare Workers (includes build step)
 - `yarn test` - Run Vitest unit tests
 - `yarn test:watch` - Run tests in watch mode
 - `yarn test:ui` - Run tests with interactive UI
@@ -313,6 +313,14 @@ You can also deploy manually using the following commands:
 | `yarn deploy`  | Build and deploy to Cloudflare Workers |
 | `yarn lint`    | Run ESLint to check code quality       |
 | `yarn check`   | Build and run TypeScript type checking |
+
+**Important:** `yarn deploy` automatically runs the build process internally (via `opennextjs-cloudflare build`), so you don't need to run `yarn build` before deploying. The standalone `yarn build` command is useful for:
+
+- Local verification of the Next.js build
+- Type checking with `yarn check` (which runs `yarn build && tsc`)
+- Testing the build without deploying
+
+For Cloudflare deployment, just run `yarn deploy` - it handles everything in one command.
 
 ### Environment Variables in Production
 
