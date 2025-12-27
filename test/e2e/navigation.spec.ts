@@ -6,9 +6,9 @@ test.describe("Navigation Flow", () => {
   })
 
   test("displays navigation bar with all links", async ({ page }) => {
-    // Check that all main navigation links are visible (scope to nav element to avoid footer links)
-    const nav = page.locator("nav")
-    await expect(nav.getByRole("link", { name: "Home" })).toBeVisible()
+    // Check that all main navigation links are visible (scope to main nav element to avoid footer links)
+    const nav = page.getByRole("navigation", { name: "Main navigation" })
+    await expect(nav.getByRole("link", { name: "Home" }).first()).toBeVisible()
     await expect(nav.getByRole("link", { name: "About" })).toBeVisible()
     await expect(nav.getByRole("link", { name: "Services" })).toBeVisible()
     await expect(nav.getByRole("link", { name: "FAQ" })).toBeVisible()
@@ -116,8 +116,8 @@ test.describe("Navigation Flow", () => {
       // Menu should be open, button text should change
       await expect(page.getByRole("button", { name: "Close menu" })).toBeVisible()
 
-      // Navigation links should be visible in the mobile menu (scope to nav)
-      const nav = page.locator("nav")
+      // Navigation links should be visible in the mobile menu (scope to main nav)
+      const nav = page.getByRole("navigation", { name: "Main navigation" })
       await expect(nav.getByRole("link", { name: "About" })).toBeVisible()
       await expect(nav.getByRole("link", { name: "Services" })).toBeVisible()
     })
@@ -126,8 +126,8 @@ test.describe("Navigation Flow", () => {
       // Open menu
       await page.getByRole("button", { name: "Open menu" }).click()
 
-      // Click a navigation link (scope to nav to avoid footer link)
-      const nav = page.locator("nav")
+      // Click a navigation link (scope to main nav to avoid footer link)
+      const nav = page.getByRole("navigation", { name: "Main navigation" })
       await nav.getByRole("link", { name: "About" }).click()
 
       // Should navigate
@@ -153,8 +153,8 @@ test.describe("Navigation Flow", () => {
       // Open mobile menu
       await page.getByRole("button", { name: "Open menu" }).click()
 
-      // Navigate to Services (scope to nav)
-      const nav = page.locator("nav")
+      // Navigate to Services (scope to main nav)
+      const nav = page.getByRole("navigation", { name: "Main navigation" })
       await nav.getByRole("link", { name: "Services" }).click()
       await expect(page).toHaveURL(/.*services/)
 
@@ -175,9 +175,9 @@ test.describe("Navigation Flow", () => {
     test.use({ viewport: { width: 1280, height: 720 } })
 
     test("desktop navigation is visible on large screens", async ({ page }) => {
-      // All desktop links should be visible (scope to nav)
-      const nav = page.locator("nav")
-      await expect(nav.getByRole("link", { name: "Home" })).toBeVisible()
+      // All desktop links should be visible (scope to main nav)
+      const nav = page.getByRole("navigation", { name: "Main navigation" })
+      await expect(nav.getByRole("link", { name: "Home" }).first()).toBeVisible()
       await expect(nav.getByRole("link", { name: "About" })).toBeVisible()
       await expect(nav.getByRole("link", { name: "Services" })).toBeVisible()
       await expect(nav.getByRole("link", { name: "FAQ" })).toBeVisible()
@@ -248,7 +248,7 @@ test.describe("Navigation Flow", () => {
     })
 
     test("navigation has proper ARIA attributes", async ({ page }) => {
-      const nav = page.locator("nav")
+      const nav = page.getByRole("navigation", { name: "Main navigation" })
       await expect(nav).toBeVisible()
 
       // Links should have proper roles
@@ -262,7 +262,7 @@ test.describe("Navigation Flow", () => {
       // Navigate to a page with content
       await page.getByRole("link", { name: "About" }).first().click()
 
-      const nav = page.locator("nav")
+      const nav = page.getByRole("navigation", { name: "Main navigation" })
       await expect(nav).toBeVisible()
 
       // Scroll down

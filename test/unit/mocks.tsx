@@ -1,6 +1,8 @@
+import { ReactElement } from "react"
 import { vi } from "vitest"
 
 import { FormData } from "@/types"
+import { ThemeProvider } from "@/app/components/common/ThemeProvider"
 
 // Sample test form data
 export const mockFormData: FormData = {
@@ -10,6 +12,11 @@ export const mockFormData: FormData = {
   subject: "estate-planning",
   message: "I would like to discuss estate planning options.",
   preferredContact: "email",
+}
+
+// Test wrapper that provides ThemeProvider context
+export const TestWrapper = ({ children }: { children: ReactElement }) => {
+  return <ThemeProvider>{children}</ThemeProvider>
 }
 
 // Mock fetch response helpers

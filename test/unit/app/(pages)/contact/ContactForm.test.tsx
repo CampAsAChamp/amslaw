@@ -23,7 +23,7 @@ describe("ContactForm", () => {
   })
 
   it("updates form data on user input", async () => {
-    const user = userEvent.setup()
+    const user = userEvent.setup({ delay: null })
     render(<ContactForm />)
 
     const nameInput = screen.getByLabelText(/full name/i)
@@ -33,7 +33,7 @@ describe("ContactForm", () => {
   })
 
   it("submits form successfully and shows success toast", async () => {
-    const user = userEvent.setup()
+    const user = userEvent.setup({ delay: null })
     mockFetch(mockSuccessResponse())
 
     render(<ContactForm />)
@@ -62,7 +62,7 @@ describe("ContactForm", () => {
   })
 
   it("shows error toast on failed submission", async () => {
-    const user = userEvent.setup()
+    const user = userEvent.setup({ delay: null })
     mockFetch(mockErrorResponse())
 
     render(<ContactForm />)
@@ -85,7 +85,7 @@ describe("ContactForm", () => {
   })
 
   it("resets form after successful submission", async () => {
-    const user = userEvent.setup()
+    const user = userEvent.setup({ delay: null })
     mockFetch(mockSuccessResponse())
 
     render(<ContactForm />)
@@ -111,7 +111,7 @@ describe("ContactForm", () => {
   })
 
   it("disables submit button while submitting", async () => {
-    const user = userEvent.setup()
+    const user = userEvent.setup({ delay: null })
 
     // Create a promise that we can control
     let resolvePromise: (value: Response) => void
@@ -151,7 +151,7 @@ describe("ContactForm", () => {
   })
 
   it("calls custom onSubmit handler when provided", async () => {
-    const user = userEvent.setup()
+    const user = userEvent.setup({ delay: null })
     const mockOnSubmit = vi.fn().mockResolvedValue(undefined)
 
     render(<ContactForm onSubmit={mockOnSubmit} />)

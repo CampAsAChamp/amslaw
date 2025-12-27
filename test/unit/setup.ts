@@ -28,9 +28,34 @@ Object.defineProperty(navigator, "clipboard", {
   configurable: true,
 })
 
+// Mock localStorage
+const localStorageMock = (() => {
+  let store: Record<string, string> = {}
+
+  return {
+    getItem: (key: string) => store[key] || null,
+    setItem: (key: string, value: string) => {
+      store[key] = value.toString()
+    },
+    removeItem: (key: string) => {
+      delete store[key]
+    },
+    clear: () => {
+      store = {}
+    },
+  }
+})()
+
+Object.defineProperty(window, "localStorage", {
+  value: localStorageMock,
+  writable: true,
+  configurable: true,
+})
+
 // Cleanup after each test
 afterEach(() => {
   cleanup()
+  localStorageMock.clear()
 })
 
 // Mock framer-motion to avoid animation issues in tests
@@ -51,6 +76,9 @@ vi.mock("framer-motion", async () => {
         "whileTap",
         "whileFocus",
         "whileInView",
+        "viewport",
+        "layoutId",
+        "layout",
       ]
       const domProps = Object.keys(props)
         .filter((key) => !motionProps.includes(key))
@@ -76,8 +104,34 @@ vi.mock("framer-motion", async () => {
       textarea: createMotionComponent("textarea"),
       select: createMotionComponent("select"),
       button: createMotionComponent("button"),
+      h1: createMotionComponent("h1"),
+      h2: createMotionComponent("h2"),
+      h3: createMotionComponent("h3"),
+      p: createMotionComponent("p"),
+      section: createMotionComponent("section"),
+      a: createMotionComponent("a"),
     },
     AnimatePresence: ({ children }: { children: React.ReactNode }) => children,
+    useMotionValue: vi.fn((initialValue) => {
+      const value = { current: initialValue }
+      return {
+        get: () => value.current,
+        set: (newValue: unknown) => {
+          value.current = typeof newValue === "function" ? newValue(value.current) : newValue
+        },
+      }
+    }),
+    useTransform: vi.fn((source, transformer) => {
+      // Get the initial value from the source
+      const initialValue = typeof source === "object" && "get" in source ? source.get() : source
+      // Apply the transformer if provided
+      const transformedValue = transformer ? transformer(initialValue) : initialValue
+      // Return the transformed value directly (so it can be rendered)
+      return transformedValue
+    }),
+    useSpring: vi.fn((initialValue) => ({ get: () => initialValue, set: vi.fn() })),
+    useInView: vi.fn(() => true),
+    animate: vi.fn(() => ({ stop: vi.fn() })),
   }
 })
 
