@@ -1,11 +1,11 @@
 "use client"
 
-import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 
 import { HeroSectionProps } from "@/types"
+import { Logo } from "@/app/components/common"
 import { useActiveLink } from "@/app/components/layout/navigation/useActiveLink"
 
 export default function HeroSection({
@@ -71,14 +71,7 @@ export default function HeroSection({
                 ease: "easeOut",
               }}
             >
-              <Image
-                src="/schneider-law-logo.svg"
-                alt="Schneider Law"
-                width={400}
-                height={133}
-                className="h-40 w-auto filter brightness-0 invert"
-                priority
-              />
+              <Logo width={400} height={133} className="h-40 w-auto filter brightness-0 invert" priority />
             </motion.div>
           )}
           <motion.h1

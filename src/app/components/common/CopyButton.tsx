@@ -27,12 +27,13 @@ export default function CopyButton({ textToCopy, label = "Copy", className = "" 
       onClick={handleCopy}
       className={`transition-colors p-1 cursor-pointer ${className}`}
       title={copied ? "Copied!" : label}
-      aria-label={label}
+      aria-label={copied ? "Copied!" : label}
+      aria-live="polite"
     >
       {copied ? (
-        <Check className="w-4 h-4" />
+        <Check className="w-4 h-4" aria-hidden="true" />
       ) : (
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"

@@ -1,5 +1,6 @@
 "use client"
 
+import { forwardRef } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 
@@ -53,12 +54,15 @@ function getLinkClassName(variant: "desktop" | "mobile", isButton: boolean, isAc
  * Individual navigation link component with active state indicators
  * Supports both desktop and mobile variants with different styling and animations
  */
-export default function NavLink({ link, isActive, onClick, variant }: NavLinkProps) {
+const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(function NavLink(
+  { link, isActive, onClick, variant },
+  ref
+) {
   const linkClassName = getLinkClassName(variant, !!link.isButton, isActive)
   const layoutId = variant === "desktop" ? "activeTab" : "activeTabMobile"
 
   return (
-    <Link href={link.href} onClick={onClick} className={linkClassName}>
+    <Link href={link.href} onClick={onClick} className={linkClassName} ref={ref}>
       {link.label}
 
       {/* Active indicator for regular links */}
@@ -84,7 +88,9 @@ export default function NavLink({ link, isActive, onClick, variant }: NavLinkPro
       )}
     </Link>
   )
-}
+})
+
+export default NavLink
 
 /**
  * Wrapper component for desktop nav links with layout animation
