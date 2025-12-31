@@ -48,7 +48,7 @@ export interface CallToActionProps {
 
 export interface SectionHeaderProps {
   title: string
-  subtitle: string
+  subtitle?: string
   className?: string
   delay?: number
 }
