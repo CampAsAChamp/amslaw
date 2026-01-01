@@ -575,6 +575,27 @@ html.theme-transitioning body {
   background-position: 0 0;
 }
 
+/* FAQ-specific version without direct hover (controlled by JS state) */
+.faq-link-wipe {
+  background: linear-gradient(
+    to right,
+    var(--cyan-500) 0%,
+    var(--cyan-500) 50%,
+    var(--text-nav) 50%,
+    var(--text-nav) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-position: 100% 0;
+  background-size: 200% 100%;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.3s ease-in-out;
+}
+
+.faq-link-wipe-active {
+  background-position: 0 0;
+}
+
 /* Select dropdown placeholder styling */
 select option[value=""] {
   color: var(--text-placeholder);
