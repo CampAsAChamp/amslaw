@@ -61,7 +61,7 @@ yarn lint:fix
 - `.husky/commit-msg`: Commit message validation hook
 - `.husky/pre-commit`: Pre-commit hook script
 - `.husky/pre-push`: Pre-push hook script
-- `commitlint.config.js`: Commitlint configuration
+- `commitlint.config.mjs`: Commitlint configuration
 - `.prettierrc`: Prettier configuration
 - `.prettierignore`: Files to ignore when formatting
 - `eslint.config.mjs`: ESLint configuration

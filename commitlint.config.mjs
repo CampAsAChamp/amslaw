@@ -3,7 +3,7 @@
  * Enforces Conventional Commits specification
  * @see https://www.conventionalcommits.org/
  */
-module.exports = {
+export default {
   extends: ["@commitlint/config-conventional"],
   rules: {
     // Type enum - allowed commit types

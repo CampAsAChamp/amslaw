@@ -301,8 +301,8 @@ npm run test:e2e:visual:update
 ### Run Specific Viewport
 
 ```bash
-npx playwright test --project=desktop-large
-npx playwright test --project=mobile
+yarn playwright test --project=desktop-large
+yarn playwright test --project=mobile
 ```
 
 ### Run in UI Mode (Interactive)

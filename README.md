@@ -244,17 +244,17 @@ src/
 
 The project includes several configuration files that control different aspects of the build, deployment, and development workflow:
 
-| File                   | Purpose                                                                     |
-| ---------------------- | --------------------------------------------------------------------------- |
-| `vitest.config.ts`     | Vitest unit test configuration (jsdom environment, coverage settings)       |
-| `playwright.config.ts` | Playwright E2E test configuration (browser targets, reporters)              |
-| `.stylelintrc.json`    | Stylelint rules for CSS linting (alphabetical properties, Tailwind support) |
-| `commitlint.config.js` | Commit message format enforcement (Conventional Commits)                    |
-| `eslint.config.mjs`    | ESLint rules and Next.js configuration                                      |
-| `postcss.config.mjs`   | PostCSS with Tailwind CSS v4                                                |
-| `open-next.config.ts`  | OpenNext adapter configuration for Cloudflare Workers                       |
-| `wrangler.jsonc`       | Cloudflare Workers deployment configuration                                 |
-| `.cursorrules`         | Project-specific coding standards and conventions                           |
+| File                    | Purpose                                                                     |
+| ----------------------- | --------------------------------------------------------------------------- |
+| `vitest.config.ts`      | Vitest unit test configuration (jsdom environment, coverage settings)       |
+| `playwright.config.ts`  | Playwright E2E test configuration (browser targets, reporters)              |
+| `.stylelintrc.json`     | Stylelint rules for CSS linting (alphabetical properties, Tailwind support) |
+| `commitlint.config.mjs` | Commit message format enforcement (Conventional Commits)                    |
+| `eslint.config.mjs`     | ESLint rules and Next.js configuration                                      |
+| `postcss.config.mjs`    | PostCSS with Tailwind CSS v4                                                |
+| `open-next.config.ts`   | OpenNext adapter configuration for Cloudflare Workers                       |
+| `wrangler.jsonc`        | Cloudflare Workers deployment configuration                                 |
+| `.cursorrules`          | Project-specific coding standards and conventions                           |
 
 ### Email Setup (Contact Form)
 
