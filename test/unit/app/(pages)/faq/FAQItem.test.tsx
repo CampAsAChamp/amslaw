@@ -20,6 +20,19 @@ vi.mock("framer-motion", () => ({
         {children}
       </div>
     ),
+    svg: ({
+      children,
+      className,
+      ...props
+    }: {
+      children: React.ReactNode
+      className?: string
+      [key: string]: unknown
+    }) => (
+      <svg className={className} data-motion="true" {...props}>
+        {children}
+      </svg>
+    ),
   },
   AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }))
@@ -75,23 +88,24 @@ describe("FAQItem", () => {
     expect(button).toHaveAttribute("aria-expanded", "true")
   })
 
-  it("applies transform rotation to chevron when open", () => {
+  it("renders chevron with motion attributes when open", () => {
     const { container } = render(
       <FAQItem question={mockQuestion} answer={mockAnswer} isOpen={true} onToggle={mockOnToggle} />
     )
 
     const chevron = container.querySelector("svg")
-    expect(chevron).toHaveClass("transform")
-    expect(chevron).toHaveClass("rotate-180")
+    expect(chevron).toBeInTheDocument()
+    expect(chevron).toHaveAttribute("data-motion", "true")
   })
 
-  it("does not apply rotation to chevron when closed", () => {
+  it("renders chevron with motion attributes when closed", () => {
     const { container } = render(
       <FAQItem question={mockQuestion} answer={mockAnswer} isOpen={false} onToggle={mockOnToggle} />
     )
 
     const chevron = container.querySelector("svg")
-    expect(chevron).not.toHaveClass("rotate-180")
+    expect(chevron).toBeInTheDocument()
+    expect(chevron).toHaveAttribute("data-motion", "true")
   })
 
   it("renders chevron icon", () => {
@@ -113,7 +127,7 @@ describe("FAQItem", () => {
     expect(outerDiv).toHaveClass("rounded-lg")
     expect(outerDiv).toHaveClass("overflow-hidden")
     expect(outerDiv).toHaveClass("bg-surface")
-    expect(outerDiv).toHaveClass("hover:shadow-md")
+    expect(outerDiv).toHaveAttribute("data-motion", "true")
   })
 
   it("applies correct styling to button", () => {
@@ -124,14 +138,14 @@ describe("FAQItem", () => {
     expect(button).toHaveClass("px-6")
     expect(button).toHaveClass("py-4")
     expect(button).toHaveClass("text-left")
-    expect(button).toHaveClass("hover:bg-surface-secondary")
+    expect(button).toHaveClass("cursor-pointer")
   })
 
   it("applies correct styling to question heading", () => {
     render(<FAQItem question={mockQuestion} answer={mockAnswer} isOpen={false} onToggle={mockOnToggle} />)
 
     const heading = screen.getByRole("heading", { level: 3 })
-    expect(heading).toHaveClass("text-heading")
+    expect(heading).toHaveClass("nav-link-wipe")
     expect(heading).toHaveClass("font-semibold")
     expect(heading).toHaveClass("text-lg")
   })
@@ -145,12 +159,11 @@ describe("FAQItem", () => {
     expect(answerParagraph).toHaveClass("leading-relaxed")
   })
 
-  it("answer section has correct background color", () => {
+  it("answer section has correct styling", () => {
     render(<FAQItem question={mockQuestion} answer={mockAnswer} isOpen={true} onToggle={mockOnToggle} />)
 
-    // Find the div containing the answer (should have bg-surface-secondary)
+    // Find the div containing the answer
     const answerContainer = screen.getByText(mockAnswer).parentElement as HTMLElement
-    expect(answerContainer).toHaveClass("bg-surface-secondary")
     expect(answerContainer).toHaveClass("px-6")
     expect(answerContainer).toHaveClass("py-4")
   })

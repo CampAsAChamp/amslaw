@@ -97,17 +97,26 @@ test.describe("FAQ Page", () => {
     // Get the SVG chevron icon
     const chevron = firstButton.locator("svg").first()
 
-    // Check initial state (should not have rotation)
-    const initialClasses = await chevron.getAttribute("class")
-    expect(initialClasses).not.toContain("rotate-180")
+    // Check initial state (should not have rotation transform)
+    const initialTransform = await chevron.evaluate((el) => {
+      const style = window.getComputedStyle(el)
+      return style.transform
+    })
+    // Initial state should be none or matrix(1, 0, 0, 1, 0, 0) (identity matrix)
+    expect(initialTransform === "none" || initialTransform === "matrix(1, 0, 0, 1, 0, 0)").toBeTruthy()
 
     // Expand the FAQ
     await firstButton.click()
-    await page.waitForTimeout(100) // Wait for class to update
+    await page.waitForTimeout(400) // Wait for animation to complete
 
-    // Check rotated state
-    const expandedClasses = await chevron.getAttribute("class")
-    expect(expandedClasses).toContain("rotate-180")
+    // Check rotated state (should have a rotation transform)
+    const expandedTransform = await chevron.evaluate((el) => {
+      const style = window.getComputedStyle(el)
+      return style.transform
+    })
+    // When rotated 180deg, transform should not be identity matrix
+    expect(expandedTransform).not.toBe("none")
+    expect(expandedTransform).not.toBe("matrix(1, 0, 0, 1, 0, 0)")
   })
 
   test("FAQ answers contain meaningful content", async ({ page }) => {
@@ -117,8 +126,8 @@ test.describe("FAQ Page", () => {
     await firstButton.click()
     await page.waitForTimeout(500)
 
-    // Get the answer content from the expanded section
-    const answerElement = page.locator("div.bg-surface-secondary p.text-body").first()
+    // Get the answer content from the expanded section (look for p.text-body within the FAQ item)
+    const answerElement = page.locator("p.text-body").first()
     const answerText = await answerElement.textContent()
 
     expect(answerText).toBeTruthy()
