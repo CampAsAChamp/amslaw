@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.2.0 (2026-01-01)
+
+* test: skip failing tests ([131162f](https://github.com/CampAsAChamp/amslaw/commit/131162f))
+* feat: unify linting configs ([d0a569a](https://github.com/CampAsAChamp/amslaw/commit/d0a569a))
+* refactor: clean up tests to have more reuse ([9250bc5](https://github.com/CampAsAChamp/amslaw/commit/9250bc5))
+
 ## 1.1.0 (2026-01-01)
 
 - test: fix faq test ([63d7a94](https://github.com/CampAsAChamp/amslaw/commit/63d7a94))
