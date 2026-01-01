@@ -1,3 +1,5 @@
+import { expectMotionAnimation, getMotionProps } from "@test/unit/helpers/helpers"
+import { mockFramerMotion } from "@test/unit/helpers/mocks"
 import { render, screen } from "@testing-library/react"
 import { FileText } from "lucide-react"
 import { describe, expect, it, vi } from "vitest"
@@ -5,38 +7,7 @@ import { describe, expect, it, vi } from "vitest"
 import FeatureCard from "@/app/components/common/FeatureCard"
 
 // Mock framer-motion to simplify testing
-vi.mock("framer-motion", () => ({
-  motion: {
-    div: ({
-      children,
-      className,
-      initial,
-      whileInView,
-      animate,
-      viewport,
-      transition,
-    }: {
-      children: React.ReactNode
-      className?: string
-      initial?: object
-      whileInView?: object
-      animate?: object
-      viewport?: object
-      transition?: object
-    }) => (
-      <div
-        className={className}
-        data-initial={JSON.stringify(initial)}
-        data-while-in-view={JSON.stringify(whileInView)}
-        data-animate={JSON.stringify(animate)}
-        data-viewport={JSON.stringify(viewport)}
-        data-transition={JSON.stringify(transition)}
-      >
-        {children}
-      </div>
-    ),
-  },
-}))
+vi.mock("framer-motion", () => mockFramerMotion())
 
 describe("FeatureCard", () => {
   const mockIcon = <FileText data-testid="mock-icon" className="w-12 h-12 text-primary-hover" />
@@ -274,9 +245,9 @@ describe("FeatureCard", () => {
       )
 
       const motionDiv = container.firstChild as HTMLElement
-      const animate = motionDiv.getAttribute("data-animate")
-      expect(animate).toBeTruthy()
-      expect(animate).not.toBe("undefined")
+      const props = getMotionProps(motionDiv)
+      expect(props.animate).toBeTruthy()
+      expect(props.animate).not.toBe("undefined")
     })
 
     it("prefers sections over features when both provided", () => {
@@ -309,8 +280,8 @@ describe("FeatureCard", () => {
       )
 
       const motionDiv = container.firstChild as HTMLElement
-      const transition = JSON.parse(motionDiv.getAttribute("data-transition") || "{}")
-      expect(transition.delay).toBe(0)
+      const props = getMotionProps(motionDiv)
+      expect(props.transition?.delay).toBe(0)
     })
 
     it("applies custom delay when provided", () => {
@@ -326,8 +297,9 @@ describe("FeatureCard", () => {
       )
 
       const motionDiv = container.firstChild as HTMLElement
-      const transition = JSON.parse(motionDiv.getAttribute("data-transition") || "{}")
-      expect(transition.delay).toBe(0.5)
+      expectMotionAnimation(motionDiv, {
+        transition: { delay: 0.5 },
+      })
     })
 
     it("uses correct animation configuration", () => {
@@ -337,16 +309,12 @@ describe("FeatureCard", () => {
       )
 
       const motionDiv = container.firstChild as HTMLElement
-      const initial = JSON.parse(motionDiv.getAttribute("data-initial") || "{}")
-      const whileInView = JSON.parse(motionDiv.getAttribute("data-while-in-view") || "{}")
-      const viewport = JSON.parse(motionDiv.getAttribute("data-viewport") || "{}")
-      const transition = JSON.parse(motionDiv.getAttribute("data-transition") || "{}")
-
-      expect(initial).toEqual({ opacity: 0, y: 30 })
-      expect(whileInView).toEqual({ opacity: 1, y: 0 })
-      expect(viewport).toEqual({ once: true, amount: 0.3 })
-      expect(transition.duration).toBe(0.5)
-      expect(transition.ease).toEqual([0.25, 0.4, 0.25, 1])
+      expectMotionAnimation(motionDiv, {
+        initial: { opacity: 0, y: 30 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, amount: 0.3 },
+        transition: { duration: 0.5, ease: [0.25, 0.4, 0.25, 1] },
+      })
     })
   })
 

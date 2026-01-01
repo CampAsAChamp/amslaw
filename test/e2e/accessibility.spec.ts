@@ -1,9 +1,12 @@
 import { expect, test } from "@playwright/test"
 
+import { VIEWPORTS } from "./data/test-data"
+import { isMobileViewport } from "./helpers/test-helpers"
+
 test.describe("Accessibility", () => {
   test("skip to main content link works", async ({ page }, testInfo) => {
     // Skip on mobile - keyboard navigation behaves differently
-    if (testInfo.project.name === "mobile" || testInfo.project.name === "mobile-android") {
+    if (isMobileViewport(testInfo)) {
       test.skip()
       return
     }
@@ -39,7 +42,7 @@ test.describe("Accessibility", () => {
   })
 
   test("mobile menu is keyboard accessible", async ({ page }) => {
-    await page.setViewportSize({ width: 375, height: 667 }) // Mobile size
+    await page.setViewportSize(VIEWPORTS.mobile)
     await page.goto("/")
 
     // Find and focus mobile menu button

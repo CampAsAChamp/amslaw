@@ -1,46 +1,12 @@
+import { getMotionProps } from "@test/unit/helpers/helpers"
+import { mockFramerMotion } from "@test/unit/helpers/mocks"
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it, vi } from "vitest"
 
 import AnimatedContainer from "@/app/components/common/AnimatedContainer"
 
-interface MockMotionDivProps {
-  children: React.ReactNode
-  className?: string
-  variants?: object
-  initial?: string
-  animate?: string
-  whileInView?: string
-  viewport?: object
-  transition?: object
-}
-
 // Mock framer-motion
-vi.mock("framer-motion", () => ({
-  motion: {
-    div: ({
-      children,
-      className,
-      variants,
-      initial,
-      animate,
-      whileInView,
-      viewport,
-      transition,
-    }: MockMotionDivProps) => (
-      <div
-        className={className}
-        data-variants={JSON.stringify(variants)}
-        data-initial={initial}
-        data-animate={animate}
-        data-while-in-view={whileInView}
-        data-viewport={JSON.stringify(viewport)}
-        data-transition={JSON.stringify(transition)}
-      >
-        {children}
-      </div>
-    ),
-  },
-}))
+vi.mock("framer-motion", () => mockFramerMotion())
 
 describe("AnimatedContainer", () => {
   it("renders children", () => {
@@ -83,8 +49,9 @@ describe("AnimatedContainer", () => {
     )
 
     const motionDiv = container.firstChild as HTMLElement
-    expect(motionDiv.getAttribute("data-while-in-view")).toBe("animate")
-    expect(motionDiv.getAttribute("data-animate")).toBeNull()
+    const props = getMotionProps(motionDiv)
+    expect(props.whileInView).toBe("animate")
+    expect(props.animate).toBeNull()
   })
 
   it("uses animate when animateOnMount=true", () => {
@@ -95,8 +62,9 @@ describe("AnimatedContainer", () => {
     )
 
     const motionDiv = container.firstChild as HTMLElement
-    expect(motionDiv.getAttribute("data-animate")).toBe("animate")
-    expect(motionDiv.getAttribute("data-while-in-view")).toBeNull()
+    const props = getMotionProps(motionDiv)
+    expect(props.animate).toBe("animate")
+    expect(props.whileInView).toBeNull()
   })
 
   it("applies default delay of 0", () => {
@@ -107,8 +75,8 @@ describe("AnimatedContainer", () => {
     )
 
     const motionDiv = container.firstChild as HTMLElement
-    const transition = JSON.parse(motionDiv.getAttribute("data-transition") || "{}")
-    expect(transition.delay).toBe(0)
+    const props = getMotionProps(motionDiv)
+    expect(props.transition?.delay).toBe(0)
   })
 
   it("applies custom delay", () => {
@@ -119,8 +87,8 @@ describe("AnimatedContainer", () => {
     )
 
     const motionDiv = container.firstChild as HTMLElement
-    const transition = JSON.parse(motionDiv.getAttribute("data-transition") || "{}")
-    expect(transition.delay).toBe(0.5)
+    const props = getMotionProps(motionDiv)
+    expect(props.transition?.delay).toBe(0.5)
   })
 
   it("sets viewport configuration for scroll-based animation", () => {
@@ -131,9 +99,9 @@ describe("AnimatedContainer", () => {
     )
 
     const motionDiv = container.firstChild as HTMLElement
-    const viewport = JSON.parse(motionDiv.getAttribute("data-viewport") || "{}")
-    expect(viewport.once).toBe(true)
-    expect(viewport.amount).toBe(0.1)
+    const props = getMotionProps(motionDiv)
+    expect(props.viewport?.once).toBe(true)
+    expect(props.viewport?.amount).toBe(0.1)
   })
 
   it("uses spring transition", () => {
@@ -144,10 +112,10 @@ describe("AnimatedContainer", () => {
     )
 
     const motionDiv = container.firstChild as HTMLElement
-    const transition = JSON.parse(motionDiv.getAttribute("data-transition") || "{}")
-    expect(transition.type).toBe("spring")
-    expect(transition.stiffness).toBe(200)
-    expect(transition.damping).toBe(20)
+    const props = getMotionProps(motionDiv)
+    expect(props.transition?.type).toBe("spring")
+    expect(props.transition?.stiffness).toBe(200)
+    expect(props.transition?.damping).toBe(20)
   })
 
   it("renders nested motion.div for content", () => {

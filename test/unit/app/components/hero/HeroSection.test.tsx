@@ -1,4 +1,4 @@
-import { TestWrapper } from "@test/unit/mocks"
+import { TestWrapper } from "@test/unit/helpers/mocks"
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it, vi } from "vitest"
 

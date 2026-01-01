@@ -1,14 +1,251 @@
-# E2E Animation Tests Guide
+# E2E Tests Guide
 
 ## Overview
 
-This directory contains comprehensive E2E tests for homepage animations to ensure:
+This directory contains comprehensive E2E tests for the entire application, including navigation, forms, animations, and accessibility.
 
-- No blank space appears when sections are visible on first load
-- Animations trigger correctly when scrolling
-- Visual appearance remains consistent across viewports
+## Shared Test Utilities (NEW)
+
+### Test Data (`data/test-data.ts`)
+
+Centralized test data for consistent testing across all E2E tests:
+
+```typescript
+import { NAV_LINKS, PAGE_ROUTES, TEST_USERS, VIEWPORTS } from "./data/test-data"
+
+// Use pre-defined test users
+await fillContactForm(page, TEST_USERS.validUser)
+
+// Use route constants for navigation
+await navigateAndVerify(page, NAV_LINKS.about, PAGE_ROUTES.about.urlPattern)
+
+// Use viewport constants
+await page.setViewportSize(VIEWPORTS.mobile)
+```
+
+**Available constants:**
+
+- `TEST_USERS` - Pre-configured user data for forms (validUser, minimalUser, etc.)
+- `PAGE_ROUTES` - Route paths, URL patterns, and verification selectors
+- `NAV_LINKS` - Navigation link names
+- `VIEWPORTS` - Common viewport sizes
+- `API_ENDPOINTS` - API endpoint patterns
+- `TIMEOUTS` - Standard timeout values
+
+### Test Helpers (`helpers/test-helpers.ts`)
+
+Reusable helper functions that reduce duplication:
+
+**Navigation helpers:**
+
+```typescript
+// Navigate and verify in one call
+await navigateAndVerify(page, "About", /.*about/, /attorney profile/i)
+
+// Navigate through multiple pages
+await navigateSequence(page, [
+  ["About", /.*about/],
+  ["Services", /.*services/],
+  ["Contact", /.*contact/],
+])
+
+// Find navigation links scoped to main nav
+const aboutLink = findInNav(page, "about")
+```
+
+**Mobile menu helpers:**
+
+```typescript
+// Open mobile menu with proper waiting
+await openMobileMenu(page)
+
+// Close mobile menu
+await closeMobileMenu(page)
+
+// Check viewport type
+if (isMobileViewport(testInfo)) {
+  await openMobileMenu(page)
+}
+```
+
+**Form helpers:**
+
+```typescript
+// Mock contact form API
+await mockContactFormSubmit(page, true) // success
+await mockContactFormSubmit(page, false, 1000) // failure with delay
+
+// Fill contact form from test data
+await fillContactForm(page, TEST_USERS.validUser)
+
+// Submit and wait for completion
+await submitContactForm(page)
+
+// Verify form cleared
+await expectFormCleared(page)
+```
+
+**Page helpers:**
+
+```typescript
+// Navigate and wait for page ready
+await gotoAndWait(page, "/about")
+
+// Click link and wait for navigation
+await clickLinkAndWait(page, "About", "Main navigation")
+```
+
+### Test Fixtures (`helpers/fixtures.ts`)
+
+Pre-configured Playwright fixtures for common scenarios:
+
+```typescript
+import { expect, test } from "./helpers/fixtures"
+
+// Use mobile page fixture
+test("my test", async ({ mobilePage }) => {
+  await mobilePage.goto("/")
+  // Page is already set to mobile viewport
+})
+
+// Use desktop page fixture
+test("my test", async ({ desktopPage }) => {
+  await desktopPage.goto("/")
+  // Page is already set to desktop viewport
+})
+```
+
+## Unit Test Utilities
+
+The unit tests (`test/unit/`) also have shared utilities for consistency:
+
+### Unit Test Helpers (`test/unit/helpers.tsx`)
+
+```typescript
+import { renderWithTheme, getMotionProps, expectMotionAnimation } from "@test/unit/helpers"
+
+// Render with ThemeProvider automatically
+renderWithTheme(<MyComponent />)
+
+// Extract motion props for testing
+const props = getMotionProps(element)
+expect(props.transition?.delay).toBe(0.5)
+
+// Assert motion animation properties
+expectMotionAnimation(element, {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { delay: 0.5 }
+})
+```
+
+### Unit Test Mocks (`test/unit/mocks.tsx`)
+
+```typescript
+import {
+  createUserEvent,
+  fillContactFormFields,
+  mockFormData,
+  mockFramerMotion,
+  mockNextNavigation,
+} from "@test/unit/mocks"
+
+// Mock framer-motion in tests
+vi.mock("framer-motion", () => mockFramerMotion())
+
+// Mock next/navigation
+vi.mock("next/navigation", () => mockNextNavigation("/about"))
+
+// Create userEvent instance
+const user = await createUserEvent()
+
+// Fill contact form in unit tests
+await fillContactFormFields(user, screen, mockFormData)
+```
+
+## Best Practices
+
+### DRY Principle
+
+1. **Use test data constants** instead of hardcoding values
+2. **Use helper functions** for repeated actions (navigation, form filling)
+3. **Extract common mocks** to shared files
+4. **Create reusable fixtures** for common setup
+
+### Example: Before and After
+
+**Before (repetitive):**
+
+```typescript
+test("navigates to about", async ({ page }) => {
+  await page.getByRole("link", { name: "About" }).first().click()
+  await expect(page).toHaveURL(/.*about/)
+  await expect(page.getByText(/attorney profile/i)).toBeVisible()
+})
+```
+
+**After (DRY):**
+
+```typescript
+test("navigates to about", async ({ page }) => {
+  await navigateAndVerify(page, NAV_LINKS.about, PAGE_ROUTES.about.urlPattern, PAGE_ROUTES.about.verifySelector.text)
+})
+```
+
+### Viewport Detection
+
+Always use `isMobileViewport(testInfo)` instead of hardcoding project names:
+
+```typescript
+// ❌ Bad
+if (testInfo.project.name === "mobile" || testInfo.project.name === "mobile-android") {
+  // ...
+}
+
+// ✅ Good
+if (isMobileViewport(testInfo)) {
+  await openMobileMenu(page)
+}
+```
+
+### Form Testing
+
+Use helper functions to reduce duplication:
+
+```typescript
+// Setup API mock
+await mockContactFormSubmit(page, true)
+
+// Fill form
+await fillContactForm(page, TEST_USERS.validUser)
+
+// Submit and verify
+await submitContactForm(page)
+await expectFormCleared(page)
+```
 
 ## Test Files
+
+### Navigation Tests (`navigation.spec.ts`)
+
+Tests all navigation flows including:
+
+- Desktop and mobile navigation
+- Browser back/forward buttons
+- Active link indicators
+- Keyboard accessibility
+
+### Contact Form Tests (`contact-form.spec.ts`)
+
+Tests form submission, validation, and API integration.
+
+### Accessibility Tests (`accessibility.spec.ts`)
+
+Tests WCAG compliance, keyboard navigation, and ARIA attributes.
+
+### FAQ Tests (`faq.spec.ts`)
+
+Tests interactive FAQ accordion functionality.
 
 ### `home-animations.spec.ts` - Behavioral Tests (Fast)
 

@@ -1,6 +1,11 @@
-import { mockErrorResponse, mockFetch, mockSuccessResponse } from "@test/unit/mocks"
+import {
+  createUserEvent,
+  fillContactFormFields,
+  mockErrorResponse,
+  mockFetch,
+  mockSuccessResponse,
+} from "@test/unit/helpers/mocks"
 import { render, screen, waitFor } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import ContactForm from "@/app/(pages)/contact/ContactForm"
@@ -23,7 +28,7 @@ describe("ContactForm", () => {
   })
 
   it("updates form data on user input", async () => {
-    const user = userEvent.setup({ delay: null })
+    const user = await createUserEvent()
     render(<ContactForm />)
 
     const nameInput = screen.getByLabelText(/full name/i)
@@ -33,23 +38,22 @@ describe("ContactForm", () => {
   })
 
   it("submits form successfully and shows success toast", async () => {
-    const user = userEvent.setup({ delay: null })
+    const user = await createUserEvent()
     mockFetch(mockSuccessResponse())
 
     render(<ContactForm />)
 
-    // Fill out form
-    await user.type(screen.getByLabelText(/full name/i), "John Doe")
-    await user.type(screen.getByLabelText(/email address/i), "john@example.com")
-    await user.selectOptions(screen.getByLabelText(/subject/i), "estate-planning")
-    await user.selectOptions(screen.getByLabelText(/preferred contact method/i), "email")
-    await user.type(screen.getByLabelText(/message/i), "Test message")
+    await fillContactFormFields(user, screen, {
+      name: "John Doe",
+      email: "john@example.com",
+      subject: "estate-planning",
+      preferredContact: "email",
+      message: "Test message",
+    })
 
-    // Submit form
     const submitButton = screen.getByRole("button", { name: /send message/i })
     await user.click(submitButton)
 
-    // Wait for success state
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
         "/api/contact",
@@ -62,48 +66,43 @@ describe("ContactForm", () => {
   })
 
   it("shows error toast on failed submission", async () => {
-    const user = userEvent.setup({ delay: null })
+    const user = await createUserEvent()
     mockFetch(mockErrorResponse())
 
     render(<ContactForm />)
 
-    // Fill out required fields
-    await user.type(screen.getByLabelText(/full name/i), "John Doe")
-    await user.type(screen.getByLabelText(/email address/i), "john@example.com")
-    await user.selectOptions(screen.getByLabelText(/subject/i), "estate-planning")
-    await user.selectOptions(screen.getByLabelText(/preferred contact method/i), "email")
-    await user.type(screen.getByLabelText(/message/i), "Test message")
+    await fillContactFormFields(user, screen, {
+      name: "John Doe",
+      email: "john@example.com",
+      subject: "estate-planning",
+      preferredContact: "email",
+      message: "Test message",
+    })
 
-    // Submit form
     const submitButton = screen.getByRole("button", { name: /send message/i })
     await user.click(submitButton)
 
-    // Wait for error handling
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalled()
     })
   })
 
   it("resets form after successful submission", async () => {
-    const user = userEvent.setup({ delay: null })
+    const user = await createUserEvent()
     mockFetch(mockSuccessResponse())
 
     render(<ContactForm />)
 
-    const nameInput = screen.getByLabelText(/full name/i) as HTMLInputElement
-    const emailInput = screen.getByLabelText(/email address/i) as HTMLInputElement
+    await fillContactFormFields(user, screen, {
+      name: "John Doe",
+      email: "john@example.com",
+      subject: "estate-planning",
+      preferredContact: "email",
+      message: "Test message",
+    })
 
-    // Fill out form
-    await user.type(nameInput, "John Doe")
-    await user.type(emailInput, "john@example.com")
-    await user.selectOptions(screen.getByLabelText(/subject/i), "estate-planning")
-    await user.selectOptions(screen.getByLabelText(/preferred contact method/i), "email")
-    await user.type(screen.getByLabelText(/message/i), "Test message")
-
-    // Submit form
     await user.click(screen.getByRole("button", { name: /send message/i }))
 
-    // Wait for form to reset - re-query elements since form key changed
     await waitFor(() => {
       const freshNameInput = screen.getByLabelText(/full name/i) as HTMLInputElement
       const freshEmailInput = screen.getByLabelText(/email address/i) as HTMLInputElement
@@ -113,7 +112,7 @@ describe("ContactForm", () => {
   })
 
   it("disables submit button while submitting", async () => {
-    const user = userEvent.setup({ delay: null })
+    const user = await createUserEvent()
 
     // Create a promise that we can control
     let resolvePromise: (value: Response) => void
@@ -125,28 +124,24 @@ describe("ContactForm", () => {
 
     render(<ContactForm />)
 
-    // Fill out form
-    await user.type(screen.getByLabelText(/full name/i), "John Doe")
-    await user.type(screen.getByLabelText(/email address/i), "john@example.com")
-    await user.selectOptions(screen.getByLabelText(/subject/i), "estate-planning")
-    await user.selectOptions(screen.getByLabelText(/preferred contact method/i), "email")
-    await user.type(screen.getByLabelText(/message/i), "Test message")
+    await fillContactFormFields(user, screen, {
+      name: "John Doe",
+      email: "john@example.com",
+      subject: "estate-planning",
+      preferredContact: "email",
+      message: "Test message",
+    })
 
     const submitButton = screen.getByRole("button", { name: /send message/i })
-
-    // Click submit
     await user.click(submitButton)
 
-    // Button should be disabled and show "Sending..."
     await waitFor(() => {
       expect(submitButton).toBeDisabled()
       expect(submitButton).toHaveTextContent(/sending/i)
     })
 
-    // Resolve the promise
     resolvePromise!(mockSuccessResponse())
 
-    // Wait for button to be enabled again - re-query since form key changed
     await waitFor(() => {
       const freshSubmitButton = screen.getByRole("button", { name: /send message/i })
       expect(freshSubmitButton).not.toBeDisabled()
@@ -154,22 +149,21 @@ describe("ContactForm", () => {
   })
 
   it("calls custom onSubmit handler when provided", async () => {
-    const user = userEvent.setup({ delay: null })
+    const user = await createUserEvent()
     const mockOnSubmit = vi.fn().mockResolvedValue(undefined)
 
     render(<ContactForm onSubmit={mockOnSubmit} />)
 
-    // Fill out form
-    await user.type(screen.getByLabelText(/full name/i), "John Doe")
-    await user.type(screen.getByLabelText(/email address/i), "john@example.com")
-    await user.selectOptions(screen.getByLabelText(/subject/i), "estate-planning")
-    await user.selectOptions(screen.getByLabelText(/preferred contact method/i), "email")
-    await user.type(screen.getByLabelText(/message/i), "Test message")
+    await fillContactFormFields(user, screen, {
+      name: "John Doe",
+      email: "john@example.com",
+      subject: "estate-planning",
+      preferredContact: "email",
+      message: "Test message",
+    })
 
-    // Submit form
     await user.click(screen.getByRole("button", { name: /send message/i }))
 
-    // Wait for custom handler to be called
     await waitFor(() => {
       expect(mockOnSubmit).toHaveBeenCalledWith(
         expect.objectContaining({
