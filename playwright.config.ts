@@ -24,8 +24,10 @@ export default defineConfig({
   /* Repeat visual regression tests to catch brittleness */
   repeatEach: process.env.CI ? 2 : 1,
   
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  /* Opt out of parallel tests on CI. Use 10 workers locally for optimal performance. */
+  workers: process.env.CI ? 1 : 
+           process.env.WORKERS ? parseInt(process.env.WORKERS) : 
+           10,
   
   /* Timeout for tests with animations */
   timeout: 60 * 1000,
