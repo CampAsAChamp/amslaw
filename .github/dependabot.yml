@@ -3,69 +3,51 @@
 
 version: 2
 updates:
-  # Maintain npm/yarn dependencies for the portfolio
-  - package-ecosystem: 'npm'
-    directory: '/'
+  # Monitor npm/Yarn dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: 'weekly'
-      day: 'monday'
-      time: '09:00'
-      timezone: 'America/Los_Angeles'
-    # Allow up to 5 open pull requests for npm dependencies
-    open-pull-requests-limit: 5
-    # Automatically rebase PRs when they become out of date
-    rebase-strategy: 'auto'
-    # Group related updates
+      interval: "monthly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/Los_Angeles"
+    
+    # Limit the number of open pull requests
+    open-pull-requests-limit: 10
+    
+    # Group updates to reduce PR noise
     groups:
-      # Group React and related packages together
-      react:
+      # Group all minor and patch updates together
+      minor-and-patch:
         patterns:
-          - 'react*'
-          - '@types/react*'
-      # Group testing libraries together
-      testing:
-        patterns:
-          - '@testing-library/*'
-          - 'vitest'
-          - '@vitest/*'
-          - '@playwright/test'
-      # Group TypeScript and ESLint together
-      linting:
-        patterns:
-          - 'eslint*'
-          - '@typescript-eslint/*'
-          - 'typescript'
-          - 'prettier*'
-          - 'stylelint*'
-      # Group build tools together
-      build-tools:
-        patterns:
-          - 'vite*'
-          - '@vitejs/*'
-          - 'rollup*'
-      # Group other dev dependencies
-      dev-dependencies:
-        dependency-type: 'development'
-    # Add labels to PRs
-    labels:
-      - 'dependencies'
-      - 'automated'
-    # Commit message prefix
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    
+    # Conventional commit message format
     commit-message:
-      prefix: 'chore'
-      include: 'scope'
-
-  # Maintain GitHub Actions
-  - package-ecosystem: 'github-actions'
-    directory: '/'
-    schedule:
-      interval: 'weekly'
-      day: 'monday'
-      time: '09:00'
-      timezone: 'America/Los_Angeles'
-    open-pull-requests-limit: 3
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+      include: "scope"
+    
+    # Add labels for easy filtering
     labels:
-      - 'dependencies'
-      - 'github-actions'
-    commit-message:
-      prefix: 'ci'
+      - "dependencies"
+    
+    # Version update strategy
+    versioning-strategy: increase
+    
+    # Automatically rebase PRs when target branch changes
+    rebase-strategy: auto
+    
+    # Allow Dependabot to access private registries if needed
+    # (Not required for public npm packages)
+    
+    # Optional: Assign PRs to specific users
+    # assignees:
+    #   - "nschneider"
+    
+    # Request reviews from specific users or teams
+    reviewers:
+      - "nschneider"
