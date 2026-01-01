@@ -14,7 +14,7 @@ This is the official website for Anna M. Schneider Law, a law firm specializing 
 
 ## Skills & Technologies
 
-[![My Skills](https://skills.syvixor.com/api/icons?perline=10&i=nextjs,reactjs,typescript,tailwindcss,postcss,cloudflare,nodejs,vitest,playwright,eslint,commitlint,framer,lucide,resend,prettier,dependabot,git,github)](https://builder.syvixor.com/)
+[![My Skills](https://skills.syvixor.com/api/icons?perline=9&i=nextjs,reactjs,typescript,tailwindcss,postcss,cloudflare,nodejs,vitest,playwright,eslint,commitlint,framer,lucide,resend,prettier,dependabot,git,github)](https://builder.syvixor.com/)
 
 ## Tech Stack
 
