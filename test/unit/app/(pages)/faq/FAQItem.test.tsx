@@ -145,7 +145,7 @@ describe("FAQItem", () => {
     render(<FAQItem question={mockQuestion} answer={mockAnswer} isOpen={false} onToggle={mockOnToggle} />)
 
     const heading = screen.getByRole("heading", { level: 3 })
-    expect(heading).toHaveClass("nav-link-wipe")
+    expect(heading).toHaveClass("faq-link-wipe")
     expect(heading).toHaveClass("font-semibold")
     expect(heading).toHaveClass("text-lg")
   })
