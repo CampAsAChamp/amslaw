@@ -8,17 +8,7 @@ describe("FormField", () => {
   const mockOnChange = vi.fn()
 
   it("renders text input with label and placeholder", () => {
-    render(
-      <FormField
-        id="name"
-        name="name"
-        label="Full Name"
-        type="text"
-        value=""
-        onChange={mockOnChange}
-        placeholder="Enter your name"
-      />
-    )
+    render(<FormField id="name" name="name" label="Full Name" type="text" value="" onChange={mockOnChange} placeholder="Enter your name" />)
 
     expect(screen.getByLabelText("Full Name")).toBeInTheDocument()
     expect(screen.getByPlaceholderText("Enter your name")).toBeInTheDocument()
@@ -42,17 +32,7 @@ describe("FormField", () => {
   })
 
   it("renders textarea with correct rows", () => {
-    render(
-      <FormField
-        id="message"
-        name="message"
-        label="Message"
-        type="textarea"
-        value=""
-        onChange={mockOnChange}
-        rows={10}
-      />
-    )
+    render(<FormField id="message" name="message" label="Message" type="textarea" value="" onChange={mockOnChange} rows={10} />)
 
     const textarea = screen.getByLabelText("Message")
     expect(textarea).toBeInTheDocument()
@@ -66,17 +46,7 @@ describe("FormField", () => {
       { value: "option2", label: "Option 2" },
     ]
 
-    render(
-      <FormField
-        id="subject"
-        name="subject"
-        label="Subject"
-        type="select"
-        value=""
-        onChange={mockOnChange}
-        options={options}
-      />
-    )
+    render(<FormField id="subject" name="subject" label="Subject" type="select" value="" onChange={mockOnChange} options={options} />)
 
     expect(screen.getByLabelText("Subject")).toBeInTheDocument()
     expect(screen.getByText("Option 1")).toBeInTheDocument()
@@ -90,17 +60,7 @@ describe("FormField", () => {
       { value: "test", label: "Test Option" },
     ]
 
-    render(
-      <FormField
-        id="subject"
-        name="subject"
-        label="Subject"
-        type="select"
-        value=""
-        onChange={mockOnChange}
-        options={options}
-      />
-    )
+    render(<FormField id="subject" name="subject" label="Subject" type="select" value="" onChange={mockOnChange} options={options} />)
 
     const select = screen.getByLabelText("Subject")
     await user.selectOptions(select, "test")

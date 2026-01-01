@@ -125,9 +125,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         <h2 className="text-2xl font-bold text-heading mb-6">Contact</h2>
 
         {submitStatus === "success" && (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
-            Email sent successfully!
-          </div>
+          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">Email sent successfully!</div>
         )}
 
         {submitStatus === "error" && (

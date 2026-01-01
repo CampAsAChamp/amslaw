@@ -111,9 +111,7 @@ describe("NavLink", () => {
     })
 
     it("shows triangle indicator for active button link", () => {
-      const { container } = render(
-        <NavLink link={mockButtonLink} isActive={true} onClick={mockOnClick} variant="desktop" />
-      )
+      const { container } = render(<NavLink link={mockButtonLink} isActive={true} onClick={mockOnClick} variant="desktop" />)
 
       const activeIndicator = container.querySelector('[data-layout-id="activeTab"]')
       expect(activeIndicator).toBeInTheDocument()
@@ -121,9 +119,7 @@ describe("NavLink", () => {
     })
 
     it("does not show triangle indicator for inactive button link", () => {
-      const { container } = render(
-        <NavLink link={mockButtonLink} isActive={false} onClick={mockOnClick} variant="desktop" />
-      )
+      const { container } = render(<NavLink link={mockButtonLink} isActive={false} onClick={mockOnClick} variant="desktop" />)
 
       const indicators = container.querySelectorAll('[data-layout-id="activeTab"]')
       expect(indicators).toHaveLength(0)
@@ -179,9 +175,7 @@ describe("NavLink", () => {
     })
 
     it("shows triangle indicator for active mobile button", () => {
-      const { container } = render(
-        <NavLink link={mockButtonLink} isActive={true} onClick={mockOnClick} variant="mobile" />
-      )
+      const { container } = render(<NavLink link={mockButtonLink} isActive={true} onClick={mockOnClick} variant="mobile" />)
 
       const activeIndicator = container.querySelector('[data-layout-id="activeTabMobile"]')
       expect(activeIndicator).toBeInTheDocument()

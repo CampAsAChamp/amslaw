@@ -81,9 +81,7 @@ describe("IconCard", () => {
     })
 
     it("applies custom delay when provided", () => {
-      const { container } = render(
-        <IconCard icon={mockIcon} title={mockTitle} description={mockDescription} delay={0.5} />
-      )
+      const { container } = render(<IconCard icon={mockIcon} title={mockTitle} description={mockDescription} delay={0.5} />)
 
       const motionDiv = container.querySelector('[data-testid="motion-div"]')
       const transition = JSON.parse(motionDiv?.getAttribute("data-transition") || "{}")
@@ -119,9 +117,7 @@ describe("IconCard", () => {
     })
 
     it("calculates delay automatically from stepNumber", () => {
-      const { container } = render(
-        <IconCard icon={processIcon} title="Step 2" description="Second step" stepNumber={2} />
-      )
+      const { container } = render(<IconCard icon={processIcon} title="Step 2" description="Second step" stepNumber={2} />)
 
       const motionDiv = container.querySelector('[data-testid="motion-div"]')
       const transition = JSON.parse(motionDiv?.getAttribute("data-transition") || "{}")
@@ -130,9 +126,7 @@ describe("IconCard", () => {
     })
 
     it("stepNumber takes priority over delay prop", () => {
-      const { container } = render(
-        <IconCard icon={processIcon} title="Step 3" description="Third step" stepNumber={3} delay={1.0} />
-      )
+      const { container } = render(<IconCard icon={processIcon} title="Step 3" description="Third step" stepNumber={3} delay={1.0} />)
 
       const motionDiv = container.querySelector('[data-testid="motion-div"]')
       const transition = JSON.parse(motionDiv?.getAttribute("data-transition") || "{}")
@@ -159,27 +153,21 @@ describe("IconCard", () => {
     })
 
     it("renders arrows when showArrow is true", () => {
-      const { container } = render(
-        <IconCard icon={mockIcon} title={mockTitle} description={mockDescription} showArrow={true} />
-      )
+      const { container } = render(<IconCard icon={mockIcon} title={mockTitle} description={mockDescription} showArrow={true} />)
 
       const arrows = container.querySelectorAll("svg")
       expect(arrows.length).toBeGreaterThan(0)
     })
 
     it("renders mobile arrow (down) with correct classes", () => {
-      const { container } = render(
-        <IconCard icon={mockIcon} title={mockTitle} description={mockDescription} showArrow={true} />
-      )
+      const { container } = render(<IconCard icon={mockIcon} title={mockTitle} description={mockDescription} showArrow={true} />)
 
       const mobileArrow = container.querySelector(".md\\:hidden")
       expect(mobileArrow).toBeInTheDocument()
     })
 
     it("renders desktop arrow (right) with correct classes", () => {
-      const { container } = render(
-        <IconCard icon={mockIcon} title={mockTitle} description={mockDescription} showArrow={true} />
-      )
+      const { container } = render(<IconCard icon={mockIcon} title={mockTitle} description={mockDescription} showArrow={true} />)
 
       const desktopArrow = container.querySelector(".hidden.md\\:block")
       expect(desktopArrow).toBeInTheDocument()

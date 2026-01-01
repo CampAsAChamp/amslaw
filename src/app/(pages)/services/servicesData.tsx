@@ -118,12 +118,7 @@ export const servicesData = [
       },
       {
         heading: "Planning Benefits:",
-        items: [
-          "Protect your family's future",
-          "Avoid probate delays",
-          "Maintain asset control",
-          "Plan for incapacity",
-        ],
+        items: ["Protect your family's future", "Avoid probate delays", "Maintain asset control", "Plan for incapacity"],
       },
     ],
   },

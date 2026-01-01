@@ -18,9 +18,7 @@ function SimpleIcon({ icon }: { icon: React.ReactNode }) {
 function ProcessStepIcon({ icon, stepNumber }: { icon: React.ReactNode; stepNumber: number }) {
   return (
     <div className="relative inline-flex justify-center items-center mb-4">
-      <div className="bg-surface-tertiary w-20 h-20 rounded-full flex items-center justify-center text-primary">
-        {icon}
-      </div>
+      <div className="bg-surface-tertiary w-20 h-20 rounded-full flex items-center justify-center text-primary">{icon}</div>
       <div className="absolute -top-1 -left-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
         <span className="text-xs font-bold text-on-primary">{stepNumber}</span>
       </div>

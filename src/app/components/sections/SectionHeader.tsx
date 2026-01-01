@@ -5,13 +5,7 @@ import { motion } from "framer-motion"
 import { SectionHeaderProps } from "@/types"
 import { useInitialInView } from "@/utils"
 
-export default function SectionHeader({
-  title,
-  subtitle,
-  className = "",
-  delay = 0,
-  subtitleDelay,
-}: SectionHeaderProps) {
+export default function SectionHeader({ title, subtitle, className = "", delay = 0, subtitleDelay }: SectionHeaderProps) {
   const { ref, getViewportConfig } = useInitialInView()
 
   const textVariants = {

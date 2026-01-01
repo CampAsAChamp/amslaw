@@ -142,13 +142,7 @@ expectMotionAnimation(element, {
 ### Unit Test Mocks (`test/unit/mocks.tsx`)
 
 ```typescript
-import {
-  createUserEvent,
-  fillContactFormFields,
-  mockFormData,
-  mockFramerMotion,
-  mockNextNavigation,
-} from "@test/unit/mocks"
+import { createUserEvent, fillContactFormFields, mockFormData, mockFramerMotion, mockNextNavigation } from "@test/unit/mocks"
 
 // Mock framer-motion in tests
 vi.mock("framer-motion", () => mockFramerMotion())

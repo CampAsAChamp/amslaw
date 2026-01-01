@@ -113,11 +113,7 @@ export default function HeroSection({
                 delay: showLogo ? 0.7 : 0.3,
               }}
             >
-              <Link
-                href={primaryButtonLink}
-                onClick={() => setClickedLink(primaryButtonLink)}
-                className="btn-hero-secondary"
-              >
+              <Link href={primaryButtonLink} onClick={() => setClickedLink(primaryButtonLink)} className="btn-hero-secondary">
                 {primaryButtonText}
               </Link>
             </motion.div>
@@ -134,11 +130,7 @@ export default function HeroSection({
                   delay: showLogo ? 0.85 : 0.45,
                 }}
               >
-                <Link
-                  href={secondaryButtonLink}
-                  onClick={() => setClickedLink(secondaryButtonLink)}
-                  className="btn-hero-primary"
-                >
+                <Link href={secondaryButtonLink} onClick={() => setClickedLink(secondaryButtonLink)} className="btn-hero-primary">
                   {secondaryButtonText}
                 </Link>
               </motion.div>

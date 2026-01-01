@@ -552,13 +552,7 @@ html.theme-transitioning body {
 
 /* Navigation link wipe animation */
 .nav-link-wipe {
-  background: linear-gradient(
-    to right,
-    var(--cyan-500) 0%,
-    var(--cyan-500) 50%,
-    var(--text-nav) 50%,
-    var(--text-nav) 100%
-  );
+  background: linear-gradient(to right, var(--cyan-500) 0%, var(--cyan-500) 50%, var(--text-nav) 50%, var(--text-nav) 100%);
   background-clip: text;
   background-position: 100% 0;
   background-size: 200% 100%;
@@ -577,13 +571,7 @@ html.theme-transitioning body {
 
 /* FAQ-specific version without direct hover (controlled by JS state) */
 .faq-link-wipe {
-  background: linear-gradient(
-    to right,
-    var(--cyan-500) 0%,
-    var(--cyan-500) 50%,
-    var(--text-nav) 50%,
-    var(--text-nav) 100%
-  );
+  background: linear-gradient(to right, var(--cyan-500) 0%, var(--cyan-500) 50%, var(--text-nav) 50%, var(--text-nav) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   background-position: 100% 0;

@@ -16,13 +16,7 @@ export default function PhilosophySection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {philosophyFeatures.map((feature, index) => (
-            <IconCard
-              key={index}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
-              delay={0.35 + index * 0.2}
-            />
+            <IconCard key={index} icon={feature.icon} title={feature.title} description={feature.description} delay={0.35 + index * 0.2} />
           ))}
         </div>
       </div>

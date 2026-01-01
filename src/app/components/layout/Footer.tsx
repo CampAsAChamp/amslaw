@@ -23,9 +23,8 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold mb-4 text-on-primary">Anna M. Schneider Law</h3>
             <p className="text-footer mb-4">
-              As a solo practitioner in Torrance, I focus on providing personalized estate planning services to protect
-              what matters most to you. From simple wills to complex trusts, I guide families through every step with
-              clear communication and compassionate care.
+              As a solo practitioner in Torrance, I focus on providing personalized estate planning services to protect what matters most to
+              you. From simple wills to complex trusts, I guide families through every step with clear communication and compassionate care.
             </p>
             <div className="text-footer">
               <p className="mb-2">
@@ -72,10 +71,7 @@ export default function Footer() {
               />
               <p className="mt-4 flex items-center gap-2">
                 <strong>Phone:</strong>{" "}
-                <a
-                  href={`tel:${contactInfo.phone}`}
-                  className="text-footer-muted hover:text-on-primary transition-colors hover:underline"
-                >
+                <a href={`tel:${contactInfo.phone}`} className="text-footer-muted hover:text-on-primary transition-colors hover:underline">
                   {formatPhoneNumber(contactInfo.phone)}
                 </a>
                 <CopyButton
@@ -92,11 +88,7 @@ export default function Footer() {
                 >
                   {contactInfo.email}
                 </a>
-                <CopyButton
-                  textToCopy={contactInfo.email}
-                  label="Copy email address"
-                  className="text-footer-muted hover:text-on-primary"
-                />
+                <CopyButton textToCopy={contactInfo.email} label="Copy email address" className="text-footer-muted hover:text-on-primary" />
               </p>
             </div>
           </div>
@@ -104,9 +96,7 @@ export default function Footer() {
 
         <div className="border-t border-primary-hover mt-8 pt-8 text-center text-footer-muted">
           <p>&copy; {currentYear} Anna M. Schneider Law. All rights reserved.</p>
-          <p className="mt-2 text-sm">
-            This website is for informational purposes only and does not constitute legal advice.
-          </p>
+          <p className="mt-2 text-sm">This website is for informational purposes only and does not constitute legal advice.</p>
         </div>
       </div>
     </footer>

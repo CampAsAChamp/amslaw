@@ -58,15 +58,7 @@ import { useInitialInView } from "@/utils"
  * - Both variants use card-base styling (white background, padding, shadow)
  * - Sections take priority over features if both are provided
  */
-export default function FeatureCard({
-  icon,
-  title,
-  description,
-  features,
-  sections,
-  delay = 0,
-  animateOnMount = false,
-}: FeatureCardProps) {
+export default function FeatureCard({ icon, title, description, features, sections, delay = 0, animateOnMount = false }: FeatureCardProps) {
   const { ref, getViewportConfig } = useInitialInView()
   const hasSections = sections && sections.length > 0
 

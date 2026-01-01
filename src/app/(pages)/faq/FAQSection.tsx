@@ -10,9 +10,7 @@ export default function FAQSection() {
   const [openIds, setOpenIds] = useState<string[]>([])
 
   const toggleFAQ = (id: string) => {
-    setOpenIds((prevOpenIds) =>
-      prevOpenIds.includes(id) ? prevOpenIds.filter((openId) => openId !== id) : [...prevOpenIds, id]
-    )
+    setOpenIds((prevOpenIds) => (prevOpenIds.includes(id) ? prevOpenIds.filter((openId) => openId !== id) : [...prevOpenIds, id]))
   }
 
   // Animation variants for category sections

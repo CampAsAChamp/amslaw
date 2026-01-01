@@ -52,10 +52,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
         {/* Contact Support */}
         <div className="mt-12 pt-8 border-t border-surface-tertiary">
           <p className="text-muted mb-4">Need help?</p>
-          <Link
-            href="/contact"
-            className="text-primary hover:text-primary-hover transition-colors hover:underline font-semibold"
-          >
+          <Link href="/contact" className="text-primary hover:text-primary-hover transition-colors hover:underline font-semibold">
             Contact us for assistance
           </Link>
         </div>

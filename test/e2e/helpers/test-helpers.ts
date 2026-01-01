@@ -10,12 +10,7 @@ import { API_ENDPOINTS, NAV_LINKS } from "../data/test-data"
  * @param urlPattern - Expected URL pattern after navigation
  * @param verifyText - Optional text to verify on the destination page
  */
-export async function navigateAndVerify(
-  page: Page,
-  linkName: string,
-  urlPattern: RegExp,
-  verifyText?: RegExp
-): Promise<void> {
+export async function navigateAndVerify(page: Page, linkName: string, urlPattern: RegExp, verifyText?: RegExp): Promise<void> {
   // Click the navigation link (use first() to handle multiple matches)
   await page.getByRole("link", { name: linkName }).first().click()
 

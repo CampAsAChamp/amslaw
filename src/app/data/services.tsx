@@ -19,8 +19,7 @@ export const services = [
   {
     icon: <Gavel className="w-12 h-12" />,
     title: "Probate & Administration",
-    description:
-      "Navigate the probate process with expert guidance to ensure efficient estate administration and asset distribution.",
+    description: "Navigate the probate process with expert guidance to ensure efficient estate administration and asset distribution.",
     features: ["Probate Administration", "Estate Administration", "Asset Distribution", "Court Representation"],
   },
 ]

@@ -8,10 +8,7 @@ import { motion } from "framer-motion"
 import ListCard from "@/app/(pages)/about/ListCard"
 import { useActiveLink } from "@/app/components/layout/navigation/useActiveLink"
 
-const educationData = [
-  "Juris Doctor - Whittier Law School",
-  "Bachelor of Science - California State University of Long Beach",
-]
+const educationData = ["Juris Doctor - Whittier Law School", "Bachelor of Science - California State University of Long Beach"]
 
 const credentialsData = [
   "Licensed to practice in California",
@@ -54,19 +51,18 @@ export default function AttorneyProfile() {
               }}
             >
               <p>
-                I have been a practicing attorney for 32 years and focus on <strong>Estate Planning</strong>,{" "}
-                <strong>Wills</strong>, <strong>Trusts</strong>, <strong>Trust Administration</strong>, and{" "}
-                <strong>Probate</strong> matters. I am dedicated to helping families protect their assets and ensure
-                their wishes are carried out exactly as intended.
+                I have been a practicing attorney for 32 years and focus on <strong>Estate Planning</strong>, <strong>Wills</strong>,{" "}
+                <strong>Trusts</strong>, <strong>Trust Administration</strong>, and <strong>Probate</strong> matters. I am dedicated to
+                helping families protect their assets and ensure their wishes are carried out exactly as intended.
               </p>
               <p>
-                Allowing me to provide extra care and tailored solutions to my clients for each family&apos;s unique
-                situation. I believe that every family deserves personalized attention
+                Allowing me to provide extra care and tailored solutions to my clients for each family&apos;s unique situation. I believe
+                that every family deserves personalized attention
               </p>
               <p>
-                I understand that discussing estate planning can be difficult, which is why I approach every client
-                relationship with compassion, patience, and clear communication. My goal is to make the process as
-                straightforward as possible while ensuring your family&apos;s future is secure.
+                I understand that discussing estate planning can be difficult, which is why I approach every client relationship with
+                compassion, patience, and clear communication. My goal is to make the process as straightforward as possible while ensuring
+                your family&apos;s future is secure.
               </p>
             </motion.div>
 
@@ -99,9 +95,7 @@ export default function AttorneyProfile() {
             <div className="text-center">
               <h3 className="text-2xl font-bold text-heading mb-2">Anna Schneider</h3>
               <p className="text-primary-hover font-semibold mb-4">Principal Attorney</p>
-              <p className="text-body mb-6">
-                Focus on Estate Planning, Wills, Trusts, Trust Administration, and Probate matters.
-              </p>
+              <p className="text-body mb-6">Focus on Estate Planning, Wills, Trusts, Trust Administration, and Probate matters.</p>
               <Link href="/contact" onClick={() => setClickedLink("/contact")} className="btn-cta">
                 Contact
               </Link>

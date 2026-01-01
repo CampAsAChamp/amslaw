@@ -30,13 +30,7 @@ export default function YelpReviewsSection({ reviews }: YelpReviewsSectionProps)
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-3 text-primary hover:text-primary-hover transition-colors font-medium group"
         >
-          <Image
-            src="/yelp-logo.svg"
-            alt="Yelp"
-            width={24}
-            height={24}
-            className="w-6 h-6 transition-opacity group-hover:opacity-80"
-          />
+          <Image src="/yelp-logo.svg" alt="Yelp" width={24} height={24} className="w-6 h-6 transition-opacity group-hover:opacity-80" />
           <span className="flex items-center gap-2">
             View our reviews on Yelp
             <ExternalLink className="w-4 h-4" aria-hidden="true" />
@@ -75,13 +69,7 @@ export default function YelpReviewsSection({ reviews }: YelpReviewsSectionProps)
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-3 text-primary hover:text-primary-hover transition-colors font-medium group"
         >
-          <Image
-            src="/yelp-logo.svg"
-            alt="Yelp"
-            width={24}
-            height={24}
-            className="w-6 h-6 transition-opacity group-hover:opacity-80"
-          />
+          <Image src="/yelp-logo.svg" alt="Yelp" width={24} height={24} className="w-6 h-6 transition-opacity group-hover:opacity-80" />
           <span className="flex items-center gap-2">
             View all reviews on Yelp
             <ExternalLink className="w-4 h-4" aria-hidden="true" />

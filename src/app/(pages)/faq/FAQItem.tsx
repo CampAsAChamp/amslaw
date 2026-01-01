@@ -71,11 +71,7 @@ export default function FAQItem({ question, answer, isOpen, onToggle }: FAQItemP
       >
         <h3
           className={`font-semibold text-lg pr-4 ${
-            isOpen
-              ? "faq-link-wipe faq-link-wipe-active"
-              : showTextActive
-                ? "faq-link-wipe faq-link-wipe-active"
-                : "faq-link-wipe"
+            isOpen ? "faq-link-wipe faq-link-wipe-active" : showTextActive ? "faq-link-wipe faq-link-wipe-active" : "faq-link-wipe"
           }`}
         >
           {question}

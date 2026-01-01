@@ -7,28 +7,12 @@ import FAQItem from "@/app/(pages)/faq/FAQItem"
 // Mock framer-motion to simplify testing
 vi.mock("framer-motion", () => ({
   motion: {
-    div: ({
-      children,
-      className,
-      ...props
-    }: {
-      children: React.ReactNode
-      className?: string
-      [key: string]: unknown
-    }) => (
+    div: ({ children, className, ...props }: { children: React.ReactNode; className?: string; [key: string]: unknown }) => (
       <div className={className} data-motion="true" {...props}>
         {children}
       </div>
     ),
-    svg: ({
-      children,
-      className,
-      ...props
-    }: {
-      children: React.ReactNode
-      className?: string
-      [key: string]: unknown
-    }) => (
+    svg: ({ children, className, ...props }: { children: React.ReactNode; className?: string; [key: string]: unknown }) => (
       <svg className={className} data-motion="true" {...props}>
         {children}
       </svg>
@@ -89,9 +73,7 @@ describe("FAQItem", () => {
   })
 
   it("renders chevron with motion attributes when open", () => {
-    const { container } = render(
-      <FAQItem question={mockQuestion} answer={mockAnswer} isOpen={true} onToggle={mockOnToggle} />
-    )
+    const { container } = render(<FAQItem question={mockQuestion} answer={mockAnswer} isOpen={true} onToggle={mockOnToggle} />)
 
     const chevron = container.querySelector("svg")
     expect(chevron).toBeInTheDocument()
@@ -99,9 +81,7 @@ describe("FAQItem", () => {
   })
 
   it("renders chevron with motion attributes when closed", () => {
-    const { container } = render(
-      <FAQItem question={mockQuestion} answer={mockAnswer} isOpen={false} onToggle={mockOnToggle} />
-    )
+    const { container } = render(<FAQItem question={mockQuestion} answer={mockAnswer} isOpen={false} onToggle={mockOnToggle} />)
 
     const chevron = container.querySelector("svg")
     expect(chevron).toBeInTheDocument()
@@ -109,9 +89,7 @@ describe("FAQItem", () => {
   })
 
   it("renders chevron icon", () => {
-    const { container } = render(
-      <FAQItem question={mockQuestion} answer={mockAnswer} isOpen={false} onToggle={mockOnToggle} />
-    )
+    const { container } = render(<FAQItem question={mockQuestion} answer={mockAnswer} isOpen={false} onToggle={mockOnToggle} />)
 
     const chevron = container.querySelector("svg")
     expect(chevron).toBeInTheDocument()
@@ -119,9 +97,7 @@ describe("FAQItem", () => {
   })
 
   it("applies correct styling classes to container", () => {
-    const { container } = render(
-      <FAQItem question={mockQuestion} answer={mockAnswer} isOpen={false} onToggle={mockOnToggle} />
-    )
+    const { container } = render(<FAQItem question={mockQuestion} answer={mockAnswer} isOpen={false} onToggle={mockOnToggle} />)
 
     const outerDiv = container.firstChild as HTMLElement
     expect(outerDiv).toHaveClass("rounded-lg")
@@ -210,9 +186,7 @@ describe("FAQItem", () => {
   })
 
   it("toggles between open and closed states correctly", () => {
-    const { rerender } = render(
-      <FAQItem question={mockQuestion} answer={mockAnswer} isOpen={false} onToggle={mockOnToggle} />
-    )
+    const { rerender } = render(<FAQItem question={mockQuestion} answer={mockAnswer} isOpen={false} onToggle={mockOnToggle} />)
 
     // Initially closed
     expect(screen.queryByText(mockAnswer)).not.toBeInTheDocument()

@@ -14,12 +14,7 @@ interface AnimatedContainerProps {
   animateOnMount?: boolean
 }
 
-export default function AnimatedContainer({
-  children,
-  className = "card",
-  delay = 0,
-  animateOnMount = false,
-}: AnimatedContainerProps) {
+export default function AnimatedContainer({ children, className = "card", delay = 0, animateOnMount = false }: AnimatedContainerProps) {
   const cardVariants = {
     initial: {
       scaleX: 0.05,

@@ -223,11 +223,7 @@ test.describe("Homepage Visual Regression Tests", () => {
   test.describe("Dark Mode (if applicable)", () => {
     test("homepage renders correctly in dark mode", async ({ page }, testInfo) => {
       // Skip dark mode test for mobile/tablet (toggle in mobile menu)
-      if (
-        testInfo.project.name === "mobile" ||
-        testInfo.project.name === "tablet" ||
-        testInfo.project.name === "mobile-android"
-      ) {
+      if (testInfo.project.name === "mobile" || testInfo.project.name === "tablet" || testInfo.project.name === "mobile-android") {
         test.skip()
         return
       }

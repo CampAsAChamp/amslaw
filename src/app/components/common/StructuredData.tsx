@@ -10,8 +10,7 @@ export default function StructuredData() {
 
   // Calculate average rating from Yelp reviews
   const totalReviews = yelpReviews.length
-  const averageRating =
-    totalReviews > 0 ? yelpReviews.reduce((acc, review) => acc + review.rating, 0) / totalReviews : 5
+  const averageRating = totalReviews > 0 ? yelpReviews.reduce((acc, review) => acc + review.rating, 0) / totalReviews : 5
 
   // LocalBusiness schema with Attorney subtype
   const localBusinessSchema = {

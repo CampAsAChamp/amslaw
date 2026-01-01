@@ -11,14 +11,7 @@ vi.mock("next/navigation", () => ({
 
 describe("HeroSection", () => {
   it("renders title and subtitle", () => {
-    render(
-      <HeroSection
-        title="Test Title"
-        subtitle="Test Subtitle"
-        primaryButtonText="Get Started"
-        primaryButtonLink="/contact"
-      />
-    )
+    render(<HeroSection title="Test Title" subtitle="Test Subtitle" primaryButtonText="Get Started" primaryButtonLink="/contact" />)
 
     expect(screen.getByText("Test Title")).toBeInTheDocument()
     expect(screen.getByText("Test Subtitle")).toBeInTheDocument()
@@ -52,13 +45,7 @@ describe("HeroSection", () => {
   it("renders logo when showLogo is true", () => {
     render(
       <TestWrapper>
-        <HeroSection
-          title="Test"
-          subtitle="Test"
-          primaryButtonText="Contact"
-          primaryButtonLink="/contact"
-          showLogo={true}
-        />
+        <HeroSection title="Test" subtitle="Test" primaryButtonText="Contact" primaryButtonLink="/contact" showLogo={true} />
       </TestWrapper>
     )
 
@@ -67,29 +54,14 @@ describe("HeroSection", () => {
   })
 
   it("does not render logo when showLogo is false", () => {
-    render(
-      <HeroSection
-        title="Test"
-        subtitle="Test"
-        primaryButtonText="Contact"
-        primaryButtonLink="/contact"
-        showLogo={false}
-      />
-    )
+    render(<HeroSection title="Test" subtitle="Test" primaryButtonText="Contact" primaryButtonLink="/contact" showLogo={false} />)
 
     const logo = screen.queryByRole("img", { name: /Schneider Law/i })
     expect(logo).not.toBeInTheDocument()
   })
 
   it("renders with only primary button", () => {
-    render(
-      <HeroSection
-        title="Test Title"
-        subtitle="Test Subtitle"
-        primaryButtonText="Contact"
-        primaryButtonLink="/contact"
-      />
-    )
+    render(<HeroSection title="Test Title" subtitle="Test Subtitle" primaryButtonText="Contact" primaryButtonLink="/contact" />)
 
     expect(screen.getByText("Test Title")).toBeInTheDocument()
     expect(screen.getByText("Test Subtitle")).toBeInTheDocument()

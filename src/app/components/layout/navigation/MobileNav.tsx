@@ -104,9 +104,7 @@ export default function MobileNav({ isOpen, links, getIsActive, onLinkClick, onC
     const handleTab = (event: KeyboardEvent) => {
       if (event.key !== "Tab") return
 
-      const focusableElements = menuRef.current?.querySelectorAll(
-        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      )
+      const focusableElements = menuRef.current?.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
       if (!focusableElements || focusableElements.length === 0) return
 
       const firstElement = focusableElements[0] as HTMLElement

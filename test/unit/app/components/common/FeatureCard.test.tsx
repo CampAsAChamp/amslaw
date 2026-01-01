@@ -29,18 +29,14 @@ describe("FeatureCard", () => {
     })
 
     it("always applies card-base class", () => {
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />
-      )
+      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />)
 
       const wrapper = container.querySelector(".card-base")
       expect(wrapper).toBeInTheDocument()
     })
 
     it("applies text-primary-hover to icon wrapper", () => {
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />
-      )
+      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />)
 
       const iconWrapper = container.querySelector('[class*="text-primary-hover"]')
       expect(iconWrapper).toBeInTheDocument()
@@ -62,9 +58,7 @@ describe("FeatureCard", () => {
     })
 
     it("renders features as bulleted list", () => {
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />
-      )
+      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />)
 
       const list = container.querySelector("ul")
       expect(list).toBeInTheDocument()
@@ -84,9 +78,7 @@ describe("FeatureCard", () => {
 
     it("renders with single feature", () => {
       const singleFeature = ["Single Feature"]
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={singleFeature} />
-      )
+      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={singleFeature} />)
 
       const listItems = container.querySelectorAll("li")
       expect(listItems).toHaveLength(1)
@@ -95,18 +87,14 @@ describe("FeatureCard", () => {
 
     it("renders with many features", () => {
       const manyFeatures = ["Feature 1", "Feature 2", "Feature 3", "Feature 4", "Feature 5", "Feature 6"]
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={manyFeatures} />
-      )
+      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={manyFeatures} />)
 
       const listItems = container.querySelectorAll("li")
       expect(listItems).toHaveLength(6)
     })
 
     it("handles empty features array gracefully", () => {
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={[]} />
-      )
+      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={[]} />)
 
       // Should still render card but without features list
       expect(container.querySelector(".card-base")).toBeInTheDocument()
@@ -137,9 +125,7 @@ describe("FeatureCard", () => {
     })
 
     it("always applies card-base class", () => {
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={mockSections} />
-      )
+      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={mockSections} />)
 
       const wrapper = container.querySelector(".card-base")
       expect(wrapper).toBeInTheDocument()
@@ -156,9 +142,7 @@ describe("FeatureCard", () => {
     })
 
     it("renders section items as bulleted list when multiple items", () => {
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={mockSections} />
-      )
+      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={mockSections} />)
 
       const lists = container.querySelectorAll("ul")
       expect(lists.length).toBeGreaterThan(0)
@@ -172,9 +156,7 @@ describe("FeatureCard", () => {
         },
       ]
 
-      render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={singleItemSections} />
-      )
+      render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={singleItemSections} />)
 
       const paragraph = screen.getByText("This is a single paragraph description.")
       expect(paragraph.tagName).toBe("P")
@@ -188,9 +170,7 @@ describe("FeatureCard", () => {
         },
       ]
 
-      render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={noHeadingSections} />
-      )
+      render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={noHeadingSections} />)
 
       expect(screen.getByText((content) => content.includes("Item 1"))).toBeInTheDocument()
       expect(screen.queryByRole("heading", { level: 3 })).not.toBeInTheDocument()
@@ -208,9 +188,7 @@ describe("FeatureCard", () => {
         },
       ]
 
-      render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={reactNodeSections} />
-      )
+      render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={reactNodeSections} />)
 
       expect(screen.getByTestId("custom-item")).toBeInTheDocument()
       expect(screen.getByText("React")).toBeInTheDocument()
@@ -225,9 +203,7 @@ describe("FeatureCard", () => {
     })
 
     it("applies proper spacing to sections layout", () => {
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={mockSections} />
-      )
+      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={mockSections} />)
 
       const iconWrapper = container.querySelector('[class*="text-primary-hover"]')
       expect(iconWrapper).toHaveClass("mb-6")
@@ -235,13 +211,7 @@ describe("FeatureCard", () => {
 
     it("supports animateOnMount prop", () => {
       const { container } = render(
-        <FeatureCard
-          icon={mockIcon}
-          title={mockTitle}
-          description={mockDescription}
-          sections={mockSections}
-          animateOnMount={true}
-        />
+        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} sections={mockSections} animateOnMount={true} />
       )
 
       const motionDiv = container.firstChild as HTMLElement
@@ -254,13 +224,7 @@ describe("FeatureCard", () => {
       const mockFeatures = ["Feature 1", "Feature 2"]
 
       render(
-        <FeatureCard
-          icon={mockIcon}
-          title={mockTitle}
-          description={mockDescription}
-          features={mockFeatures}
-          sections={mockSections}
-        />
+        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} sections={mockSections} />
       )
 
       // Should render sections (h2 title)
@@ -275,9 +239,7 @@ describe("FeatureCard", () => {
   describe("Animation behavior", () => {
     it("applies default delay of 0", () => {
       const mockFeatures = ["Feature 1"]
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />
-      )
+      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />)
 
       const motionDiv = container.firstChild as HTMLElement
       const props = getMotionProps(motionDiv)
@@ -287,13 +249,7 @@ describe("FeatureCard", () => {
     it("applies custom delay when provided", () => {
       const mockFeatures = ["Feature 1"]
       const { container } = render(
-        <FeatureCard
-          icon={mockIcon}
-          title={mockTitle}
-          description={mockDescription}
-          features={mockFeatures}
-          delay={0.5}
-        />
+        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} delay={0.5} />
       )
 
       const motionDiv = container.firstChild as HTMLElement
@@ -304,9 +260,7 @@ describe("FeatureCard", () => {
 
     it("uses correct animation configuration", () => {
       const mockFeatures = ["Feature 1"]
-      const { container } = render(
-        <FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />
-      )
+      const { container } = render(<FeatureCard icon={mockIcon} title={mockTitle} description={mockDescription} features={mockFeatures} />)
 
       const motionDiv = container.firstChild as HTMLElement
       expectMotionAnimation(motionDiv, {

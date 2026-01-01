@@ -76,11 +76,7 @@ export async function waitForAllAnimations(page: Page): Promise<void> {
  * @param minOpacity - Minimum opacity to consider visible (default: 0.5)
  * @returns true if element is visible with sufficient opacity
  */
-export async function checkElementVisible(
-  page: Page,
-  selector: string | Locator,
-  minOpacity: number = 0.5
-): Promise<boolean> {
+export async function checkElementVisible(page: Page, selector: string | Locator, minOpacity: number = 0.5): Promise<boolean> {
   const locator = typeof selector === "string" ? page.locator(selector) : selector
 
   try {
@@ -203,11 +199,7 @@ export async function waitForStableState(page: Page): Promise<void> {
  * @param maxWaitTime - Maximum time to wait in milliseconds (default: 5000ms)
  * @returns true if element animated in, false if timeout
  */
-export async function waitForElementToAnimateIn(
-  page: Page,
-  selector: string | Locator,
-  maxWaitTime: number = 5000
-): Promise<boolean> {
+export async function waitForElementToAnimateIn(page: Page, selector: string | Locator, maxWaitTime: number = 5000): Promise<boolean> {
   const startTime = Date.now()
 
   while (Date.now() - startTime < maxWaitTime) {

@@ -24,11 +24,7 @@ export default function YelpReviewCard({ review }: YelpReviewCardProps) {
   // Generate star rating
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
-      <Star
-        key={index}
-        className={`w-4 h-4 ${index < rating ? "text-primary fill-primary" : "text-muted"}`}
-        aria-hidden="true"
-      />
+      <Star key={index} className={`w-4 h-4 ${index < rating ? "text-primary fill-primary" : "text-muted"}`} aria-hidden="true" />
     ))
   }
 

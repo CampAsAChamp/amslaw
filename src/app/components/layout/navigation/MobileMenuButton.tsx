@@ -46,19 +46,13 @@ export default function MobileMenuButton({ isOpen, onClick }: MobileMenuButtonPr
       <div className="w-6 h-5 relative flex flex-col justify-between">
         {/* Top line: Rotates 45deg and moves down to form top of X */}
         <span
-          className={`block h-0.5 w-full bg-nav transition-all duration-300 ease-in-out ${
-            isOpen ? "rotate-45 translate-y-[9px]" : ""
-          }`}
+          className={`block h-0.5 w-full bg-nav transition-all duration-300 ease-in-out ${isOpen ? "rotate-45 translate-y-[9px]" : ""}`}
         />
         {/* Middle line: Fades out when open */}
-        <span
-          className={`block h-0.5 w-full bg-nav transition-all duration-300 ease-in-out ${isOpen ? "opacity-0" : ""}`}
-        />
+        <span className={`block h-0.5 w-full bg-nav transition-all duration-300 ease-in-out ${isOpen ? "opacity-0" : ""}`} />
         {/* Bottom line: Rotates -45deg and moves up to form bottom of X */}
         <span
-          className={`block h-0.5 w-full bg-nav transition-all duration-300 ease-in-out ${
-            isOpen ? "-rotate-45 -translate-y-[9px]" : ""
-          }`}
+          className={`block h-0.5 w-full bg-nav transition-all duration-300 ease-in-out ${isOpen ? "-rotate-45 -translate-y-[9px]" : ""}`}
         />
       </div>
     </button>

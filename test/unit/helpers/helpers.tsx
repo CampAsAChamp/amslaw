@@ -36,10 +36,7 @@ export function getMotionProps(element: HTMLElement) {
   return {
     initial: parseJsonOrString(element.getAttribute("data-initial")) as Record<string, unknown> | string | null,
     animate: parseJsonOrString(element.getAttribute("data-animate")) as Record<string, unknown> | string | null,
-    whileInView: parseJsonOrString(element.getAttribute("data-while-in-view")) as
-      | Record<string, unknown>
-      | string
-      | null,
+    whileInView: parseJsonOrString(element.getAttribute("data-while-in-view")) as Record<string, unknown> | string | null,
     viewport: parseJsonOrString(element.getAttribute("data-viewport")) as Record<string, unknown> | null,
     transition: parseJsonOrString(element.getAttribute("data-transition")) as Record<string, unknown> | null,
     variants: parseJsonOrString(element.getAttribute("data-variants")) as Record<string, unknown> | null,

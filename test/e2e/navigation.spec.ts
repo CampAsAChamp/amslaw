@@ -1,13 +1,7 @@
 import { expect, test } from "@playwright/test"
 
 import { NAV_LINKS, PAGE_ROUTES } from "./data/test-data"
-import {
-  closeMobileMenu,
-  isMobileViewport,
-  navigateAndVerify,
-  navigateSequence,
-  openMobileMenu,
-} from "./helpers/test-helpers"
+import { closeMobileMenu, isMobileViewport, navigateAndVerify, navigateSequence, openMobileMenu } from "./helpers/test-helpers"
 
 test.describe("Navigation Flow", () => {
   test.beforeEach(async ({ page }) => {
@@ -46,12 +40,7 @@ test.describe("Navigation Flow", () => {
   })
 
   test("navigates from Home to Services", async ({ page }) => {
-    await navigateAndVerify(
-      page,
-      NAV_LINKS.services,
-      PAGE_ROUTES.services.urlPattern,
-      PAGE_ROUTES.services.verifySelector.text
-    )
+    await navigateAndVerify(page, NAV_LINKS.services, PAGE_ROUTES.services.urlPattern, PAGE_ROUTES.services.verifySelector.text)
   })
 
   test("navigates from Home to FAQ", async ({ page }) => {

@@ -45,19 +45,14 @@ function getLinkClassName(variant: "desktop" | "mobile", isButton: boolean, isAc
     return `btn-nav-mobile-animated ${isActive ? "btn-nav-mobile-animated-active" : ""} relative block`
   }
   // Mobile regular link: Larger text for touch targets, color changes on active
-  return `text-nav hover:text-primary-dark block px-3 py-2 text-base font-semibold relative ${
-    isActive ? "text-primary" : ""
-  }`
+  return `text-nav hover:text-primary-dark block px-3 py-2 text-base font-semibold relative ${isActive ? "text-primary" : ""}`
 }
 
 /**
  * Individual navigation link component with active state indicators
  * Supports both desktop and mobile variants with different styling and animations
  */
-const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(function NavLink(
-  { link, isActive, onClick, variant },
-  ref
-) {
+const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(function NavLink({ link, isActive, onClick, variant }, ref) {
   const linkClassName = getLinkClassName(variant, !!link.isButton, isActive)
   const layoutId = variant === "desktop" ? "activeTab" : "activeTabMobile"
 
@@ -70,9 +65,7 @@ const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(function NavLink(
         <motion.div
           layoutId={layoutId}
           className={
-            variant === "desktop"
-              ? "absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-              : "absolute left-0 top-0 bottom-0 w-1 bg-primary"
+            variant === "desktop" ? "absolute bottom-0 left-0 right-0 h-0.5 bg-primary" : "absolute left-0 top-0 bottom-0 w-1 bg-primary"
           }
           transition={tabIndicatorTransition}
         />

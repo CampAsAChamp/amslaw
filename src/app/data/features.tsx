@@ -1,15 +1,4 @@
-import {
-  Clock,
-  FileCheck,
-  FileEdit,
-  FileSearch,
-  GraduationCap,
-  Handshake,
-  Heart,
-  Lock,
-  MessageCircle,
-  UserCheck,
-} from "lucide-react"
+import { Clock, FileCheck, FileEdit, FileSearch, GraduationCap, Handshake, Heart, Lock, MessageCircle, UserCheck } from "lucide-react"
 
 // Why choose us features
 export const whyChooseUsFeatures = [

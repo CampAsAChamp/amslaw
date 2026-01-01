@@ -32,10 +32,7 @@ export default function ContactInfo() {
             <div>
               <div className="font-semibold text-heading">Phone</div>
               <div className="text-body flex items-center gap-2">
-                <a
-                  href={`tel:${contactInfo.phone}`}
-                  className="hover:text-primary-hover transition-colors hover:underline"
-                >
+                <a href={`tel:${contactInfo.phone}`} className="hover:text-primary-hover transition-colors hover:underline">
                   {formatPhoneNumber(contactInfo.phone)}
                 </a>
                 <CopyButton
@@ -52,17 +49,10 @@ export default function ContactInfo() {
             <div>
               <div className="font-semibold text-heading">Email</div>
               <div className="text-body flex items-center gap-2">
-                <a
-                  href={`mailto:${contactInfo.email}`}
-                  className="hover:text-primary-hover transition-colors hover:underline"
-                >
+                <a href={`mailto:${contactInfo.email}`} className="hover:text-primary-hover transition-colors hover:underline">
                   {contactInfo.email}
                 </a>
-                <CopyButton
-                  textToCopy={contactInfo.email}
-                  label="Copy email address"
-                  className="text-primary-hover hover:text-primary"
-                />
+                <CopyButton textToCopy={contactInfo.email} label="Copy email address" className="text-primary-hover hover:text-primary" />
               </div>
             </div>
           </div>

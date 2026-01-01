@@ -48,12 +48,7 @@ export default function DesktopNav({ links, getIsActive, onLinkClick }: DesktopN
       {/* Horizontal flex container with 2rem spacing between items */}
       <div className="ml-10 flex items-baseline space-x-8">
         {links.map((link) => (
-          <DesktopNavLink
-            key={link.href}
-            link={link}
-            isActive={getIsActive(link.href)}
-            onClick={() => onLinkClick(link.href)}
-          />
+          <DesktopNavLink key={link.href} link={link} isActive={getIsActive(link.href)} onClick={() => onLinkClick(link.href)} />
         ))}
       </div>
     </div>
