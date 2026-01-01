@@ -47,6 +47,9 @@
     ],
     "*.{json,scss,md}": [
       "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "bash -c 'tsc --noEmit'"
     ]
   },
   "cloudflare": {
