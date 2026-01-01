@@ -12,6 +12,10 @@ The site is deployed on Cloudflare Workers with automatic build and deployment o
 
 This is the official website for Anna M. Schneider Law, a law firm specializing in estate planning, living trusts, and wills. The site is built with modern web technologies to provide a fast, accessible, and user-friendly experience for clients seeking estate planning guidance.
 
+## Skills & Technologies
+
+[![My Skills](https://skills.syvixor.com/api/icons?perline=9&i=nextjs,reactjs,typescript,tailwindcss,postcss,nodejs,framer,lucide,resend,vitest,playwright,eslint,prettier,commitlint,dependabot,git,github,cloudflare)](https://builder.syvixor.com/)
+
 ## Tech Stack
 
 - **Framework**: [Next.js](https://nextjs.org/) 15.3 with React 19
@@ -24,7 +28,7 @@ This is the official website for Anna M. Schneider Law, a law firm specializing 
 - **Deployment**: Cloudflare Workers via [OpenNext](https://opennext.js.org/) with automatic deployment
 - **Runtime**: Node.js 22
 - **Package Manager**: Yarn 4 (Berry) for fast, reliable dependency management
-- **Code Quality**: Prettier for code formatting, lint-staged for pre-commit checks, Husky for git hooks
+- **Code Quality**: ESLint with Next.js config, Stylelint for CSS linting, Prettier for formatting, lint-staged for pre-commit checks, Husky for git hooks, custom lint script with progress indicators
 - **Commit Standards**: Commitlint for enforcing [Conventional Commits](https://www.conventionalcommits.org/) specification
 
 ## Site Structure
@@ -67,6 +71,36 @@ This project requires:
 - **Comprehensive Testing** - Unit tests with Vitest and E2E tests with Playwright
 - **Automatic Deployment** - Cloudflare Workers automatically builds and deploys on every push
 
+## Automated Dependency Updates
+
+This project uses **Dependabot** to automatically keep dependencies up to date. Configuration is in `.github/dependabot.yml`.
+
+**Update Schedule:**
+
+- Monthly updates on Mondays at 9:00 AM PST
+- Covers both npm packages and GitHub Actions
+
+**Dependency Groups:**
+Dependabot groups related packages together to reduce PR noise:
+
+- **React** - React and related packages
+- **Next.js** - Next.js and framework packages
+- **Testing** - Testing libraries (Vitest, Playwright, Testing Library)
+- **Linting** - ESLint, Prettier, TypeScript, and related plugins
+- **Styling** - Tailwind CSS and PostCSS
+- **Email** - Resend and React Email packages
+- **Dev Dependencies** - All development dependencies
+
+**Pull Request Features:**
+
+- Automatic PR creation with conventional commit messages (`chore:` or `ci:`)
+- Labels applied: `dependencies`, `automated`, `github-actions`
+- Assigned reviewers configured
+- Automatic rebase when PRs become outdated
+- Maximum 5 open PRs for npm, 3 for GitHub Actions
+
+This ensures the project stays secure and up-to-date with minimal manual intervention.
+
 ## Development
 
 ### Getting Started
@@ -96,13 +130,18 @@ All scripts are defined in `package.json` and run with Yarn:
 - `yarn dev` - Start development server with hot reload
 - `yarn build` - Build Next.js production bundle (for local testing/verification)
 - `yarn start` - Start production server locally
-- `yarn lint` - Run ESLint for code quality checks
-- `yarn lint:fix` - Run ESLint with auto-fix
+- `yarn lint` - Run comprehensive linting (ESLint, Stylelint, TypeScript) with progress indicators
+- `yarn lint:fix` - Run ESLint and Stylelint with auto-fix, plus type checking
+- `yarn lint:eslint` - Run only ESLint checks
+- `yarn lint:css` - Run Stylelint on CSS files
+- `yarn lint:css:fix` - Auto-fix CSS linting issues
+- `yarn lint:types` - Run TypeScript type checking only
 - `yarn format` - Format all files with Prettier
 - `yarn format:check` - Check formatting without changes
 - `yarn check` - Run full type checking and build validation
 - `yarn preview` - Preview OpenNext build locally
 - `yarn deploy` - Build and deploy to Cloudflare Workers (includes build step)
+- `yarn cf-typegen` - Generate TypeScript types for Cloudflare environment
 - `yarn test` - Run Vitest unit tests
 - `yarn test:watch` - Run tests in watch mode
 - `yarn test:ui` - Run tests with interactive UI
@@ -136,6 +175,22 @@ src/
 ├── types/               # TypeScript type definitions
 └── utils/               # Utility functions
 ```
+
+### Configuration Files
+
+The project includes several configuration files that control different aspects of the build, deployment, and development workflow:
+
+| File                   | Purpose                                                                     |
+| ---------------------- | --------------------------------------------------------------------------- |
+| `vitest.config.ts`     | Vitest unit test configuration (jsdom environment, coverage settings)       |
+| `playwright.config.ts` | Playwright E2E test configuration (browser targets, reporters)              |
+| `.stylelintrc.json`    | Stylelint rules for CSS linting (alphabetical properties, Tailwind support) |
+| `commitlint.config.js` | Commit message format enforcement (Conventional Commits)                    |
+| `eslint.config.mjs`    | ESLint rules and Next.js configuration                                      |
+| `postcss.config.mjs`   | PostCSS with Tailwind CSS v4                                                |
+| `open-next.config.ts`  | OpenNext adapter configuration for Cloudflare Workers                       |
+| `wrangler.jsonc`       | Cloudflare Workers deployment configuration                                 |
+| `.cursorrules`         | Project-specific coding standards and conventions                           |
 
 ### Email Setup (Contact Form)
 
@@ -328,6 +383,59 @@ You can also deploy manually using the following commands:
 
 For Cloudflare deployment, just run `yarn deploy` - it handles everything in one command.
 
+### OpenNext Configuration
+
+This project uses **OpenNext** to adapt Next.js for Cloudflare Workers. The configuration is in `open-next.config.ts`.
+
+**Current Setup:**
+
+- Uses default OpenNext settings optimized for Cloudflare Workers
+- Automatic static asset handling
+- Server-side rendering support on the edge
+
+**Optional Performance Enhancement:**
+
+You can enable R2 incremental cache for improved performance:
+
+1. Uncomment the R2 cache configuration in `open-next.config.ts`
+2. Import the R2 cache override: `import r2IncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/r2-incremental-cache"`
+3. Add to config: `incrementalCache: r2IncrementalCache`
+
+See [OpenNext Cloudflare Caching](https://opennext.js.org/cloudflare/caching) for more details.
+
+### Wrangler CLI Tools
+
+The project uses Wrangler CLI for Cloudflare Workers management. Useful commands:
+
+**TypeScript Types:**
+
+```bash
+yarn cf-typegen
+```
+
+Generates TypeScript types for Cloudflare environment variables defined in `wrangler.jsonc`.
+
+**Managing Secrets:**
+
+```bash
+# Set a secret (encrypted)
+yarn wrangler secret put SECRET_NAME
+
+# List all secrets
+yarn wrangler secret list
+
+# Delete a secret
+yarn wrangler secret delete SECRET_NAME
+```
+
+**Configuration in `wrangler.jsonc`:**
+
+- `vars` - Public environment variables (e.g., `CONTACT_EMAIL`)
+- `compatibility_date` - Cloudflare Workers compatibility date
+- `compatibility_flags` - Node.js compatibility and other feature flags
+- `observability` - Logging and monitoring configuration
+- `upload_source_maps` - Enable source maps for better debugging
+
 ### Environment Variables in Production
 
 Environment variables are configured in `wrangler.jsonc`:
@@ -369,6 +477,50 @@ function MyComponent() {
   // theme is "light" or "dark"
 }
 ```
+
+### Code Quality Workflow
+
+The project uses a comprehensive linting setup with a custom script for better developer experience:
+
+**Comprehensive Linting (`yarn lint`):**
+
+The `yarn lint` command runs a custom script (`scripts/lint-with-progress.mjs`) that executes three checks sequentially with visual progress indicators:
+
+1. **ESLint** - JavaScript/TypeScript code quality and Next.js best practices
+2. **Stylelint** - CSS formatting and Tailwind CSS compliance
+3. **TypeScript** - Type checking across the entire codebase
+
+The script shows a spinner progress indicator while running each check and provides clear success/failure feedback.
+
+**Individual Linters:**
+
+For faster feedback during development, you can run individual linters:
+
+- `yarn lint:eslint` - Only ESLint checks
+- `yarn lint:css` - Only Stylelint checks
+- `yarn lint:types` - Only TypeScript type checking
+- `yarn lint:fix` - Auto-fix ESLint and Stylelint issues, then type check
+
+**Pre-commit Hooks:**
+
+Git hooks via Husky automatically run lint-staged on committed files:
+
+- Auto-fixes ESLint and Stylelint issues
+- Formats code with Prettier
+- Only processes staged files for speed
+- Configured in `package.json` under `lint-staged`
+
+**Stylelint Configuration:**
+
+CSS linting enforces:
+
+- Alphabetical property ordering
+- Tailwind CSS compatibility
+- Hex color format consistency (long form)
+- No named colors (except in functions)
+- Custom rules for `globals.css` exceptions
+
+See `.stylelintrc.json` for complete configuration.
 
 ### Key Guidelines
 
