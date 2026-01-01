@@ -12,6 +12,14 @@ The site is deployed on Cloudflare Workers with automatic build and deployment o
 
 This is the official website for Anna M. Schneider Law, a law firm specializing in estate planning, living trusts, and wills. The site is built with modern web technologies to provide a fast, accessible, and user-friendly experience for clients seeking estate planning guidance.
 
+## Skills & Technologies
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,cloudflare,nodejs,yarn,vitest,playwright,eslint&theme=auto&perline=10" />
+  </a>
+</p>
+
 ## Tech Stack
 
 - **Framework**: [Next.js](https://nextjs.org/) 15.3 with React 19
