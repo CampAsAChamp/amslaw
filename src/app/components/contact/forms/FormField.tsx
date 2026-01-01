@@ -41,11 +41,11 @@ export default function FormField({
   const baseInputClasses =
     "w-full px-3 py-2 bg-surface text-body border border-surface-tertiary rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-placeholder"
 
-  // For select elements, apply text-placeholder when empty, text-body when selected
+  // For select elements, apply select-placeholder class when empty
   const getSelectClasses = () => {
     const baseClasses =
       "w-full px-3 py-2 bg-surface border border-surface-tertiary rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-    return `${baseClasses} ${value === "" ? "text-placeholder" : "text-body"}`
+    return `${baseClasses} ${value === "" ? "select-placeholder" : ""}`
   }
 
   return (
