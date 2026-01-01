@@ -14,7 +14,7 @@
     "check": "yarn build && tsc",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "dev": "next dev",
-    "lint": "node scripts/lint-with-progress.mjs",
+    "lint": "node scripts/lint-with-progress.mjs && yarn format:check",
     "lint:fix": "eslint . --fix && stylelint \"**/*.css\" --fix && tsc --noEmit",
     "lint:eslint": "eslint .",
     "lint:css": "stylelint \"**/*.css\"",
@@ -39,8 +39,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
+      "eslint --fix"
     ],
     "*.css": [
       "stylelint --fix",
@@ -95,6 +94,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "husky": "^9.1.7",
     "jsdom": "^27.3.0",
     "lint-staged": "^16.2.7",
