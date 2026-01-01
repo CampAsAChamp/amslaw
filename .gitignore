@@ -64,14 +64,8 @@ Thumbs.db
 # TypeScript build output
 *.tsbuildinfo
 
-# Test coverage output
-coverage/
-/coverage
-
-# Playwright test results
-test-results/
-playwright-report/
-playwright/.cache/
+# Test output
+test_results/
 
 # Debug-related files
 debug.log

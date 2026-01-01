@@ -6,6 +6,9 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './test/e2e',
   
+  /* Output directory for test artifacts */
+  outputDir: './test_results/e2e/artifacts',
+  
   /* Run tests in files in parallel */
   fullyParallel: true,
   
@@ -19,7 +22,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html', { open: 'never' }]],
+  reporter: [['html', { outputFolder: 'test_results/e2e/html-report', open: 'never' }]],
   
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
