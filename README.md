@@ -162,6 +162,69 @@ See the [Commit Message Guide](docs/COMMIT_MESSAGE_GUIDE.md) for detailed inform
 
 **No secrets required** - The GitHub Actions workflow uses the automatically provided `GITHUB_TOKEN`.
 
+## CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration and automated releases. The pipeline consists of two workflows that work together to ensure code quality and automate versioning.
+
+### Workflows
+
+#### Test Workflow (`.github/workflows/test.yml`)
+
+Runs automatically on:
+
+- Every push to `main` branch
+- Every pull request to `main` branch
+
+**Steps:**
+
+1. **Install dependencies** - Uses Yarn with caching for faster builds
+2. **Run linters** - Executes comprehensive linting (ESLint, Stylelint, TypeScript, Prettier)
+3. **Run unit tests** - Runs Vitest unit tests
+4. **Build** - Creates Next.js production build to verify buildability
+
+**Status**: Required check - PRs cannot be merged if tests fail.
+
+#### Release Workflow (`.github/workflows/release.yml`)
+
+Runs automatically **only after** the test workflow succeeds on the `main` branch.
+
+**Trigger**: `workflow_run` event - waits for test workflow completion with success status
+
+**Steps:**
+
+1. **Runs semantic-release** - Analyzes commits and determines next version
+2. **Updates files** - Bumps version in `package.json` and updates `docs/CHANGELOG.md`
+3. **Creates release** - Generates GitHub release with automated release notes
+4. **Commits changes** - Pushes version updates back to repository with `[skip ci]` tag
+
+**This ensures all releases are tested and validated before being published.**
+
+### Why This Architecture?
+
+The two-workflow approach provides several benefits:
+
+1. **Quality Assurance** - No releases happen unless all tests pass
+2. **Fast Feedback** - Test results appear immediately on PRs
+3. **Automatic Versioning** - Releases happen automatically when code is merged to `main`
+4. **No Redundant Testing** - Release workflow only runs after successful tests
+5. **Clean Commit History** - Release commits are tagged with `[skip ci]` to prevent recursive workflows
+
+### Workflow Files
+
+- **Test Workflow**: `.github/workflows/test.yml`
+- **Release Workflow**: `.github/workflows/release.yml`
+- **Semantic Release Config**: `.releaserc.js`
+
+### Skip CI
+
+If you need to push changes without triggering the workflows, include `[skip ci]` in your commit message:
+
+```bash
+git commit -m "docs: update README [skip ci]"
+```
+
+This is useful for documentation-only changes that don't require testing. However, semantic-release automatically adds `[skip ci]` to its release commits to prevent recursive workflows.
+
 ## Development
 
 ### Getting Started
